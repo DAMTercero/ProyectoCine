@@ -1,0 +1,112 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="70113E6A-5CD3-742E-B65F-3229530D0E11" name="PELICULA">
+<createdBy>9fdam08</createdBy>
+<createdTime>2018-09-21 18:42:44 UTC</createdTime>
+<ownerDesignName>REALACIONAL</ownerDesignName>
+<ordsAlias>table_2</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID_PELICULA" id="ED2FE39A-8173-5AEE-1669-4249E9131884">
+<createdBy>9fdam08</createdBy>
+<createdTime>2018-09-21 18:43:25 UTC</createdTime>
+<ownerDesignName>REALACIONAL</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TITULO" id="D4159769-D2D8-A640-33BE-2B4D481CB87F">
+<createdBy>9fdam08</createdBy>
+<createdTime>2018-09-21 18:45:43 UTC</createdTime>
+<ownerDesignName>REALACIONAL</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>500</dataTypeSize>
+<ownDataTypeParameters>500,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ANYO_ESTRENO" id="8B393300-CDC7-63CF-5222-E04DB6994430">
+<createdBy>9fdam08</createdBy>
+<createdTime>2018-09-21 18:45:43 UTC</createdTime>
+<ownerDesignName>REALACIONAL</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>500</dataTypeSize>
+<ownDataTypeParameters>500,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DIRECTOR" id="52E55985-1213-9119-FC5E-1058B408EDDF">
+<createdBy>9fdam08</createdBy>
+<createdTime>2018-09-21 18:45:43 UTC</createdTime>
+<ownerDesignName>REALACIONAL</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>500</dataTypeSize>
+<ownDataTypeParameters>500,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ACTOR_PRINCI" id="FFFF3FCF-5533-9B14-1DCF-69B63C0C6310">
+<createdBy>9fdam08</createdBy>
+<createdTime>2018-09-21 18:45:43 UTC</createdTime>
+<ownerDesignName>REALACIONAL</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>500</dataTypeSize>
+<ownDataTypeParameters>500,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ACTOR_SECUN" id="13177EF7-39B0-1378-5805-AE13472AA627">
+<createdBy>9fdam08</createdBy>
+<createdTime>2018-09-21 18:45:43 UTC</createdTime>
+<ownerDesignName>REALACIONAL</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>500</dataTypeSize>
+<ownDataTypeParameters>500,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DURACION" id="3DEDB806-2677-6333-CD25-7D06968CFBCF">
+<createdBy>9fdam08</createdBy>
+<createdTime>2018-09-21 18:45:43 UTC</createdTime>
+<ownerDesignName>REALACIONAL</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>500</dataTypeSize>
+<ownDataTypeParameters>500,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TRAILER" id="6EDD211D-83D0-5CF3-0B04-54F9DAC4F72C">
+<createdBy>9fdam08</createdBy>
+<createdTime>2018-09-21 18:45:43 UTC</createdTime>
+<ownerDesignName>REALACIONAL</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>500</dataTypeSize>
+<ownDataTypeParameters>500,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="CFF5C252-689C-F931-8F67-B5E1043C35DC" name="Pelicula_PK">
+<createdBy>9fdam08</createdBy>
+<createdTime>2018-09-21 18:43:25 UTC</createdTime>
+<ownerDesignName>REALACIONAL</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="ED2FE39A-8173-5AEE-1669-4249E9131884"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,18 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_2" id="FF78B971-A7C3-5000-583C-A5968C455C91" directorySegmentName="seg_0">
+<createdBy>GACALOIN</createdBy>
+<createdTime>2018-09-26 14:48:21 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>ENTIDAD RELACION</ownerDesignName>
+<engineerTo>
+<item key="A31ADA21-AEE8-D3A8-61C7-77208DEFCCE7" value="true"/>
+</engineerTo>
+<identifying>true</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>7A42EF2D-3089-4F29-3EDE-1BBF3792141D</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>613E9C20-C9C6-8EB1-1AEB-55AAC3429903</targetEntity>
+<transferable>true</transferable>
+</Relation>

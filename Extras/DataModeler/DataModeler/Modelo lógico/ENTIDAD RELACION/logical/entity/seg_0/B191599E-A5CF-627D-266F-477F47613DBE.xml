@@ -1,0 +1,151 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" id="B191599E-A5CF-627D-266F-477F47613DBE" directorySegmentName="seg_0" name="Historico">
+<createdBy>GACALOIN</createdBy>
+<createdTime>2018-09-26 14:35:47 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>ENTIDAD RELACION</ownerDesignName>
+<engineerTo>
+<item key="A31ADA21-AEE8-D3A8-61C7-77208DEFCCE7" value="true"/>
+</engineerTo>
+<pkName>Historico PK</pkName>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<fonts>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Título</foType>
+<fontStyle>1</fontStyle>
+<colorRGB>-16776961</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Atributo</foType>
+<colorRGB>-16777216</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Tipo de Dato</foType>
+<colorRGB>-16744448</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Elemento de Clave Primaria</foType>
+<colorRGB>-16776961</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Elemento de Clave Ajena</foType>
+<colorRGB>-16777216</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Elemento de Clave Única</foType>
+<colorRGB>-16776961</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>No Nulo</foType>
+<colorRGB>-65536</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Clave</foType>
+<colorRGB>-16777216</colorRGB>
+</FontObject>
+</fonts>
+<attributes>
+<Attribute class="oracle.dbtools.crest.model.design.logical.Attribute" name="ID_SALA" id="719A526C-C129-C9C1-1D27-E46B17F6347F">
+<createdBy>GACALOIN</createdBy>
+<createdTime>2018-09-26 14:51:44 UTC</createdTime>
+<generatorID>1BB7D83A-E7FC-59FF-CB53-43EDD82B693C</generatorID>
+<ownerDesignName>ENTIDAD RELACION</ownerDesignName>
+<engineerTo>
+<item key="A31ADA21-AEE8-D3A8-61C7-77208DEFCCE7" value="true"/>
+</engineerTo>
+<referedAttribute>F231F38B-57B8-7402-3CC9-05DFDA8C6E03</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+</Attribute>
+<Attribute class="oracle.dbtools.crest.model.design.logical.Attribute" name="ID_EMPLEADO" id="BE574E70-8115-F0F4-7546-3C4CB96330DA">
+<createdBy>GACALOIN</createdBy>
+<createdTime>2018-09-26 14:52:08 UTC</createdTime>
+<generatorID>A4E9B239-86F3-5E15-7C68-86D28AB79758</generatorID>
+<ownerDesignName>ENTIDAD RELACION</ownerDesignName>
+<engineerTo>
+<item key="A31ADA21-AEE8-D3A8-61C7-77208DEFCCE7" value="true"/>
+</engineerTo>
+<referedAttribute>A6E84643-164D-1694-6229-88BDD3F498EB</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+</Attribute>
+<Attribute class="oracle.dbtools.crest.model.design.logical.Attribute" name="ID_CINE" id="9243E172-B2BF-516C-75D2-15C25661C8C9">
+<createdBy>GACALOIN</createdBy>
+<createdTime>2018-09-26 14:52:08 UTC</createdTime>
+<generatorID>A4E9B239-86F3-5E15-7C68-86D28AB79758</generatorID>
+<ownerDesignName>ENTIDAD RELACION</ownerDesignName>
+<engineerTo>
+<item key="A31ADA21-AEE8-D3A8-61C7-77208DEFCCE7" value="true"/>
+</engineerTo>
+<referedAttribute>4B127E69-6C37-D56B-EE08-795E5F9F7815</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+</Attribute>
+<Attribute class="oracle.dbtools.crest.model.design.logical.Attribute" name="ID_PELICULA" id="8AAE595A-B00B-D0BC-5137-1088B05EAFB3">
+<createdBy>GACALOIN</createdBy>
+<createdTime>2018-09-26 14:52:16 UTC</createdTime>
+<generatorID>41C1E026-523D-B772-819E-5B26F8CFCE89</generatorID>
+<ownerDesignName>ENTIDAD RELACION</ownerDesignName>
+<engineerTo>
+<item key="A31ADA21-AEE8-D3A8-61C7-77208DEFCCE7" value="true"/>
+</engineerTo>
+<referedAttribute>A57C0E07-E949-01C7-B2C4-175BC53AC1A8</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+</Attribute>
+<Attribute class="oracle.dbtools.crest.model.design.logical.Attribute" name="FECHA_EMISION" id="1FD00543-A54A-E9FF-2735-65C291A70900">
+<createdBy>GACALOIN</createdBy>
+<createdTime>2018-09-26 15:03:03 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>ENTIDAD RELACION</ownerDesignName>
+<engineerTo>
+<item key="A31ADA21-AEE8-D3A8-61C7-77208DEFCCE7" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+</Attribute>
+<Attribute class="oracle.dbtools.crest.model.design.logical.Attribute" name="HORARIO" id="08B9B01B-8398-983B-99D3-2A0844AE044D">
+<createdBy>GACALOIN</createdBy>
+<createdTime>2018-09-26 15:03:14 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>ENTIDAD RELACION</ownerDesignName>
+<engineerTo>
+<item key="A31ADA21-AEE8-D3A8-61C7-77208DEFCCE7" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+</Attribute>
+</attributes>
+<identifiers>
+<identifier class="oracle.dbtools.crest.model.design.logical.CandidateKey" id="E271DB8A-F096-87C5-0D8D-066EDDE2E116" name="Historico PK">
+<createdBy>GACALOIN</createdBy>
+<createdTime>2018-09-26 15:03:13 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>ENTIDAD RELACION</ownerDesignName>
+<engineerTo>
+<item key="A31ADA21-AEE8-D3A8-61C7-77208DEFCCE7" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>719A526C-C129-C9C1-1D27-E46B17F6347F</attributeRef>
+<attributeRef>719A526C-C129-C9C1-1D27-E46B17F6347F</attributeRef>
+<attributeRef>1FD00543-A54A-E9FF-2735-65C291A70900</attributeRef>
+<attributeRef>08B9B01B-8398-983B-99D3-2A0844AE044D</attributeRef>
+<attributeRef>719A526C-C129-C9C1-1D27-E46B17F6347F</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

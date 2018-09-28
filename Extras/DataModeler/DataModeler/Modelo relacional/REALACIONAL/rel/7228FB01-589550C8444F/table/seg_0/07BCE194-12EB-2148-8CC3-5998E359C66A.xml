@@ -1,0 +1,88 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="07BCE194-12EB-2148-8CC3-5998E359C66A" name="SALA">
+<createdBy>9fdam08</createdBy>
+<createdTime>2018-09-21 18:31:01 UTC</createdTime>
+<ownerDesignName>REALACIONAL</ownerDesignName>
+<ordsAlias>table_1</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID_SALA" id="AF75C6BC-9581-78CC-08CE-B0C15B206ECE">
+<createdBy>9fdam08</createdBy>
+<createdTime>2018-09-21 18:42:18 UTC</createdTime>
+<ownerDesignName>REALACIONAL</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CAPACIDAD" id="38E1C831-C386-90A4-4BE6-E73B674526C0">
+<createdBy>9fdam08</createdBy>
+<createdTime>2018-09-21 18:42:18 UTC</createdTime>
+<ownerDesignName>REALACIONAL</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PANTALLA" id="F6C45434-91CD-A553-6845-3937DAD3F0B6">
+<createdBy>9fdam08</createdBy>
+<createdTime>2018-09-21 18:42:18 UTC</createdTime>
+<ownerDesignName>REALACIONAL</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="APERTURA" id="D552AAF7-4BC3-C64D-6594-2097249AD8A0">
+<createdBy>9fdam08</createdBy>
+<createdTime>2018-09-21 18:42:18 UTC</createdTime>
+<ownerDesignName>REALACIONAL</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>500</dataTypeSize>
+<ownDataTypeParameters>500,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="HORARIO" id="B1F12EF0-24C5-B86F-EBFC-7EDCAF7FE9B8">
+<createdBy>9fdam08</createdBy>
+<createdTime>2018-09-21 18:42:18 UTC</createdTime>
+<ownerDesignName>REALACIONAL</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>500</dataTypeSize>
+<ownDataTypeParameters>500,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DISPONIBLE" id="1046877A-E36D-60C0-6D41-27C324EAA8C2">
+<createdBy>9fdam08</createdBy>
+<createdTime>2018-09-21 18:42:18 UTC</createdTime>
+<ownerDesignName>REALACIONAL</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT006</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="78D4B8A3-3E55-A578-6FF4-21296FC93010" name="SALA_PK">
+<createdBy>9fdam08</createdBy>
+<createdTime>2018-09-21 18:42:18 UTC</createdTime>
+<ownerDesignName>REALACIONAL</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="AF75C6BC-9581-78CC-08CE-B0C15B206ECE"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
