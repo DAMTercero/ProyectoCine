@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<oracle.dbtools.crest.model.design.logical.LogicalDesign>
+   <object objectType="Entity" objectID="27FE1204-5FCD-2C31-9CC5-0F784E4EFDC0" name="" seqName="seg_0"/>
+   <object objectType="Entity" objectID="613E9C20-C9C6-8EB1-1AEB-55AAC3429903" name="" seqName="seg_0"/>
+   <object objectType="Entity" objectID="7A42EF2D-3089-4F29-3EDE-1BBF3792141D" name="" seqName="seg_0"/>
+   <object objectType="Entity" objectID="B191599E-A5CF-627D-266F-477F47613DBE" name="" seqName="seg_0"/>
+   <object objectType="Entity" objectID="F2358F15-E1E1-37F7-FA7B-12FCCEF0C85E" name="" seqName="seg_0"/>
+   <object objectType="Relation" objectID="1BB7D83A-E7FC-59FF-CB53-43EDD82B693C" name="" seqName="seg_0"/>
+   <object objectType="Relation" objectID="41C1E026-523D-B772-819E-5B26F8CFCE89" name="" seqName="seg_0"/>
+   <object objectType="Relation" objectID="62770A1C-C911-FF84-5C70-3411C8047CC3" name="" seqName="seg_0"/>
+   <object objectType="Relation" objectID="77671CBD-922E-4F21-D598-B5118C3496C3" name="" seqName="seg_0"/>
+   <object objectType="Relation" objectID="924EDB53-87D0-97E7-52E0-5F9A1EBE473F" name="" seqName="seg_0"/>
+   <object objectType="Relation" objectID="A4E9B239-86F3-5E15-7C68-86D28AB79758" name="" seqName="seg_0"/>
+   <object objectType="Relation" objectID="F5F88C96-033E-3D3A-4514-01546CEDC1C6" name="" seqName="seg_0"/>
+   <object objectType="Relation" objectID="FF78B971-A7C3-5000-583C-A5968C455C91" name="" seqName="seg_0"/>
+   <object objectType="Note" objectID="468C7A46-602F-2229-EA0B-829B515E7244" name="" seqName="seg_0"/>
+</oracle.dbtools.crest.model.design.logical.LogicalDesign>

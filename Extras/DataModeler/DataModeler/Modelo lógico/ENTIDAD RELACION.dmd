@@ -1,0 +1,9 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<OSDM_Design class="oracle.dbtools.crest.model.design.Design" name="ENTIDAD RELACION" id="B378A5C9-B260-72FA-9BD4-021461D4A894" version="3.5">
+<createdBy>GACALOIN</createdBy>
+<createdTime>2018-09-26 14:34:57 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>ENTIDAD RELACION</ownerDesignName>
+<capitalNames>false</capitalNames>
+<designId>B378A5C9-B260-72FA-9BD4-021461D4A894</designId>
+</OSDM_Design>

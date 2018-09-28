@@ -1,0 +1,121 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="6FBBB2F1-849B-F1EC-B398-D3C01EB98043" name="HISTORICO">
+<createdBy>9fdam08</createdBy>
+<createdTime>2018-09-21 19:13:40 UTC</createdTime>
+<ownerDesignName>REALACIONAL</ownerDesignName>
+<ordsAlias>table_4</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="FECHA_EMISION" id="ABFB5DC8-ACB9-7CF0-4783-555159447947">
+<createdBy>9fdam08</createdBy>
+<createdTime>2018-09-21 19:25:30 UTC</createdTime>
+<ownerDesignName>REALACIONAL</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>500</dataTypeSize>
+<ownDataTypeParameters>500,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="HORARIO" id="3756DF32-4067-913E-723B-3576FECD8E73">
+<createdBy>9fdam08</createdBy>
+<createdTime>2018-09-21 19:21:40 UTC</createdTime>
+<ownerDesignName>REALACIONAL</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>500</dataTypeSize>
+<ownDataTypeParameters>500,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="SALA_ID_SALA" id="86CCD581-CEDE-67CD-3398-42F2425719D2">
+<createdBy>9fdam08</createdBy>
+<createdTime>2018-09-21 19:15:44 UTC</createdTime>
+<ownerDesignName>REALACIONAL</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="D33B39CE-A829-949A-D406-15ECB6BA86C0" referredColumn="AF75C6BC-9581-78CC-08CE-B0C15B206ECE"/>
+</associations>
+</Column>
+<Column name="EMPLEADO_ID_EMPLEADO" id="0DF34439-D46F-78EC-89A6-7CEB2FF6696F">
+<createdBy>9fdam08</createdBy>
+<createdTime>2018-09-21 19:16:11 UTC</createdTime>
+<ownerDesignName>REALACIONAL</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="CA5454C5-0E91-F24C-F601-BC4234F3425E" referredColumn="2D61D41A-525F-DAC8-8D1A-27E4A0C7176F"/>
+</associations>
+</Column>
+<Column name="PELICULA_ID_PELICULA" id="FD432B80-EFFF-6409-79EF-427199CDFB70">
+<createdBy>9fdam08</createdBy>
+<createdTime>2018-09-21 19:16:20 UTC</createdTime>
+<ownerDesignName>REALACIONAL</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="460FB86C-255A-367D-2435-1257893BA6A7" referredColumn="ED2FE39A-8173-5AEE-1669-4249E9131884"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="87083591-65B3-42A0-DE79-5F80C9189FEB" name="HISTORICO_PK">
+<createdBy>9fdam08</createdBy>
+<createdTime>2018-09-21 19:25:30 UTC</createdTime>
+<ownerDesignName>REALACIONAL</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="ABFB5DC8-ACB9-7CF0-4783-555159447947"/>
+<colUsage columnID="3756DF32-4067-913E-723B-3576FECD8E73"/>
+<colUsage columnID="86CCD581-CEDE-67CD-3398-42F2425719D2"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="56FE0624-2500-7C55-433A-D3FCA3B12F5E" name="HISTORICO_SALA_FK">
+<createdBy>9fdam08</createdBy>
+<createdTime>2018-09-21 19:15:44 UTC</createdTime>
+<ownerDesignName>REALACIONAL</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="86CCD581-CEDE-67CD-3398-42F2425719D2"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="0AD22BC0-393D-E842-C42B-478FDC95452B" name="HISTORICO_EMPLEADO_FK">
+<createdBy>9fdam08</createdBy>
+<createdTime>2018-09-21 19:16:11 UTC</createdTime>
+<ownerDesignName>REALACIONAL</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0DF34439-D46F-78EC-89A6-7CEB2FF6696F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E81A19BB-F669-4D5D-67A5-3AE06F83E885" name="HISTORICO_PELICULA_FK">
+<createdBy>9fdam08</createdBy>
+<createdTime>2018-09-21 19:16:20 UTC</createdTime>
+<ownerDesignName>REALACIONAL</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="FD432B80-EFFF-6409-79EF-427199CDFB70"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
