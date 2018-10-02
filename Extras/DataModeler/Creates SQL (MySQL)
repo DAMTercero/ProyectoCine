@@ -1,0 +1,168 @@
+-- Generado por Oracle SQL Developer Data Modeler 3.1.4.710
+--   en:        2018-10-01 17:55:43 CEST
+--   sitio:      Oracle Database 11g
+--   tipo:      Oracle Database 11g
+
+
+
+CREATE TABLE Empleado 
+    ( 
+     ID_EMPLEADO NUMBER  NOT NULL , 
+     NOMBRE VARCHAR2 (500)  NOT NULL , 
+     APELLIDO1 VARCHAR2 (500)  NOT NULL , 
+     APELLIDO2 VARCHAR2 (500)  NOT NULL , 
+     FEC_NACIMIENTO VARCHAR2 (500)  NOT NULL , 
+     FEC_CONTRATO VARCHAR2 (500)  NOT NULL , 
+     FECHA_FIN VARCHAR2 (500)  NOT NULL , 
+     NACIONALIDAD VARCHAR2 (500)  NOT NULL , 
+--  PUEDE SER EJEMPLO: JEFE CINE, ENCARGADO DE SALA(GENERAL PARA PONER EN
+--  HISTORICO A ESTE TIPO DE EMPLEADO), VENDEDOR DE TICKETS,ETC.
+     CARGO VARCHAR2 (500)  NOT NULL , 
+--  PARA SABER SI SIGUE TRABANANDJO (¿HISTORIAL?)
+     DISPONIBLE CHAR (1)  NOT NULL 
+    ) 
+;
+
+
+
+ALTER TABLE Empleado 
+    ADD CONSTRAINT "Empleado PK" PRIMARY KEY ( ID_EMPLEADO ) ;
+
+
+
+CREATE TABLE Historico 
+    ( 
+     ID_SALA NUMBER  NOT NULL , 
+     ID_PELICULA NUMBER  NOT NULL , 
+--  EL DIA EMITIDO ¿SOLO?
+     FECHA_EMISION VARCHAR2 (500)  NOT NULL , 
+--  A QUE HORAS SE HA EMITIDO (P.E: SESION DE LAS 16:00 - 19:00)
+     SESION VARCHAR2 (500)  NOT NULL , 
+     ID_EMPLEADO NUMBER  NOT NULL 
+    ) 
+;
+
+
+
+ALTER TABLE Historico 
+    ADD CONSTRAINT "Historico PK" PRIMARY KEY ( ID_SALA, FECHA_EMISION, SESION ) ;
+
+
+
+CREATE TABLE Pelicula 
+    ( 
+     ID_PELICULA NUMBER  NOT NULL , 
+     TITULO VARCHAR2 (500)  NOT NULL , 
+     ANYO_ESTRENO VARCHAR2 (500)  NOT NULL , 
+     DIRECTOR VARCHAR2 (500)  NOT NULL , 
+     ACTOR_PRINCIPAL VARCHAR2 (500)  NOT NULL , 
+     ACTOR_SECUNDARIO VARCHAR2 (500)  NOT NULL , 
+--  ¿EN MINUTOS U HORAS?
+     DURACION VARCHAR2 (500)  NOT NULL , 
+--  UNA URL A INTERNET (YOUTUBE POR EJEMPLO)
+     TRAILER VARCHAR2 (500)  NOT NULL , 
+--  SI ESTA EN CARTELERA O NO
+     DISPONIBLE CHAR (1) 
+    ) 
+;
+
+
+
+ALTER TABLE Pelicula 
+    ADD CONSTRAINT "Pelicula PK" PRIMARY KEY ( ID_PELICULA ) ;
+
+
+
+CREATE TABLE Sala 
+    ( 
+     ID_SALA NUMBER  NOT NULL , 
+--  Numero de asientos totales disponibles
+     CAPACIDAD NUMBER  NOT NULL , 
+--  Se pone automaticamente el dia y la hora al crearse la sala (trigger)
+     FEC_APERTURA VARCHAR2 (500)  NOT NULL , 
+--  ALTURA X ANCHURA
+     PANTALLA VARCHAR2 (500)  NOT NULL , 
+--  PARA SABER SI SIGUE FUNCIONANDO LA SALA.
+     DISPONIBLE CHAR (1)  NOT NULL 
+    ) 
+;
+
+
+
+ALTER TABLE Sala 
+    ADD CONSTRAINT "Sala PK" PRIMARY KEY ( ID_SALA ) ;
+
+
+
+
+ALTER TABLE Historico 
+    ADD CONSTRAINT Relation_6 FOREIGN KEY 
+    ( 
+     ID_SALA
+    ) 
+    REFERENCES Sala 
+    ( 
+     ID_SALA
+    ) 
+    ON DELETE CASCADE 
+;
+
+
+ALTER TABLE Historico 
+    ADD CONSTRAINT Relation_7 FOREIGN KEY 
+    ( 
+     ID_EMPLEADO
+    ) 
+    REFERENCES Empleado 
+    ( 
+     ID_EMPLEADO
+    ) 
+;
+
+
+ALTER TABLE Historico 
+    ADD CONSTRAINT Relation_8 FOREIGN KEY 
+    ( 
+     ID_PELICULA
+    ) 
+    REFERENCES Pelicula 
+    ( 
+     ID_PELICULA
+    ) 
+;
+
+
+
+-- Informe de Resumen de Oracle SQL Developer Data Modeler: 
+-- 
+-- CREATE TABLE                             4
+-- CREATE INDEX                             0
+-- ALTER TABLE                              7
+-- CREATE VIEW                              0
+-- CREATE PACKAGE                           0
+-- CREATE PACKAGE BODY                      0
+-- CREATE PROCEDURE                         0
+-- CREATE FUNCTION                          0
+-- CREATE TRIGGER                           0
+-- ALTER TRIGGER                            0
+-- CREATE STRUCTURED TYPE                   0
+-- CREATE COLLECTION TYPE                   0
+-- CREATE CLUSTER                           0
+-- CREATE CONTEXT                           0
+-- CREATE DATABASE                          0
+-- CREATE DIMENSION                         0
+-- CREATE DIRECTORY                         0
+-- CREATE DISK GROUP                        0
+-- CREATE ROLE                              0
+-- CREATE ROLLBACK SEGMENT                  0
+-- CREATE SEQUENCE                          0
+-- CREATE MATERIALIZED VIEW                 0
+-- CREATE SYNONYM                           0
+-- CREATE TABLESPACE                        0
+-- CREATE USER                              0
+-- 
+-- DROP TABLESPACE                          0
+-- DROP DATABASE                            0
+-- 
+-- ERRORS                                   0
+-- WARNINGS                                 0

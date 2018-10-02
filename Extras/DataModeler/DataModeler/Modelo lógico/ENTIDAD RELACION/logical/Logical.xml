@@ -1,8 +1,0 @@
-<?xml version = '1.0' encoding = 'UTF-8'?>
-<LogicalDesign class="oracle.dbtools.crest.model.design.logical.LogicalDesign" name="Logical" id="E72F6402-5ACB-09D1-70AF-BAEBB4C25AAD" mainViewID="4A7B7F6F-97B8-62DD-745A-D9A969C2C64E">
-<createdBy>GACALOIN</createdBy>
-<createdTime>2018-09-26 14:34:58 UTC</createdTime>
-<generatorID>Generado por el Usuario</generatorID>
-<ownerDesignName>ENTIDAD RELACION</ownerDesignName>
-<shouldBeOpen>false</shouldBeOpen>
-</LogicalDesign>
