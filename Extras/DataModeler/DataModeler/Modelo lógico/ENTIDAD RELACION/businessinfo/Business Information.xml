@@ -1,8 +1,0 @@
-<?xml version = '1.0' encoding = 'UTF-8'?>
-<BusinessInfoDesign class="oracle.dbtools.crest.model.businessinfo.BusinessInfoDesign" name="Business Information" id="A5078B2D-AA57-D0A6-9E9E-ED48F23B4869">
-<createdBy>GACALOIN</createdBy>
-<createdTime>2018-09-26 14:34:58 UTC</createdTime>
-<generatorID>Generado por el Usuario</generatorID>
-<ownerDesignName>ENTIDAD RELACION</ownerDesignName>
-<shouldBeOpen>false</shouldBeOpen>
-</BusinessInfoDesign>
