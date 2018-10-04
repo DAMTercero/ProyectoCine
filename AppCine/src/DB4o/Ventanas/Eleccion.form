@@ -83,7 +83,6 @@
           <Font name="Magneto" size="24" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Empleados"/>
-        <Property name="actionCommand" type="java.lang.String" value="Empleados"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonEmpleadoActionPerformed"/>

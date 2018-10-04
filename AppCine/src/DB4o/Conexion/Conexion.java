@@ -1,14 +1,14 @@
-package Conexiones;
+package DB4o.Conexion;
 
 import com.db4o.Db4oEmbedded;
 import com.db4o.ObjectContainer;
 import com.db4o.ObjectSet;
 
-import Clases.Empleado;
-import Clases.Pelicula;
-import Clases.Sala;
+import DB4o.Clases.Empleado;
+import DB4o.Clases.Pelicula;
+import DB4o.Clases.Sala;
 
-import Ventanas.AMB;
+import DB4o.Ventanas.AMB;
 import java.util.List;
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package Clases;
+package DB4o.Clases;
 
 public class Pelicula {
 	

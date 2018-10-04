@@ -3,19 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Ventanas;
+package DB4o.Ventanas;
 
-import Clases.Pelicula;
-import Conexiones.Conexion;
-import static Ventanas.AMB.labelAP;
-import static Ventanas.AMB.labelAS;
-import static Ventanas.AMB.labelAnyo;
-import static Ventanas.AMB.labelDirector;
-import static Ventanas.AMB.labelDuracion;
-import static Ventanas.AMB.labelID;
-import static Ventanas.AMB.labelTitulo;
-import static Ventanas.AMB.labelTituloVentana;
-import static Ventanas.AMB.lableTrailer;
+import DB4o.Clases.Pelicula;
+import DB4o.Conexion.Conexion;
+import static DB4o.Ventanas.AMB.labelAP;
+import static DB4o.Ventanas.AMB.labelAS;
+import static DB4o.Ventanas.AMB.labelAnyo;
+import static DB4o.Ventanas.AMB.labelDirector;
+import static DB4o.Ventanas.AMB.labelDuracion;
+import static DB4o.Ventanas.AMB.labelID;
+import static DB4o.Ventanas.AMB.labelTitulo;
+import static DB4o.Ventanas.AMB.labelTituloVentana;
+import static DB4o.Ventanas.AMB.lableTrailer;
 
 /**
  *
