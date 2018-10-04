@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Ventanas;
+package DB4o.Ventanas;
 
-import Clases.Pelicula;
-import Conexiones.Conexion;
+import DB4o. Clases.Pelicula;
+import DB4o.Conexion.Conexion;
 import java.util.List;
 import javax.swing.JOptionPane;
 
