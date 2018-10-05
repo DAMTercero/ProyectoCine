@@ -13,13 +13,28 @@ public class Pelicula {
     private int ID_PELICULA;
     private String TITULO;
     private String ANYO_STRENO;
-    private String DIECTOR;
+    private String DIRECTOR;
     private String ACTOR_PRINCI;
     private String ACTOR_SECUN;
     private String DURACION;
     private String TRAILER;
-    private boolean EMITIENDOSE;
+    private boolean DISPONIBLE;
 
+    public Pelicula(int ID_PELICULA, String TITULO, String ANYO_STRENO, String DIRECTOR, String ACTOR_PRINCI, String ACTOR_SECUN, String DURACION, String TRAILER, boolean DISPONIBLE) {
+        this.ID_PELICULA = ID_PELICULA;
+        this.TITULO = TITULO;
+        this.ANYO_STRENO = ANYO_STRENO;
+        this.DIRECTOR = DIRECTOR;
+        this.ACTOR_PRINCI = ACTOR_PRINCI;
+        this.ACTOR_SECUN = ACTOR_SECUN;
+        this.DURACION = DURACION;
+        this.TRAILER = TRAILER;
+        this.DISPONIBLE = DISPONIBLE;
+    }
+
+    
+    
+    
     public int getID_PELICULA() {
         return ID_PELICULA;
     }
@@ -44,12 +59,12 @@ public class Pelicula {
         this.ANYO_STRENO = ANYO_STRENO;
     }
 
-    public String getDIECTOR() {
-        return DIECTOR;
+    public String getDIRECTOR() {
+        return DIRECTOR;
     }
 
-    public void setDIECTOR(String DIECTOR) {
-        this.DIECTOR = DIECTOR;
+    public void setDIRECTOR(String DIRECTOR) {
+        this.DIRECTOR = DIRECTOR;
     }
 
     public String getACTOR_PRINCI() {
@@ -84,12 +99,12 @@ public class Pelicula {
         this.TRAILER = TRAILER;
     }
 
-    public boolean isEMITIENDOSE() {
-        return EMITIENDOSE;
+    public boolean isDISPONIBLE() {
+        return DISPONIBLE;
     }
 
-    public void setEMITIENDOSE(boolean EMITIENDOSE) {
-        this.EMITIENDOSE = EMITIENDOSE;
+    public void setDISPONIBLE(boolean DISPONIBLE) {
+        this.DISPONIBLE = DISPONIBLE;
     }
     
     
