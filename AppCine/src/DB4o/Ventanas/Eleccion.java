@@ -5,17 +5,24 @@
  */
 package DB4o.Ventanas;
 
+import SQL.Ventanas.Main;
+
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author morfe
  */
 public class Eleccion extends javax.swing.JFrame {
-      
+
+    public Main ventanaMain;
+
     /**
      * Creates new form Eleccion
      */
     public Eleccion() {
         initComponents();
+        this.setLocationRelativeTo(null);//centrar la pantalla
     }
 
     /**
@@ -33,7 +40,12 @@ public class Eleccion extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         botonEmpleado1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         botonSalas.setFont(new java.awt.Font("Magneto", 1, 24)); // NOI18N
         botonSalas.setText("Salas");
@@ -45,7 +57,6 @@ public class Eleccion extends javax.swing.JFrame {
 
         botonEmpleado.setFont(new java.awt.Font("Magneto", 1, 24)); // NOI18N
         botonEmpleado.setText("Empleados");
-        botonEmpleado.setActionCommand("Empleados");
         botonEmpleado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonEmpleadoActionPerformed(evt);
@@ -111,21 +122,21 @@ public class Eleccion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonSalasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalasActionPerformed
-         AMB ambSalas=new AMB("sala");
+        AMB ambSalas = new AMB("sala");
         ambSalas.cambiarVentanaSalas();
         ambSalas.show();
         this.hide();
     }//GEN-LAST:event_botonSalasActionPerformed
 
     private void botonPelisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonPelisActionPerformed
-        AMB ambPelis=new AMB("pelicula");
+        AMB ambPelis = new AMB("pelicula");
         ambPelis.cambiarVentanaPelis();
         ambPelis.show();
         this.hide();
     }//GEN-LAST:event_botonPelisActionPerformed
 
     private void botonEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEmpleadoActionPerformed
-       AMB ambEmple=new AMB("empleado");
+        AMB ambEmple = new AMB("empleado");
         ambEmple.cambiarVentanaEmpleadoss();
         ambEmple.show();
         this.hide();
@@ -134,6 +145,12 @@ public class Eleccion extends javax.swing.JFrame {
     private void botonEmpleado1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEmpleado1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_botonEmpleado1ActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        //volver a atras, dejando la anterior disponible OJO que se usa dispose por si se quiere acceder a otro local (bbdd)
+        ventanaMain.setEnabled(true);
+        ventanaMain.toFront();
+    }//GEN-LAST:event_formWindowClosed
 
     /**
      * @param args the command line arguments

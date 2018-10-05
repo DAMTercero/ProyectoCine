@@ -16,7 +16,7 @@ public class Conexion {
 
     public void guardarPelicula(Pelicula p1) {
 
-        ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), "BD1.yap");
+        ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), "DBEmbebidas\\BD1.yap");
 
         final ObjectSet result = db.queryByExample(p1);
         if (result.size() == 0) {
@@ -40,12 +40,12 @@ public class Conexion {
 
     public void buscarPelicula(Pelicula p1) {
 
-        ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), "BD1.yap");
+        ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), "DBEmbebidas\\BD1.yap");
         ObjectSet<Pelicula> result = db.queryByExample(p1);
-        List<Pelicula> pelis= new ArrayList<>();
-       
+        List<Pelicula> pelis = new ArrayList<>();
+
         if (result.size() == 0) {
-            
+
             AMB.rellenarErrores("No existe esa sala o no hay salas en la BD");
 
         } else {
@@ -54,7 +54,7 @@ public class Conexion {
 
                 Pelicula peliAMostrar = result.next();
                 pelis.add(peliAMostrar);
-                
+
             }
             AMB.rellenarPelicula(pelis);
         }
@@ -69,7 +69,7 @@ public class Conexion {
     }
 
     public void borrarPelicula(Pelicula p1) {
-        ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), "BD1.yap");
+        ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), "DBEmbebidas\\BD1.yap");
         ObjectSet<Pelicula> result = db.queryByExample(p1);
 
         if (result.size() == 0) {

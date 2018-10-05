@@ -5,13 +5,16 @@
  */
 package DB4o.Ventanas;
 
-import DB4o. Clases.Pelicula;
+import DB4o.Clases.Pelicula;
 import DB4o.Conexion.Conexion;
 import java.util.List;
 import javax.swing.JOptionPane;
 
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.logging.*;
 
 /**
  *
@@ -22,10 +25,17 @@ public class AMB extends javax.swing.JFrame {
     private JPanel contentPane;
     private static String salaPeliEmpleado;
 
+    //tabla
+    static DefaultTableModel modeloTabla;// http://www.elprogramador.com.mx/llenar-un-jtable-con-datos-de-una-base-de-datos-mysql/
+
     /**
      * Creates new form Porseaka
      */
     public AMB(String queMeLLega) {
+
+        modeloTabla = new DefaultTableModel(null, getColumnas());
+        //setFilas();
+
         initComponents();
         this.salaPeliEmpleado = queMeLLega;
         System.out.println(salaPeliEmpleado);
@@ -165,128 +175,7 @@ public class AMB extends javax.swing.JFrame {
         });
         getContentPane().add(botonAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 780, -1, -1));
 
-        tablaResultado.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "ID Pelicula", "Título", "Año", "Director", "Actor Principal", "Actor Secundario", "Duración", "Trailer"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        tablaResultado.setModel(modeloTabla);
         tablaResultado.setRequestFocusEnabled(false);
         jScrollPane1.setViewportView(tablaResultado);
 
@@ -464,7 +353,7 @@ public class AMB extends javax.swing.JFrame {
     }
 
     public static void rellenarPelicula(List<Pelicula> pelis) {
-        for (int i = 0; i < pelis.size(); i++) {
+        /* for (int i = 0; i < pelis.size(); i++) {
 
             tablaResultado.setValueAt(String.valueOf(pelis.get(i).getIdPelicula()), i, 0);
             tablaResultado.setValueAt(pelis.get(i).getTitulo(), i, 1);
@@ -475,6 +364,22 @@ public class AMB extends javax.swing.JFrame {
             tablaResultado.setValueAt(pelis.get(i).getDuracion(), i, 6);
             tablaResultado.setValueAt(pelis.get(i).getTrailer(), i, 7);
 
+        }*/
+        modeloTabla.setRowCount(0);
+        Object datosPelicula[] = new Object[8];
+        int i = 0;
+        for (Pelicula peli : pelis) {
+            datosPelicula[0] = peli.getIdPelicula();
+            datosPelicula[1] = peli.getTitulo();
+            datosPelicula[2] = peli.getAnyoEstreno();
+            datosPelicula[3] = peli.getActorPrinci();
+            datosPelicula[4] = peli.getActorSecun();
+            datosPelicula[5] = peli.getDirector();
+            datosPelicula[6] = peli.getDuracion();
+            datosPelicula[7] = peli.getTrailer();
+            setFilas(datosPelicula);
+            // modeloTabla.addRow(datosPelicula[i]);
+            i++;
         }
 
     }
@@ -553,4 +458,15 @@ public class AMB extends javax.swing.JFrame {
     private static javax.swing.JTextField textoTitulo;
     private static javax.swing.JTextField textoTrailer;
     // End of variables declaration//GEN-END:variables
+
+    private String[] getColumnas() {
+        String columna[] = new String[]{"ID_PELI", "Hola2", "Hola3", "", "", "", "", ""};
+        return columna;
+    }
+
+    private static void setFilas(Object datos[]) {
+
+        modeloTabla.addRow(datos);
+
+    }
 }
