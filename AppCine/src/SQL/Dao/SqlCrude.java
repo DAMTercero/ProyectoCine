@@ -56,7 +56,65 @@ public class SqlCrude extends SQL.Conexion.sql{
         return obj;
             
         }
+    public static Pelicula getPelicula(String conector)throws SQLException{
+        Pelicula obj=null;
+        Connection conn=null;
+      
+        try{
+            conn=getConnection(conector);
+            String query="SELECT * FROM PELICULA";
+            Statement st=conn.createStatement();
+            ResultSet rs=st.executeQuery(query);
+            while(rs.next()){
+                obj=(Pelicula)parseObject(rs,Pelicula.class.getSimpleName());
+                if(obj!=null){
+                    obj.setConector(conector);
+                }
+            }   
+            conn.close();
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null,"Imposible establecer conexion con la base de datos.","Error",JOptionPane.ERROR_MESSAGE);
+            Logger.getLogger(SqlCrude.class.getName()).log(Level.SEVERE,null,ex);
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }finally{
+            if(conn != null){
+                conn.close();
+            }
+        }
+        return obj;
+            
+        }
      
+    public static Empleado getEmpleado(String conector)throws SQLException{
+        Empleado obj=null;
+        Connection conn=null;
+      
+        try{
+            conn=getConnection(conector);
+            String query="SELECT * FROM EMPLEADO";
+            Statement st=conn.createStatement();
+            ResultSet rs=st.executeQuery(query);
+            while(rs.next()){
+                obj=(Empleado)parseObject(rs,Empleado.class.getSimpleName());
+                if(obj!=null){
+                    obj.setConector(conector);
+                }
+            }   
+            conn.close();
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null,"Imposible establecer conexion con la base de datos.","Error",JOptionPane.ERROR_MESSAGE);
+            Logger.getLogger(SqlCrude.class.getName()).log(Level.SEVERE,null,ex);
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }finally{
+            if(conn != null){
+                conn.close();
+            }
+        }
+        return obj;
+            
+        } 
     
     private static Object parseObject(ResultSet rs, String tipo) throws SQLException {
         if (tipo.equals(Sala.class.getSimpleName())) {
