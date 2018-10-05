@@ -21,6 +21,22 @@ public class Empleado {
     private String CARGO;
     private boolean DISPONIBLE;
 
+    public Empleado(int ID_EMPLEADO, String NOMBRE, String APELLIDO1, String APELLIDO2, String FECHA_NAC, String FECHA_CONTRATO, String FECHA_FIN, String NACIONALIDAD, String CARGO, boolean DISPONIBLE) {
+        this.ID_EMPLEADO = ID_EMPLEADO;
+        this.NOMBRE = NOMBRE;
+        this.APELLIDO1 = APELLIDO1;
+        this.APELLIDO2 = APELLIDO2;
+        this.FECHA_NAC = FECHA_NAC;
+        this.FECHA_CONTRATO = FECHA_CONTRATO;
+        this.FECHA_FIN = FECHA_FIN;
+        this.NACIONALIDAD = NACIONALIDAD;
+        this.CARGO = CARGO;
+        this.DISPONIBLE = DISPONIBLE;
+    }
+
+    
+    
+    
     public int getID_EMPLEADO() {
         return ID_EMPLEADO;
     }
