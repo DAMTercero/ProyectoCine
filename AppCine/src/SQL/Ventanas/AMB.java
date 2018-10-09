@@ -8,6 +8,7 @@ package SQL.Ventanas;
 import DB4o.Ventanas.*;
 import DB4o.Clases.Pelicula;
 import DB4o.Conexion.Conexion;
+import SQL.Dao.*;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -27,6 +28,11 @@ public class AMB extends javax.swing.JFrame {
     private static String salaPeliEmpleado;
     //variables de ventana
     public Eleccion eleccionVentana;
+    
+    //variables de control de funciones
+    public SalaFunciones salaFunciones;
+    public EmpleadoFunciones empleadoFunciones;
+    public PeliculaFunciones peliculaFunciones;
 
     //tabla
     static DefaultTableModel modeloTabla;// http://www.elprogramador.com.mx/llenar-un-jtable-con-datos-de-una-base-de-datos-mysql/
