@@ -120,7 +120,7 @@ public class SqlCrude extends SQL.Conexion.sql {
     private static Object parseObject(ResultSet rs, String tipo) throws SQLException {
         if (tipo.equals(Sala.class.getSimpleName())) {
             //Creamos el objeto sala 
-            return new Sala(rs.getInt("ID_SALA"), rs.getInt("CAPACIDAD"), rs.getInt("PANTALLA"), rs.getString("APERTURA"), rs.getString("HORARIO"), rs.getBoolean("DISPONIBLE"));
+            return new Sala(rs.getInt("ID_SALA"), rs.getInt("CAPACIDAD"), rs.getInt("PANTALLA"), rs.getString("APERTURA"), rs.getBoolean("DISPONIBLE"));
         } else if (tipo.equals(Pelicula.class.getSimpleName())) {
             //Creamos el objeto Pelicula
             return new Pelicula(rs.getInt("ID_PELICULA"), rs.getString("TITULO"), rs.getString("ANYO_STRENO"), rs.getString("DIRECTOR"), rs.getString("ACTOR_PRINCI"), rs.getString("ACTOR_SECUN"), rs.getString("DURACION"), rs.getString("TRAILER"), rs.getBoolean("DISPONIBLE"));

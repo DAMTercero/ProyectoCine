@@ -32,16 +32,15 @@ public class SalaCRUD {
             conn = getConnection(conector);
 
             //Query
-            String query = "INSERT INTO SALA values(?,?,?,?,?,?)";
+            String query = "INSERT INTO SALA values(?,?,?,?,?)";
             PreparedStatement ps = conn.prepareStatement(query);
 
             //Añadimos los datos
             ps.setInt(1, obj.getID_SALA());
             ps.setInt(2, obj.getCAPACIDAD());
             ps.setInt(3, obj.getPANTALLA());
-            ps.setString(4, obj.getAPERTURA());
-            ps.setString(5, obj.getHorario());
-            ps.setBoolean(6, obj.getDISPONIBLE());
+            ps.setString(4, obj.getAPERTURA());            
+            ps.setBoolean(5, obj.getDISPONIBLE());
 
             //Ejecutamos la insert
             int action = ps.executeUpdate();
@@ -76,16 +75,15 @@ public class SalaCRUD {
             conn = getConnection(conector);
 
             //Query
-            String query = "UPDATE SALA SET ID_SALA = ?, CAPACIDAD = ?, PANTALLA = ?, APERTURA = ?, Horario = ?, DISPONIBLE = ?";
+            String query = "UPDATE SALA SET ID_SALA = ?, CAPACIDAD = ?, PANTALLA = ?, APERTURA = ?, DISPONIBLE = ?";
             PreparedStatement ps = conn.prepareStatement(query);
 
             //Indicamos los datos
             ps.setInt(1, obj.getID_SALA());
             ps.setInt(2, obj.getCAPACIDAD());
             ps.setInt(3, obj.getPANTALLA());
-            ps.setString(4, obj.getAPERTURA());
-            ps.setString(5, obj.getHorario());
-            ps.setBoolean(6, obj.getDISPONIBLE());
+            ps.setString(4, obj.getAPERTURA());           
+            ps.setBoolean(5, obj.getDISPONIBLE());
 
             //Ejecutamos la update
             int action = ps.executeUpdate();

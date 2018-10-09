@@ -7,6 +7,7 @@ package SQL.Dao;
 
 import SQL.Ventanas.AMB;
 import static SQL.Ventanas.AMB.*;
+import SQL.Ventanas.Añadir;
 
 /**
  *
@@ -40,6 +41,24 @@ public class PeliculaFunciones {
         this.ventana = ventana;
         cambiarVentanaPelis();
         this.ventana.setVisible(true);
+    }
+    
+    public void abrirVentanaAñadir(Añadir ventanaAñadir) {
+        Añadir.labelID.setText("ID Pelicula");
+        Añadir.labelTitulo.setText("Titulo:");
+        Añadir.labelAnyo.setText("Año de estreno");
+        Añadir.labelDirector.setText("Director");
+        Añadir.labelAP.setText("Actor principal");
+        Añadir.labelAS.setText("Actor secundario");
+        Añadir.labelDuracion.setText("Duración");
+        Añadir.labelTrailer.setText("Trailer");
+        Añadir.labelDisponible.setText("Disponible");
+
+        ventanaAñadir.peliculaFunciones = this;
+        ventanaAñadir.ventanaAnterior = ventana;
+        ventanaAñadir.setVisible(true);
+        ventana.setEnabled(false);
+
     }
 
     public PeliculaFunciones() {

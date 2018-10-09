@@ -17,6 +17,9 @@ import static DB4o.Ventanas.AMB.labelID;
 import static DB4o.Ventanas.AMB.labelTitulo;
 import static DB4o.Ventanas.AMB.labelTituloVentana;
 import static DB4o.Ventanas.AMB.lableTrailer;
+import SQL.Dao.EmpleadoFunciones;
+import SQL.Dao.PeliculaFunciones;
+import SQL.Dao.SalaFunciones;
 
 /**
  *
@@ -24,53 +27,59 @@ import static DB4o.Ventanas.AMB.lableTrailer;
  */
 public class Añadir extends javax.swing.JFrame {
 
+    public AMB ventanaAnterior;
+   //variables de control de funciones
+    public SalaFunciones salaFunciones;
+    public EmpleadoFunciones empleadoFunciones;
+    public PeliculaFunciones peliculaFunciones;
     /**
      * Creates new form añadir
      */
     public Añadir() {
         initComponents();
-        
+        this.setLocationRelativeTo(null);
+
     }
-    
-    public static void cambiarVentanaPelis(){
-            labelTituloVentana.setText("PELÍCULAS");
-            labelID.setText("ID Pélicula:");
-            labelTitulo.setText("Título:");
-            labelAnyo.setText("Año: ");
-            labelDirector.setText("Director:");
-            labelAP.setText("Actor/a principal:");
-            labelAS.setText("Actor/a secundario/a:");
-            labelDuracion.setText("Duración:");
-            lableTrailer.setText("Trailer");
-        }
-        
-         public static void cambiarVentanaSalas(){
-            labelTituloVentana.setText("SALAS");
-            labelID.setText("ID Sala:");
-            labelTitulo.setText("Capacidad:");
-            labelAnyo.setText("Pantalla: ");
-            labelDirector.setText("Apertura:");
-            labelAP.setText("Horario:");
-            labelAS.setText(" ");
-            labelDuracion.setText(" ");
-            lableTrailer.setText(" ");
-            textoAcSe.hide();
-            textoDuracion.hide();
-            textoTrailer.hide();
-        }
-         
-          public static void cambiarVentanaEmpleadoss(){
-            labelTituloVentana.setText("EMPLEADOS");
-            labelID.setText("ID Empleado:");
-            labelTitulo.setText("Nombre:");
-            labelAnyo.setText("Primer apellido: ");
-            labelDirector.setText("Segundo apellido:");
-            labelAP.setText("Fecha de Nacimiento:");
-            labelAS.setText("Fecha de contratación:");
-            labelDuracion.setText("Fecha Fin de Contrato:");
-            lableTrailer.setText("Nacionalidad: ");
-          
-        }
+
+    public static void cambiarVentanaPelis() {
+        labelTituloVentana.setText("PELÍCULAS");
+        labelID.setText("ID Pélicula:");
+        labelTitulo.setText("Título:");
+        labelAnyo.setText("Año: ");
+        labelDirector.setText("Director:");
+        labelAP.setText("Actor/a principal:");
+        labelAS.setText("Actor/a secundario/a:");
+        labelDuracion.setText("Duración:");
+        labelTrailer.setText("Trailer");
+    }
+
+    public static void cambiarVentanaSalas() {
+        labelTituloVentana.setText("SALAS");
+        labelID.setText("ID Sala:");
+        labelTitulo.setText("Capacidad:");
+        labelAnyo.setText("Pantalla: ");
+        labelDirector.setText("Apertura:");
+        labelAP.setText("Horario:");
+        labelAS.setText(" ");
+        labelDuracion.setText(" ");
+        labelTrailer.setText(" ");
+        textoAcSe.hide();
+        textoDuracion.hide();
+        textoTrailer.hide();
+    }
+
+    public static void cambiarVentanaEmpleadoss() {
+        labelTituloVentana.setText("EMPLEADOS");
+        labelID.setText("ID Empleado:");
+        labelTitulo.setText("Nombre:");
+        labelAnyo.setText("Primer apellido: ");
+        labelDirector.setText("Segundo apellido:");
+        labelAP.setText("Fecha de Nacimiento:");
+        labelAS.setText("Fecha de contratación:");
+        labelDuracion.setText("Fecha Fin de Contrato:");
+        labelTrailer.setText("Nacionalidad: ");
+
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -81,49 +90,33 @@ public class Añadir extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        botonAñadir = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
         labelID = new javax.swing.JLabel();
+        textoID = new javax.swing.JTextField();
         labelTitulo = new javax.swing.JLabel();
+        textoTitulo = new javax.swing.JTextField();
         labelAnyo = new javax.swing.JLabel();
+        textoAnyo = new javax.swing.JTextField();
         labelDirector = new javax.swing.JLabel();
+        textoDirector = new javax.swing.JTextField();
         labelAP = new javax.swing.JLabel();
         labelAS = new javax.swing.JLabel();
-        labelDuracion = new javax.swing.JLabel();
-        textoID = new javax.swing.JTextField();
-        textoTitulo = new javax.swing.JTextField();
-        textoAnyo = new javax.swing.JTextField();
         textoAcPr = new javax.swing.JTextField();
-        textoDirector = new javax.swing.JTextField();
-        textoDuracion = new javax.swing.JTextField();
         textoAcSe = new javax.swing.JTextField();
+        labelDuracion = new javax.swing.JLabel();
+        textoDuracion = new javax.swing.JTextField();
+        labelTrailer = new javax.swing.JLabel();
         textoTrailer = new javax.swing.JTextField();
-        lableTrailer = new javax.swing.JLabel();
-        botonAñadir = new javax.swing.JButton();
+        labelDisponible = new javax.swing.JLabel();
+        disponibleCheckBox = new javax.swing.JCheckBox();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        labelID.setForeground(new java.awt.Color(255, 0, 0));
-        labelID.setText("ID Pelicula:");
-
-        labelTitulo.setForeground(new java.awt.Color(255, 0, 0));
-        labelTitulo.setText("Título:");
-
-        labelAnyo.setForeground(new java.awt.Color(255, 0, 0));
-        labelAnyo.setText("Año:");
-
-        labelDirector.setForeground(new java.awt.Color(255, 0, 0));
-        labelDirector.setText("Director:");
-
-        labelAP.setForeground(new java.awt.Color(255, 0, 0));
-        labelAP.setText("Actor Principal");
-
-        labelAS.setForeground(new java.awt.Color(255, 0, 0));
-        labelAS.setText("Actor Secundario");
-
-        labelDuracion.setForeground(new java.awt.Color(255, 0, 0));
-        labelDuracion.setText("Duración en minutos:");
-
-        lableTrailer.setForeground(new java.awt.Color(255, 0, 0));
-        lableTrailer.setText("Trailer:");
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         botonAñadir.setText("Añadir");
         botonAñadir.addActionListener(new java.awt.event.ActionListener() {
@@ -132,6 +125,133 @@ public class Añadir extends javax.swing.JFrame {
             }
         });
 
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+
+        labelID.setForeground(new java.awt.Color(255, 0, 0));
+        labelID.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelID.setText("ID Pelicula:");
+
+        textoID.setEditable(false);
+
+        labelTitulo.setForeground(new java.awt.Color(255, 0, 0));
+        labelTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelTitulo.setText("Título:");
+
+        labelAnyo.setForeground(new java.awt.Color(255, 0, 0));
+        labelAnyo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelAnyo.setText("Año:");
+
+        labelDirector.setForeground(new java.awt.Color(255, 0, 0));
+        labelDirector.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelDirector.setText("Director:");
+
+        labelAP.setForeground(new java.awt.Color(255, 0, 0));
+        labelAP.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelAP.setText("Actor Principal");
+
+        labelAS.setForeground(new java.awt.Color(255, 0, 0));
+        labelAS.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelAS.setText("Actor Secundario");
+
+        labelDuracion.setForeground(new java.awt.Color(255, 0, 0));
+        labelDuracion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelDuracion.setText("Duración en minutos:");
+
+        labelTrailer.setForeground(new java.awt.Color(255, 0, 0));
+        labelTrailer.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelTrailer.setText("Trailer:");
+
+        labelDisponible.setForeground(new java.awt.Color(255, 0, 0));
+        labelDisponible.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelDisponible.setText("Trailer:");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(labelID, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(textoID, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(labelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(textoTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(labelAnyo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(textoAnyo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(labelDirector, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(textoDirector, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(labelAP, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(textoAcPr, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(labelAS, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(textoAcSe, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(labelDuracion, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(textoDuracion, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(labelTrailer, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(textoTrailer, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(labelDisponible, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(disponibleCheckBox)))
+                .addContainerGap(128, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelID)
+                    .addComponent(textoID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelTitulo)
+                    .addComponent(textoTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelAnyo)
+                    .addComponent(textoAnyo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelDirector)
+                    .addComponent(textoDirector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelAP)
+                    .addComponent(textoAcPr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelAS)
+                    .addComponent(textoAcSe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelDuracion)
+                    .addComponent(textoDuracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelTrailer)
+                    .addComponent(textoTrailer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelDisponible)
+                    .addComponent(disponibleCheckBox))
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -139,108 +259,47 @@ public class Añadir extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(55, 55, 55)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(labelID)
-                                .addGap(107, 107, 107)
-                                .addComponent(textoID, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(labelTitulo)
-                                .addGap(130, 130, 130)
-                                .addComponent(textoTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(labelAnyo)
-                                .addGap(137, 137, 137)
-                                .addComponent(textoAnyo, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(labelDirector)
-                                .addGap(118, 118, 118)
-                                .addComponent(textoDirector, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(labelAP)
-                                .addGap(92, 92, 92)
-                                .addComponent(textoAcPr, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(labelAS)
-                                .addGap(78, 78, 78)
-                                .addComponent(textoAcSe, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(labelDuracion)
-                                .addGap(59, 59, 59)
-                                .addComponent(textoDuracion, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lableTrailer)
-                                .addGap(126, 126, 126)
-                                .addComponent(textoTrailer, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(67, 67, 67)
-                        .addComponent(botonAñadir)))
-                .addContainerGap(164, Short.MAX_VALUE))
+                        .addGap(64, 64, 64)
+                        .addComponent(botonAñadir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(59, 59, 59)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(labelID))
-                    .addComponent(textoID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(labelTitulo))
-                    .addComponent(textoTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelAnyo)
-                    .addComponent(textoAnyo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelDirector)
-                    .addComponent(textoDirector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelAP)
-                    .addComponent(textoAcPr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelAS)
-                    .addComponent(textoAcSe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelDuracion)
-                    .addComponent(textoDuracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lableTrailer)
-                    .addComponent(textoTrailer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(85, 85, 85)
+                .addGap(19, 19, 19)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addComponent(botonAñadir)
-                .addContainerGap(177, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAñadirActionPerformed
-            
-        int idPelicula= Integer.parseInt(textoID.getText()) ;
-				String titulo= textoTitulo.getText() ; 
-				String anyoEstreno= textoAnyo.getText();	 
-				String director=textoDirector.getText() ; 
-				String actorPrinci=textoAcPr.getText() ; 
-				String actorSecun=textoAcSe.getText() ; 
-				String duracion=textoDuracion.getText() ; 
-				String trailer=textoTrailer.getText() ; 
-				
-			Pelicula p1= new Pelicula(idPelicula,titulo,anyoEstreno,director,actorPrinci,actorSecun,duracion,trailer);
-				Conexion conexion=new Conexion();
-				conexion.guardarPelicula(p1);
-                                this.hide();
+
+        int idPelicula = Integer.parseInt(textoID.getText());
+        String titulo = textoTitulo.getText();
+        String anyoEstreno = textoAnyo.getText();
+        String director = textoDirector.getText();
+        String actorPrinci = textoAcPr.getText();
+        String actorSecun = textoAcSe.getText();
+        String duracion = textoDuracion.getText();
+        String trailer = textoTrailer.getText();
+
+        Pelicula p1 = new Pelicula(idPelicula, titulo, anyoEstreno, director, actorPrinci, actorSecun, duracion, trailer);
+        Conexion conexion = new Conexion();
+        conexion.guardarPelicula(p1);
+        this.hide();
     }//GEN-LAST:event_botonAñadirActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        ventanaAnterior.setEnabled(true);
+        ventanaAnterior.toFront();
+    }//GEN-LAST:event_formWindowClosed
 
     /**
      * @param args the command line arguments
@@ -282,21 +341,24 @@ public class Añadir extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAñadir;
+    public static javax.swing.JCheckBox disponibleCheckBox;
+    private javax.swing.JPanel jPanel1;
     public static javax.swing.JLabel labelAP;
     public static javax.swing.JLabel labelAS;
     public static javax.swing.JLabel labelAnyo;
     public static javax.swing.JLabel labelDirector;
+    public static javax.swing.JLabel labelDisponible;
     public static javax.swing.JLabel labelDuracion;
     public static javax.swing.JLabel labelID;
     public static javax.swing.JLabel labelTitulo;
-    public static javax.swing.JLabel lableTrailer;
-    private static javax.swing.JTextField textoAcPr;
-    private static javax.swing.JTextField textoAcSe;
-    private static javax.swing.JTextField textoAnyo;
-    private static javax.swing.JTextField textoDirector;
-    private static javax.swing.JTextField textoDuracion;
-    private static javax.swing.JTextField textoID;
-    private static javax.swing.JTextField textoTitulo;
-    private static javax.swing.JTextField textoTrailer;
+    public static javax.swing.JLabel labelTrailer;
+    public static javax.swing.JTextField textoAcPr;
+    public static javax.swing.JTextField textoAcSe;
+    public static javax.swing.JTextField textoAnyo;
+    public static javax.swing.JTextField textoDirector;
+    public static javax.swing.JTextField textoDuracion;
+    public static javax.swing.JTextField textoID;
+    public static javax.swing.JTextField textoTitulo;
+    public static javax.swing.JTextField textoTrailer;
     // End of variables declaration//GEN-END:variables
 }

@@ -10,10 +10,10 @@ package SQL.Clases;
  * @author josep
  */
 public class Empleado {
-    
+
     private static final String mysqlConector = "mysql";
     private String conector;
-    
+
     private int ID_EMPLEADO;
     private String NOMBRE;
     private String APELLIDO1;
@@ -33,10 +33,9 @@ public class Empleado {
         this.conector = conector;
     }
 
-    
-    
-    
-    
+    public Empleado() {
+    }
+
     public Empleado(int ID_EMPLEADO, String NOMBRE, String APELLIDO1, String APELLIDO2, String FECHA_NAC, String FECHA_CONTRATO, String FECHA_FIN, String NACIONALIDAD, String CARGO, boolean DISPONIBLE) {
         this.ID_EMPLEADO = ID_EMPLEADO;
         this.NOMBRE = NOMBRE;
@@ -50,9 +49,6 @@ public class Empleado {
         this.DISPONIBLE = DISPONIBLE;
     }
 
-    
-    
-    
     public int getID_EMPLEADO() {
         return ID_EMPLEADO;
     }
@@ -132,6 +128,5 @@ public class Empleado {
     public void setDISPONIBLE(boolean DISPONIBLE) {
         this.DISPONIBLE = DISPONIBLE;
     }
-    
-}
 
+}

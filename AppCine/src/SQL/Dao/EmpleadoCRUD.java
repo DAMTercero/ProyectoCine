@@ -10,6 +10,7 @@ import java.sql.Connection;
 import static java.sql.DriverManager.getConnection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -117,5 +118,10 @@ public class EmpleadoCRUD {
 
         //Devolvemos el resultado
         return result;
+    }
+
+    public List<Empleado> filtrarEmpleados(Empleado empleado) {
+
+        return null;
     }
 }

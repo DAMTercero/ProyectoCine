@@ -10,10 +10,10 @@ package SQL.Clases;
  * @author josep
  */
 public class Pelicula {
-    
+
     private static final String mysqlConector = "mysql";
     private String conector;
-    
+
     private int ID_PELICULA;
     private String TITULO;
     private String ANYO_STRENO;
@@ -32,9 +32,9 @@ public class Pelicula {
         this.conector = conector;
     }
 
-    
-    
-    
+    public Pelicula() {
+    }
+
     public Pelicula(int ID_PELICULA, String TITULO, String ANYO_STRENO, String DIRECTOR, String ACTOR_PRINCI, String ACTOR_SECUN, String DURACION, String TRAILER, boolean DISPONIBLE) {
         this.ID_PELICULA = ID_PELICULA;
         this.TITULO = TITULO;
@@ -47,9 +47,6 @@ public class Pelicula {
         this.DISPONIBLE = DISPONIBLE;
     }
 
-    
-    
-    
     public int getID_PELICULA() {
         return ID_PELICULA;
     }
@@ -121,6 +118,5 @@ public class Pelicula {
     public void setDISPONIBLE(boolean DISPONIBLE) {
         this.DISPONIBLE = DISPONIBLE;
     }
-    
-    
+
 }

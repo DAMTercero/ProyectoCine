@@ -28,7 +28,7 @@ public class AMB extends javax.swing.JFrame {
     private static String salaPeliEmpleado;
     //variables de ventana
     public Eleccion eleccionVentana;
-    
+
     //variables de control de funciones
     public SalaFunciones salaFunciones;
     public EmpleadoFunciones empleadoFunciones;
@@ -46,7 +46,7 @@ public class AMB extends javax.swing.JFrame {
         //setFilas();
 
         initComponents();
-       // this.salaPeliEmpleado = queMeLLega;
+        // this.salaPeliEmpleado = queMeLLega;
         System.out.println(salaPeliEmpleado);
 
     }
@@ -338,23 +338,14 @@ public class AMB extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
-        Añadir a;
-        switch (salaPeliEmpleado) {
-            case "empleado":
-                a = new Añadir();
-                a.cambiarVentanaEmpleadoss();
-                a.show();
-                break;
-            case "sala":
-                a = new Añadir();
-                a.cambiarVentanaSalas();
-                a.show();
-                break;
-            case "pelicula":
-                a = new Añadir();
-                a.cambiarVentanaPelis();
-                a.show();
-                break;
+        Añadir ventanaAñadir = new Añadir();
+        if (salaFunciones != null) {
+            salaFunciones.abrirVentanaAñadir(ventanaAñadir);
+        } else if (empleadoFunciones != null) {
+            empleadoFunciones.abrirVentanaAñadir(ventanaAñadir);
+        } else if (peliculaFunciones != null) {
+            peliculaFunciones.abrirVentanaAñadir(ventanaAñadir);
+
         }
 
 
@@ -460,9 +451,9 @@ public class AMB extends javax.swing.JFrame {
     }//GEN-LAST:event_botonBorrarActionPerformed
 
     private void botonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAtrasActionPerformed
-        this.dispose();        
+        this.dispose();
         //Eleccion el = new Eleccion();
-       //eleccionVentana.set
+        //eleccionVentana.set
         //el.show();
     }//GEN-LAST:event_botonAtrasActionPerformed
 

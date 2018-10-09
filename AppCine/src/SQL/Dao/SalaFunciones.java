@@ -7,6 +7,7 @@ package SQL.Dao;
 
 import SQL.Ventanas.AMB;
 import static SQL.Ventanas.AMB.*;
+import SQL.Ventanas.Añadir;
 
 /**
  *
@@ -45,6 +46,28 @@ public class SalaFunciones {
         this.ventana = ventana;
         cambiarVentanaSalas();
         this.ventana.setVisible(true);
+    }
+
+    public void abrirVentanaAñadir(Añadir ventanaAñadir) {
+        Añadir.labelID.setText("ID Sala");
+        Añadir.labelTitulo.setText("Capacidad:");
+        Añadir.labelAnyo.setText("Pantalla");
+        Añadir.labelDirector.setText("Fecha apertura");
+        Añadir.labelAP.setVisible(false);
+        Añadir.labelAS.setVisible(false);
+        Añadir.labelDuracion.setVisible(false);
+        Añadir.labelTrailer.setVisible(false);
+        Añadir.textoAcPr.setVisible(false);
+        Añadir.textoAcSe.setVisible(false);
+        Añadir.textoDuracion.setVisible(false);
+        Añadir.textoTrailer.setVisible(false);
+        Añadir.labelDisponible.setText("Disponible");
+
+        ventanaAñadir.salaFunciones = this;
+        ventanaAñadir.ventanaAnterior = ventana;
+        ventanaAñadir.setVisible(true);
+        ventana.setEnabled(false);
+
     }
 
     public SalaFunciones() {

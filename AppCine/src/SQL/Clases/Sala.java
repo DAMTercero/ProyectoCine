@@ -10,7 +10,7 @@ package SQL.Clases;
  * @author 9fdam07
  */
 public class Sala {
-    
+
     private static final String mysqlConector = "mysql";
     private String conector;
 
@@ -18,28 +18,20 @@ public class Sala {
     private int CAPACIDAD;
     private int PANTALLA;
     private String APERTURA;
-    private String Horario;
     private boolean DISPONIBLE;
-   
 
     public Sala() {
     }
 
-    public Sala(int ID_SALA, int CAPACIDAD, int PANTALLA, String APERTURA, String Horario, boolean DISPONIBLE) {
+    public Sala(int ID_SALA, int CAPACIDAD, int PANTALLA, String APERTURA, boolean DISPONIBLE) {
         this.ID_SALA = ID_SALA;
         this.CAPACIDAD = CAPACIDAD;
         this.PANTALLA = PANTALLA;
         this.APERTURA = APERTURA;
-        this.Horario = Horario;
         this.DISPONIBLE = DISPONIBLE;
-        
-    }
-    
 
-    
-    
-    
-    
+    }
+
     public String getConector() {
         return conector;
     }
@@ -78,14 +70,6 @@ public class Sala {
 
     public void setAPERTURA(String APERTURA) {
         this.APERTURA = APERTURA;
-    }
-
-    public String getHorario() {
-        return Horario;
-    }
-
-    public void setHorario(String Horario) {
-        this.Horario = Horario;
     }
 
     public boolean getDISPONIBLE() {
