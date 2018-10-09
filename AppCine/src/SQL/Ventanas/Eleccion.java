@@ -135,18 +135,21 @@ public class Eleccion extends javax.swing.JFrame {
     private void botonSalasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalasActionPerformed
          AMB amb = new AMB("sala");//crear ventana
         salaFunciones.abrirVentanaSalas(amb);//pasarlo a la clase de las funciones de esa sala
+        amb.salaFunciones = this.salaFunciones; //WIP
         //this.setVisible(false);
     }//GEN-LAST:event_botonSalasActionPerformed
 
     private void botonPelisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonPelisActionPerformed
         AMB amb = new AMB("pelicula");//crear ventana
         peliculaFunciones.abrirVentanaPelis(amb);//pasarlo a la clase de las funciones de esa sala
+          amb.peliculaFunciones = this.peliculaFunciones; //WIP
         //this.setVisible(false);
     }//GEN-LAST:event_botonPelisActionPerformed
 
     private void botonEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEmpleadoActionPerformed
         AMB amb = new AMB("empleado");//crear ventana
         empleadoFunciones.abrirVentanaEmpleados(amb);//pasarlo a la clase de las funciones de esa sala
+          amb.empleadoFunciones = this.empleadoFunciones; //WIP
         //this.setVisible(false);
     }//GEN-LAST:event_botonEmpleadoActionPerformed
 
