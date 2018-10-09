@@ -11,61 +11,61 @@ package SQL.Clases;
  */
 public class Historico {
 
-    private int id_sala;
-    private int id_pelicula;
-    private int id_empleado;
-    private String fechaEmision;//p.e: "01/01/2018"
-    private String sesion; //p.e.: "12:00 - 16:00"
+    private int ID_SALA;
+    private int ID_PELICULA;
+    private int ID_EMPLEADO;
+    private String FECHAEMISION;//p.e: "01/01/2018"
+    private String SESION; //p.e.: "12:00 - 16:00"
 
     public Historico() {
     }
 
-    public Historico(int id_sala, int id_pelicula, int id_empleado, String fechaEmision, String sesion) {
-        this.id_sala = id_sala;
-        this.id_pelicula = id_pelicula;
-        this.id_empleado = id_empleado;
-        this.fechaEmision = fechaEmision;
-        this.sesion = sesion;
+    public Historico(int ID_SALA, int ID_PELICULA, int ID_EMPLEADO, String FECHAEMISION, String SESION) {
+        this.ID_SALA = ID_SALA;
+        this.ID_PELICULA = ID_PELICULA;
+        this.ID_EMPLEADO = ID_EMPLEADO;
+        this.FECHAEMISION = FECHAEMISION;
+        this.SESION = SESION;
     }
 
-    public int getId_sala() {
-        return id_sala;
+    public int getID_SALA() {
+        return ID_SALA;
     }
 
-    public void setId_sala(int id_sala) {
-        this.id_sala = id_sala;
+    public void setID_SALA(int ID_SALA) {
+        this.ID_SALA = ID_SALA;
     }
 
-    public int getId_pelicula() {
-        return id_pelicula;
+    public int getID_PELICULA() {
+        return ID_PELICULA;
     }
 
-    public void setId_pelicula(int id_pelicula) {
-        this.id_pelicula = id_pelicula;
+    public void setID_PELICULA(int ID_PELICULA) {
+        this.ID_PELICULA = ID_PELICULA;
     }
 
-    public int getId_empleado() {
-        return id_empleado;
+    public int getID_EMPLEADO() {
+        return ID_EMPLEADO;
     }
 
-    public void setId_empleado(int id_empleado) {
-        this.id_empleado = id_empleado;
+    public void setID_EMPLEADO(int ID_EMPLEADO) {
+        this.ID_EMPLEADO = ID_EMPLEADO;
     }
 
-    public String getFechaEmision() {
-        return fechaEmision;
+    public String getFECHAEMISION() {
+        return FECHAEMISION;
     }
 
-    public void setFechaEmision(String fechaEmision) {
-        this.fechaEmision = fechaEmision;
+    public void setFECHAEMISION(String FECHAEMISION) {
+        this.FECHAEMISION = FECHAEMISION;
     }
 
-    public String getSesion() {
-        return sesion;
+    public String getSESION() {
+        return SESION;
     }
 
-    public void setSesion(String sesion) {
-        this.sesion = sesion;
+    public void setSESION(String SESION) {
+        this.SESION = SESION;
     }
 
 }
