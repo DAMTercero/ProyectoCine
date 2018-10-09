@@ -6,6 +6,10 @@
 package SQL.Ventanas;
 
 import DB4o.Ventanas.*;
+import SQL.Dao.EmpleadoFunciones;
+import SQL.Dao.HistoricoFunciones;
+import SQL.Dao.PeliculaFunciones;
+import SQL.Dao.SalaFunciones;
 import SQL.Ventanas.Main;
 
 import javax.swing.JOptionPane;
@@ -17,6 +21,11 @@ import javax.swing.JOptionPane;
 public class Eleccion extends javax.swing.JFrame {
 
     public Main ventanaMain;
+    public PeliculaFunciones peliculaFunciones = new PeliculaFunciones();
+    public SalaFunciones salaFunciones = new SalaFunciones();
+    public EmpleadoFunciones empleadoFunciones = new EmpleadoFunciones();
+
+    public HistoricoFunciones historicoFunciones = new HistoricoFunciones();
 
     /**
      * Creates new form Eleccion
@@ -124,24 +133,21 @@ public class Eleccion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonSalasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalasActionPerformed
-        AMB ambSalas = new AMB("sala");
-        ambSalas.cambiarVentanaSalas();
-        ambSalas.show();
-        this.hide();
+         AMB amb = new AMB("sala");//crear ventana
+        salaFunciones.abrirVentanaSalas(amb);//pasarlo a la clase de las funciones de esa sala
+        //this.setVisible(false);
     }//GEN-LAST:event_botonSalasActionPerformed
 
     private void botonPelisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonPelisActionPerformed
-        AMB ambPelis = new AMB("pelicula");
-        ambPelis.cambiarVentanaPelis();
-        ambPelis.show();
-        this.hide();
+        AMB amb = new AMB("pelicula");//crear ventana
+        peliculaFunciones.abrirVentanaPelis(amb);//pasarlo a la clase de las funciones de esa sala
+        //this.setVisible(false);
     }//GEN-LAST:event_botonPelisActionPerformed
 
     private void botonEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEmpleadoActionPerformed
-        AMB ambEmple = new AMB("empleado");
-        ambEmple.cambiarVentanaEmpleadoss();
-        ambEmple.show();
-        this.hide();
+        AMB amb = new AMB("empleado");//crear ventana
+        empleadoFunciones.abrirVentanaEmpleados(amb);//pasarlo a la clase de las funciones de esa sala
+        //this.setVisible(false);
     }//GEN-LAST:event_botonEmpleadoActionPerformed
 
     private void botonEmpleado1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEmpleado1ActionPerformed

@@ -125,21 +125,21 @@ public class Eleccion extends javax.swing.JFrame {
         AMB ambSalas = new AMB("sala");
         ambSalas.cambiarVentanaSalas();
         ambSalas.show();
-        this.hide();
+        //this.hide();
     }//GEN-LAST:event_botonSalasActionPerformed
 
     private void botonPelisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonPelisActionPerformed
         AMB ambPelis = new AMB("pelicula");
         ambPelis.cambiarVentanaPelis();
         ambPelis.show();
-        this.hide();
+        //this.hide();
     }//GEN-LAST:event_botonPelisActionPerformed
 
     private void botonEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEmpleadoActionPerformed
         AMB ambEmple = new AMB("empleado");
         ambEmple.cambiarVentanaEmpleadoss();
         ambEmple.show();
-        this.hide();
+        //this.hide();
     }//GEN-LAST:event_botonEmpleadoActionPerformed
 
     private void botonEmpleado1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEmpleado1ActionPerformed

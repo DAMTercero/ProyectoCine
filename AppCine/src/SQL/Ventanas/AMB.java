@@ -25,6 +25,8 @@ public class AMB extends javax.swing.JFrame {
 
     private JPanel contentPane;
     private static String salaPeliEmpleado;
+    //variables de ventana
+    public Eleccion eleccionVentana;
 
     //tabla
     static DefaultTableModel modeloTabla;// http://www.elprogramador.com.mx/llenar-un-jtable-con-datos-de-una-base-de-datos-mysql/
@@ -38,7 +40,7 @@ public class AMB extends javax.swing.JFrame {
         //setFilas();
 
         initComponents();
-        this.salaPeliEmpleado = queMeLLega;
+       // this.salaPeliEmpleado = queMeLLega;
         System.out.println(salaPeliEmpleado);
 
     }
@@ -52,11 +54,9 @@ public class AMB extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        botonGuardar = new javax.swing.JButton();
-        btnBuscar = new javax.swing.JButton();
-        botonModificar = new javax.swing.JButton();
-        botonBorrar = new javax.swing.JButton();
-        botonClear = new javax.swing.JButton();
+        textoErrores = new javax.swing.JTextField();
+        labelTituloVentana = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         labelID = new javax.swing.JLabel();
         labelTitulo = new javax.swing.JLabel();
         labelAnyo = new javax.swing.JLabel();
@@ -64,102 +64,35 @@ public class AMB extends javax.swing.JFrame {
         labelAP = new javax.swing.JLabel();
         labelAS = new javax.swing.JLabel();
         labelDuracion = new javax.swing.JLabel();
+        lableTrailer = new javax.swing.JLabel();
         textoID = new javax.swing.JTextField();
         textoTitulo = new javax.swing.JTextField();
         textoAnyo = new javax.swing.JTextField();
-        textoAcPr = new javax.swing.JTextField();
         textoDirector = new javax.swing.JTextField();
         textoDuracion = new javax.swing.JTextField();
         textoAcSe = new javax.swing.JTextField();
-        textoErrores = new javax.swing.JTextField();
         textoTrailer = new javax.swing.JTextField();
-        lableTrailer = new javax.swing.JLabel();
-        labelTituloVentana = new javax.swing.JLabel();
-        botonAtras = new javax.swing.JButton();
+        btnBuscar = new javax.swing.JButton();
+        botonClear = new javax.swing.JButton();
+        textoAcPr = new javax.swing.JTextField();
+        jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaResultado = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        botonGuardar = new javax.swing.JButton();
+        botonModificar = new javax.swing.JButton();
+        botonBorrar = new javax.swing.JButton();
+        botonAtras = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(204, 255, 204));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        botonGuardar.setText("Añadir");
-        botonGuardar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonGuardarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(botonGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 80, -1, -1));
-
-        btnBuscar.setText("Buscar / Mostrar");
-        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 330, -1, -1));
-
-        botonModificar.setText("Modificar");
-        getContentPane().add(botonModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 780, -1, -1));
-
-        botonBorrar.setText("Borrar");
-        botonBorrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonBorrarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(botonBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 780, -1, -1));
-
-        botonClear.setText("Limpiar");
-        botonClear.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonClearActionPerformed(evt);
-            }
-        });
-        getContentPane().add(botonClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 390, -1, -1));
-
-        labelID.setForeground(new java.awt.Color(255, 0, 0));
-        labelID.setText("ID Pelicula:");
-        getContentPane().add(labelID, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, -1, -1));
-
-        labelTitulo.setForeground(new java.awt.Color(255, 0, 0));
-        labelTitulo.setText("Título:");
-        getContentPane().add(labelTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, -1, -1));
-
-        labelAnyo.setForeground(new java.awt.Color(255, 0, 0));
-        labelAnyo.setText("Año:");
-        getContentPane().add(labelAnyo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, -1, -1));
-
-        labelDirector.setForeground(new java.awt.Color(255, 0, 0));
-        labelDirector.setText("Director:");
-        getContentPane().add(labelDirector, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, -1, -1));
-
-        labelAP.setForeground(new java.awt.Color(255, 0, 0));
-        labelAP.setText("Actor Principal");
-        getContentPane().add(labelAP, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, -1, -1));
-
-        labelAS.setForeground(new java.awt.Color(255, 0, 0));
-        labelAS.setText("Actor Secundario");
-        getContentPane().add(labelAS, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, -1, -1));
-
-        labelDuracion.setForeground(new java.awt.Color(255, 0, 0));
-        labelDuracion.setText("Duración en minutos:");
-        getContentPane().add(labelDuracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, -1, -1));
-        getContentPane().add(textoID, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 180, 390, -1));
-        getContentPane().add(textoTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 210, 390, -1));
-        getContentPane().add(textoAnyo, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 240, 390, -1));
-        getContentPane().add(textoAcPr, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 300, 390, -1));
-        getContentPane().add(textoDirector, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 270, 390, -1));
-        getContentPane().add(textoDuracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 360, 390, -1));
-        getContentPane().add(textoAcSe, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 330, 390, -1));
-        getContentPane().add(textoErrores, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 550, -1));
-        getContentPane().add(textoTrailer, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 390, 390, -1));
-
-        lableTrailer.setForeground(new java.awt.Color(255, 0, 0));
-        lableTrailer.setText("Trailer:");
-        getContentPane().add(lableTrailer, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, -1, -1));
+        textoErrores.setEditable(false);
+        textoErrores.setBackground(new java.awt.Color(204, 204, 204));
+        textoErrores.setBorder(null);
+        getContentPane().add(textoErrores, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 550, -1));
 
         labelTituloVentana.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 1, 48)); // NOI18N
         labelTituloVentana.setForeground(new java.awt.Color(255, 0, 0));
@@ -168,22 +101,231 @@ public class AMB extends javax.swing.JFrame {
         labelTituloVentana.setToolTipText("");
         getContentPane().add(labelTituloVentana, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 22, 550, 80));
 
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Filtrado"));
+
+        labelID.setForeground(new java.awt.Color(255, 0, 0));
+        labelID.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelID.setText("ID Pelicula:");
+
+        labelTitulo.setForeground(new java.awt.Color(255, 0, 0));
+        labelTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelTitulo.setText("Título:");
+
+        labelAnyo.setForeground(new java.awt.Color(255, 0, 0));
+        labelAnyo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelAnyo.setText("Año:");
+
+        labelDirector.setForeground(new java.awt.Color(255, 0, 0));
+        labelDirector.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelDirector.setText("Director:");
+
+        labelAP.setForeground(new java.awt.Color(255, 0, 0));
+        labelAP.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelAP.setText("Actor Principal:");
+
+        labelAS.setForeground(new java.awt.Color(255, 0, 0));
+        labelAS.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelAS.setText("Actor Secundario:");
+
+        labelDuracion.setForeground(new java.awt.Color(255, 0, 0));
+        labelDuracion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelDuracion.setText("Duración en minutos:");
+
+        lableTrailer.setForeground(new java.awt.Color(255, 0, 0));
+        lableTrailer.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lableTrailer.setText("Trailer:");
+
+        btnBuscar.setText("Buscar / Mostrar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
+
+        botonClear.setText("Limpiar");
+        botonClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonClearActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(textoID, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelID, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lableTrailer, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(textoTrailer, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(textoAcPr, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 153, Short.MAX_VALUE)
+                        .addComponent(btnBuscar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(botonClear)
+                        .addGap(25, 25, 25))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(textoTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelDuracion, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(textoAnyo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(labelAP, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(labelAnyo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelAS, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelDirector, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textoDirector, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(textoDuracion, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(textoAcSe, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(labelTitulo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(textoID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textoTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(labelID))
+                .addGap(27, 27, 27)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelAnyo)
+                    .addComponent(labelDirector))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textoAnyo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textoDirector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelAP)
+                    .addComponent(labelAS))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textoDuracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textoAcSe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(labelDuracion))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lableTrailer)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textoTrailer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscar)
+                    .addComponent(botonClear)
+                    .addComponent(textoAcPr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(16, 16, 16))
+        );
+
+        labelAP.getAccessibleContext().setAccessibleName("Actor Principal");
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 790, 300));
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Tabla"));
+
+        tablaResultado.setModel(modeloTabla);
+        tablaResultado.setRequestFocusEnabled(false);
+        jScrollPane1.setViewportView(tablaResultado);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 948, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 470, 980, 380));
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Crear/Editar"));
+
+        botonGuardar.setText("Añadir");
+        botonGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonGuardarActionPerformed(evt);
+            }
+        });
+
+        botonModificar.setText("Modificar");
+        botonModificar.setToolTipText("Solo se activara al seleccionar un registro de la tabla");
+
+        botonBorrar.setText("Borrar");
+        botonBorrar.setToolTipText("Solo está disponible cuando se seleccione un registro de la tabla");
+        botonBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonBorrarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(38, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(botonModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botonGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botonBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(40, 40, 40))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(77, 77, 77)
+                .addComponent(botonGuardar)
+                .addGap(18, 18, 18)
+                .addComponent(botonModificar)
+                .addGap(18, 18, 18)
+                .addComponent(botonBorrar)
+                .addContainerGap(95, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 150, 170, 300));
+
         botonAtras.setText("Atrás");
         botonAtras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonAtrasActionPerformed(evt);
             }
         });
-        getContentPane().add(botonAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 780, -1, -1));
-
-        tablaResultado.setModel(modeloTabla);
-        tablaResultado.setRequestFocusEnabled(false);
-        jScrollPane1.setViewportView(tablaResultado);
-
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 470, 870, 280));
-
-        jLabel1.setText("jLabel1");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, -1));
+        getContentPane().add(botonAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 50, 140, 40));
 
         pack();
         setLocationRelativeTo(null);
@@ -312,9 +454,10 @@ public class AMB extends javax.swing.JFrame {
     }//GEN-LAST:event_botonBorrarActionPerformed
 
     private void botonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAtrasActionPerformed
-        this.hide();
-        Eleccion el = new Eleccion();
-        el.show();
+        this.dispose();        
+        //Eleccion el = new Eleccion();
+       //eleccionVentana.set
+        //el.show();
     }//GEN-LAST:event_botonAtrasActionPerformed
 
     /**
@@ -433,14 +576,16 @@ public class AMB extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botonAtras;
-    private javax.swing.JButton botonBorrar;
-    private javax.swing.JButton botonClear;
-    private javax.swing.JButton botonGuardar;
-    private javax.swing.JButton botonModificar;
-    private javax.swing.JButton btnBuscar;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    public static javax.swing.JButton botonAtras;
+    public static javax.swing.JButton botonBorrar;
+    public static javax.swing.JButton botonClear;
+    public static javax.swing.JButton botonGuardar;
+    public static javax.swing.JButton botonModificar;
+    public static javax.swing.JButton btnBuscar;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    public static javax.swing.JScrollPane jScrollPane1;
     public static javax.swing.JLabel labelAP;
     public static javax.swing.JLabel labelAS;
     public static javax.swing.JLabel labelAnyo;
@@ -451,15 +596,15 @@ public class AMB extends javax.swing.JFrame {
     public static javax.swing.JLabel labelTituloVentana;
     public static javax.swing.JLabel lableTrailer;
     public static javax.swing.JTable tablaResultado;
-    private static javax.swing.JTextField textoAcPr;
-    private static javax.swing.JTextField textoAcSe;
-    private static javax.swing.JTextField textoAnyo;
-    private static javax.swing.JTextField textoDirector;
-    private static javax.swing.JTextField textoDuracion;
+    public static javax.swing.JTextField textoAcPr;
+    public static javax.swing.JTextField textoAcSe;
+    public static javax.swing.JTextField textoAnyo;
+    public static javax.swing.JTextField textoDirector;
+    public static javax.swing.JTextField textoDuracion;
     public static javax.swing.JTextField textoErrores;
-    private static javax.swing.JTextField textoID;
-    private static javax.swing.JTextField textoTitulo;
-    private static javax.swing.JTextField textoTrailer;
+    public static javax.swing.JTextField textoID;
+    public static javax.swing.JTextField textoTitulo;
+    public static javax.swing.JTextField textoTrailer;
     // End of variables declaration//GEN-END:variables
 
     private String[] getColumnas() {
