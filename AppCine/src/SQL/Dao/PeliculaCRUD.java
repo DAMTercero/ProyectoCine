@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
  *
  * @author ikitess
  */
-public class PeliculaCRUD {
+public class PeliculaCRUD extends SQL.Conexion.sql {
 
     private static final String mysqlConector = "mysql";
     private static final String sqliteConector = "sqlite";

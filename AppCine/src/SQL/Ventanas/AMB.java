@@ -9,6 +9,7 @@ import DB4o.Ventanas.*;
 import DB4o.Clases.Pelicula;
 import DB4o.Conexion.Conexion;
 import SQL.Dao.*;
+import java.io.IOException;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -35,20 +36,14 @@ public class AMB extends javax.swing.JFrame {
     public PeliculaFunciones peliculaFunciones;
 
     //tabla
-    static DefaultTableModel modeloTabla;// http://www.elprogramador.com.mx/llenar-un-jtable-con-datos-de-una-base-de-datos-mysql/
+    public DefaultTableModel modeloTabla;// http://www.elprogramador.com.mx/llenar-un-jtable-con-datos-de-una-base-de-datos-mysql/
 
     /**
      * Creates new form Porseaka
      */
     public AMB(String queMeLLega) {
-
-        modeloTabla = new DefaultTableModel(null, getColumnas());
-        //setFilas();
-
+        modeloTabla = new DefaultTableModel();
         initComponents();
-        // this.salaPeliEmpleado = queMeLLega;
-        System.out.println(salaPeliEmpleado);
-
     }
 
     /**
@@ -352,44 +347,22 @@ public class AMB extends javax.swing.JFrame {
     }//GEN-LAST:event_botonGuardarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        int idPelicula = 0;
-        if (textoID.getText().isEmpty()) {
-            idPelicula = 0;
-        } else {
-            idPelicula = Integer.parseInt(textoID.getText());
-        }
-        String titulo = textoTitulo.getText();
-        if (titulo.isEmpty()) {
-            titulo = null;
-        }
-        String anyoEstreno = textoAnyo.getText();
-        if (anyoEstreno.isEmpty()) {
-            anyoEstreno = null;
-        }
-        String director = textoDirector.getText();
-        if (director.isEmpty()) {
-            director = null;
-        }
-        String actorPrinci = textoAcPr.getText();
-        if (actorPrinci.isEmpty()) {
-            actorPrinci = null;
-        }
-        String actorSecun = textoAcSe.getText();
-        if (actorSecun.isEmpty()) {
-            actorSecun = null;
-        }
-        String duracion = textoDuracion.getText();
-        if (duracion.isEmpty()) {
-            duracion = null;
-        }
-        String trailer = textoTrailer.getText();
-        if (trailer.isEmpty()) {
-            trailer = null;
-        }
+        if (salaFunciones != null) {
+            //salaFunciones.abrirVentanaAñadir(ventanaAñadir);
+        } else if (empleadoFunciones != null) {
+            try {
+                empleadoFunciones.botonFiltrar();
+            } catch (IOException ex) {
+                Logger.getLogger(AMB.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(AMB.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(AMB.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else if (peliculaFunciones != null) {
+            //peliculaFunciones.abrirVentanaAñadir(ventanaAñadir);
 
-        Pelicula p1 = new Pelicula(idPelicula, titulo, anyoEstreno, director, actorPrinci, actorSecun, duracion, trailer);
-        Conexion conexion = new Conexion();
-        conexion.buscarPelicula(p1);
+        }
 
 
     }//GEN-LAST:event_btnBuscarActionPerformed
@@ -508,7 +481,7 @@ public class AMB extends javax.swing.JFrame {
             tablaResultado.setValueAt(pelis.get(i).getTrailer(), i, 7);
 
         }*/
-        modeloTabla.setRowCount(0);
+        // BORRADO                         modeloTabla.setRowCount(0);
         Object datosPelicula[] = new Object[8];
         int i = 0;
         for (Pelicula peli : pelis) {
@@ -611,7 +584,6 @@ public class AMB extends javax.swing.JFrame {
 
     private static void setFilas(Object datos[]) {
 
-        modeloTabla.addRow(datos);
-
+        //modeloTabla.addRow(datos);
     }
 }

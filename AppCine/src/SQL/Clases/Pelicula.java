@@ -12,6 +12,7 @@ package SQL.Clases;
 public class Pelicula {
 
     private static final String mysqlConector = "mysql";
+    private static final String sqlServerConector = "sqlServer";
     private String conector;
 
     private int ID_PELICULA;

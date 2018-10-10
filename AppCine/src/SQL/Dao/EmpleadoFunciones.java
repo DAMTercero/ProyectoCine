@@ -5,12 +5,20 @@
  */
 package SQL.Dao;
 
+import DB4o.Conexion.Conexion;
 import SQL.Ventanas.AMB;
 import static SQL.Ventanas.AMB.*;
 import static SQL.Ventanas.Añadir.*;
 import SQL.Clases.*;
 import SQL.Ventanas.Añadir;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -19,7 +27,7 @@ import java.util.List;
 public class EmpleadoFunciones {
 
     private AMB ventana;
-    private EmpleadoCRUD empleadoCRUD;
+    private EmpleadoCRUD empleadoCRUD = new EmpleadoCRUD();
 
     ////--Funciones para controlar la ventana--\\\\
     public void cambiarVentanaEmpleados() {
@@ -61,25 +69,76 @@ public class EmpleadoFunciones {
         //jOptionPane ("Se ha insertado bien" o " se ha insertado mal")
     }
 
-    public void botonFiltrar() {
+    public void botonFiltrar() throws IOException, SQLException, ClassNotFoundException {
         Empleado empleado = new Empleado();
         //crear el empleado de filtrado
-        empleado.setID_EMPLEADO(Integer.parseInt(AMB.textoID.getText()));
+        int id = -1;
+        if (AMB.textoID.getText().isEmpty()) {//evitar error de int null
+            id = -1;
+            empleado.setID_EMPLEADO(id);
+        } else {
+            empleado.setID_EMPLEADO(Integer.parseInt(AMB.textoID.getText()));
+        }
         empleado.setNOMBRE(AMB.textoTitulo.getText());
         empleado.setAPELLIDO1(AMB.textoAnyo.getText());
         empleado.setAPELLIDO2(AMB.textoDirector.getText());
-
-        List<Empleado> empleados = empleadoCRUD.filtrarEmpleados(empleado);
+        //consulta a base de datos con su respuestaen forma de lista
+        iniciarTabla();
+        ArrayList<Empleado> empleados = new ArrayList<>(empleadoCRUD.filtrarEmpleados(empleado, "sqlite"));
         if (empleados.size() > 0) {
             ponerEnTabla(empleados);
+            //iniciarTabla();
         } else {
             //sacar un mensaje de que no existen coincidendias Ó usando el label de ERROR o poniendo en la tabla que no hay coincidencias
         }
     }
 
+    //poner COLUMNAS
+    public void iniciarTabla() {
+        ventana.modeloTabla.setColumnCount(0);
+        // String columna[] = new String[]{"ID_EMPLEADO", "NOMBRE", "APELLIDO 1", "APELLIDO 2", "FECHA_NAC", "FECHA_FIN", "NACIONALIDAD", "CARGO", "DISPONIBLE"}; PORQUE NO ME DEJA PONER UNA COLUMAN ASI!
+        ventana.modeloTabla.addColumn("ID_EMPLEADO");
+        ventana.modeloTabla.addColumn("NOMBRE");
+        ventana.modeloTabla.addColumn("APELLIDO 1");
+        ventana.modeloTabla.addColumn("APELLIDO 2");
+        ventana.modeloTabla.addColumn("FECHA_NAC");
+        ventana.modeloTabla.addColumn("FECHA_FIN");
+        ventana.modeloTabla.addColumn("NACIONALIDAD");
+        ventana.modeloTabla.addColumn("CARGO");
+        ventana.modeloTabla.addColumn("DISPONIBLE");
+        //t = new DefaultTableModel(null, new String[]{"ID_EMPLEADO", "NOMBRE", "APELLIDO 1", "APELLIDO 2", "FECHA_NAC", "FECHA_FIN", "NACIONALIDAD", "CARGO", "DISPONIBLE"});
+        /* try {
+
+            //empleadoCRUD.insertEmpleado(new Empleado(99, "d ", "d ", "d ", "d ", "d ", "d ", "d ", "d ", true), "sqlite");
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(EmpleadoFunciones.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(EmpleadoFunciones.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(EmpleadoFunciones.class.getName()).log(Level.SEVERE, null, ex);
+        }*/
+    }
+
     public void ponerEnTabla(List<Empleado> empleados) {
-        //lo de poner columnas
-        //lo de poner filas por cada empleado en la lista
+
+        ventana.modeloTabla.setRowCount(0);//vaciar las filas que pudiera haber
+        Object datosEmpleado[] = new Object[10]; //posiciones = atributos de la clase "getClass().getDeclaredFields().length" no va :(
+
+        for (Empleado empleado : empleados) {
+            datosEmpleado[0] = empleado.getID_EMPLEADO();
+            datosEmpleado[1] = empleado.getNOMBRE();
+            datosEmpleado[2] = empleado.getAPELLIDO1();
+            datosEmpleado[3] = empleado.getAPELLIDO2();
+            datosEmpleado[4] = empleado.getFECHA_NAC();
+            datosEmpleado[5] = empleado.getFECHA_CONTRATO();
+            datosEmpleado[6] = empleado.getFECHA_FIN();
+            datosEmpleado[7] = empleado.getNACIONALIDAD();
+            datosEmpleado[8] = empleado.getCARGO();
+            datosEmpleado[9] = empleado.isDISPONIBLE();
+            //insertar la fila
+            ventana.modeloTabla.addRow(datosEmpleado);
+        }
+
     }
 
     public void abrirVentanaAñadir(Añadir ventanaAñadir) {

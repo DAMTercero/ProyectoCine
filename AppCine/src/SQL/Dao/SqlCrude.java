@@ -9,6 +9,7 @@ import SQL.Clases.Empleado;
 import SQL.Clases.Pelicula;
 import SQL.Clases.Sala;
 import SQL.Conexion.sql;
+import java.io.IOException;
 import java.sql.Connection;
 import static java.sql.DriverManager.getConnection;
 import java.sql.PreparedStatement;
@@ -26,6 +27,16 @@ import javax.swing.JOptionPane;
 public class SqlCrude extends SQL.Conexion.sql {
 
     private static final String mysqlConector = "mysql";
+    private static final String sqlServerConector = "sqlServer";
+
+    
+    public static Connection getConnection(String conector) throws ClassNotFoundException, SQLException, IOException {
+        if (conector.equals(mysqlConector)) {
+            return getCon_mysql_jdbc();
+        } else {
+            return getCon_sql();
+        }
+    }
 
     public static Sala getSala(String conector) throws SQLException {
         Sala obj = null;

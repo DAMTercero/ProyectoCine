@@ -11,7 +11,8 @@ package SQL.Clases;
  */
 public class Sala {
 
-    private static final String mysqlConector = "mysql";
+     private static final String mysqlConector = "mysql";
+    private static final String sqlServerConector = "sqlServer";
     private String conector;
 
     private int ID_SALA;

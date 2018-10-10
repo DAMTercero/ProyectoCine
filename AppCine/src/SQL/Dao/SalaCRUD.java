@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
  *
  * @author ikitess
  */
-public class SalaCRUD {
+public class SalaCRUD extends SQL.Conexion.sql{
 
     private static final String mysqlConector = "mysql";
     private static final String sqliteConector = "sqlite";
