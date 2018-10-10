@@ -8,9 +8,8 @@ package SQL.Dao;
 import SQL.Clases.Empleado;
 import SQL.Clases.Pelicula;
 import SQL.Clases.Sala;
-import SQL.Conexion.sql;
+import java.io.IOException;
 import java.sql.Connection;
-import static java.sql.DriverManager.getConnection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -26,6 +25,16 @@ import javax.swing.JOptionPane;
 public class SqlCrude extends SQL.Conexion.sql {
 
     private static final String mysqlConector = "mysql";
+    private static final String sqlServerConector = "sqlServer";
+
+    
+    public static Connection getConnection(String conector) throws ClassNotFoundException, SQLException, IOException {
+        if (conector.equals(mysqlConector)) {
+            return getCon_mysql_jdbc();
+        } else {
+            return getCon_sql();
+        }
+    }
 
     public static Sala getSala(String conector) throws SQLException {
         Sala obj = null;
@@ -120,7 +129,7 @@ public class SqlCrude extends SQL.Conexion.sql {
     private static Object parseObject(ResultSet rs, String tipo) throws SQLException {
         if (tipo.equals(Sala.class.getSimpleName())) {
             //Creamos el objeto sala 
-            return new Sala(rs.getInt("ID_SALA"), rs.getInt("CAPACIDAD"), rs.getInt("PANTALLA"), rs.getString("APERTURA"), rs.getString("HORARIO"), rs.getBoolean("DISPONIBLE"));
+            return new Sala(rs.getInt("ID_SALA"), rs.getInt("CAPACIDAD"), rs.getString("PANTALLA"), rs.getString("APERTURA"), rs.getBoolean("DISPONIBLE"));
         } else if (tipo.equals(Pelicula.class.getSimpleName())) {
             //Creamos el objeto Pelicula
             return new Pelicula(rs.getInt("ID_PELICULA"), rs.getString("TITULO"), rs.getString("ANYO_STRENO"), rs.getString("DIRECTOR"), rs.getString("ACTOR_PRINCI"), rs.getString("ACTOR_SECUN"), rs.getString("DURACION"), rs.getString("TRAILER"), rs.getBoolean("DISPONIBLE"));

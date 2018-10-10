@@ -20,6 +20,7 @@ import java.util.logging.Logger;
  * @author josep
  */
 public abstract class sql {
+
     protected static Connection con_mysql_jdbc;
     protected static Connection con_sql;
     private static Properties config;
@@ -29,7 +30,7 @@ public abstract class sql {
 
         Class.forName("com.mysql.jdbc.Driver");
 
-        sql.con_mysql_jdbc = (Connection) DriverManager.getConnection("jdbc:mysql://" + config.getProperty("mysql.server") + "/" + config.getProperty("mysql.bd") + "", config.getProperty("mysql.user"), config.getProperty("mysql.pass"));    
+        sql.con_mysql_jdbc = (Connection) DriverManager.getConnection("jdbc:mysql://" + config.getProperty("mysql.server") + "/" + config.getProperty("mysql.bd") + "", config.getProperty("mysql.user"), config.getProperty("mysql.pass"));
         return con_mysql_jdbc;
 
     }
@@ -38,11 +39,12 @@ public abstract class sql {
         sql.con_mysql_jdbc = con_mysql_jdbc;
     }
 
-    public static Connection getCon_sql() throws ClassNotFoundException, SQLException, IOException{
-        sql.setConfig(sql.getConfig());
-        
-        Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-        sql.con_sql=DriverManager.getConnection("jdbc:sqlserver://"+config.getProperty("sql.server")+":"+config.getProperty("sql.pot")+";databaseName="+config.getProperty("sql.bd")+";user="+config.getProperty("sql.user")+";password=");
+    public static Connection getCon_sql() throws ClassNotFoundException, SQLException, IOException {
+        //sql.setConfig(sql.getConfig());
+
+        //Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+        //sql.con_sql = DriverManager.getConnection("jdbc:sqlserver://" + config.getProperty("sql.server") + ":" + config.getProperty("sql.pot") + ";databaseName=" + config.getProperty("sql.bd") + ";user=" + config.getProperty("sql.user") + ";password=");
+        sql.con_sql = DriverManager.getConnection("jdbc:sqlite:DBEmbebidas/sqlitecine.sqlite");
         return con_sql;
     }
 
@@ -51,9 +53,9 @@ public abstract class sql {
     }
 
     public static Properties getConfig() throws FileNotFoundException, IOException {
-        FileInputStream file=null;
-        file=new FileInputStream("src\\AppCine\\SQL\\Conexion\\config.properties");
-        Properties cofig=new Properties();
+        FileInputStream file = null;
+        file = new FileInputStream("src\\AppCine\\SQL\\Conexion\\config.properties");
+        Properties cofig = new Properties();
         config.load(file);
         return config;
     }
@@ -62,11 +64,4 @@ public abstract class sql {
         sql.config = config;
     }
 
-
-    
-    
-    
-    
-    
-    
 }
