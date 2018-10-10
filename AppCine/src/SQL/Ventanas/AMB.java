@@ -347,21 +347,20 @@ public class AMB extends javax.swing.JFrame {
     }//GEN-LAST:event_botonGuardarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        if (salaFunciones != null) {
-            //salaFunciones.abrirVentanaAñadir(ventanaAñadir);
-        } else if (empleadoFunciones != null) {
-            try {
+        try {
+            if (salaFunciones != null) {
+                salaFunciones.botonFiltrar();
+            } else if (empleadoFunciones != null) {
                 empleadoFunciones.botonFiltrar();
-            } catch (IOException ex) {
-                Logger.getLogger(AMB.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SQLException ex) {
-                Logger.getLogger(AMB.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(AMB.class.getName()).log(Level.SEVERE, null, ex);
+            } else if (peliculaFunciones != null) {
+                peliculaFunciones.botonFiltrar();
             }
-        } else if (peliculaFunciones != null) {
-            //peliculaFunciones.abrirVentanaAñadir(ventanaAñadir);
-
+        } catch (IOException ex) {
+            Logger.getLogger(AMB.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(AMB.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(AMB.class.getName()).log(Level.SEVERE, null, ex);
         }
 
 

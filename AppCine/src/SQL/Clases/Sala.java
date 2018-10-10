@@ -11,26 +11,25 @@ package SQL.Clases;
  */
 public class Sala {
 
-     private static final String mysqlConector = "mysql";
+    private static final String mysqlConector = "mysql";
     private static final String sqlServerConector = "sqlServer";
     private String conector;
 
     private int ID_SALA;
     private int CAPACIDAD;
-    private int PANTALLA;
-    private String APERTURA;
+    private String FEC_APERTURA;
+    private String PANTALLA;
     private boolean DISPONIBLE;
 
     public Sala() {
     }
 
-    public Sala(int ID_SALA, int CAPACIDAD, int PANTALLA, String APERTURA, boolean DISPONIBLE) {
+    public Sala(int ID_SALA, int CAPACIDAD, String FEC_APERTURA, String PANTALLA, boolean DISPONIBLE) {
         this.ID_SALA = ID_SALA;
         this.CAPACIDAD = CAPACIDAD;
+        this.FEC_APERTURA = FEC_APERTURA;
         this.PANTALLA = PANTALLA;
-        this.APERTURA = APERTURA;
         this.DISPONIBLE = DISPONIBLE;
-
     }
 
     public String getConector() {
@@ -57,20 +56,20 @@ public class Sala {
         this.CAPACIDAD = CAPACIDAD;
     }
 
-    public int getPANTALLA() {
+    public String getPANTALLA() {
         return PANTALLA;
     }
 
-    public void setPANTALLA(int PANTALLA) {
+    public void setPANTALLA(String PANTALLA) {
         this.PANTALLA = PANTALLA;
     }
 
-    public String getAPERTURA() {
-        return APERTURA;
+    public String getFEC_APERTURA() {
+        return FEC_APERTURA;
     }
 
-    public void setAPERTURA(String APERTURA) {
-        this.APERTURA = APERTURA;
+    public void setFEC_APERTURA(String FEC_APERTURA) {
+        this.FEC_APERTURA = FEC_APERTURA;
     }
 
     public boolean getDISPONIBLE() {

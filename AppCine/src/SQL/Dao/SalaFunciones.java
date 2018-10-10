@@ -5,9 +5,14 @@
  */
 package SQL.Dao;
 
+import SQL.Clases.Sala;
 import SQL.Ventanas.AMB;
 import static SQL.Ventanas.AMB.*;
 import SQL.Ventanas.Añadir;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -16,7 +21,7 @@ import SQL.Ventanas.Añadir;
 public class SalaFunciones {
 
     private AMB ventana;
-    private SalaCRUD salaCRUD;
+    private SalaCRUD salaCRUD = new SalaCRUD();
 
     ////--Funciones para controlar la ventana--\\\\
     public void cambiarVentanaSalas() {
@@ -67,6 +72,60 @@ public class SalaFunciones {
         ventanaAñadir.ventanaAnterior = ventana;
         ventanaAñadir.setVisible(true);
         ventana.setEnabled(false);
+
+    }
+
+    public void botonFiltrar() throws IOException, SQLException, ClassNotFoundException {
+        Sala sala = new Sala();
+        //crear el empleado de filtrado
+        int id = -1;
+        if (AMB.textoID.getText().isEmpty()) {//evitar error de int null
+            id = -1;
+            sala.setID_SALA(id);
+        } else {
+            sala.setID_SALA(Integer.parseInt(AMB.textoID.getText()));
+        }
+
+        //consulta a base de datos con su respuestaen forma de lista
+        iniciarTabla();
+        ArrayList<Sala> salas = new ArrayList<>(salaCRUD.filtrarSalas(sala, "sqlite"));
+        if (salas.size() > 0) {
+            ponerEnTabla(salas);
+            //iniciarTabla();
+        } else {
+            //sacar un mensaje de que no existen coincidendias Ó usando el label de ERROR o poniendo en la tabla que no hay coincidencias
+        }
+    }
+
+    //poner COLUMNAS
+    public void iniciarTabla() {
+        ventana.modeloTabla.setColumnCount(0);
+        // String columna[] = new String[]{"ID_EMPLEADO", "NOMBRE", "APELLIDO 1", "APELLIDO 2", "FECHA_NAC", "FECHA_FIN", "NACIONALIDAD", "CARGO", "DISPONIBLE"}; PORQUE NO ME DEJA PONER UNA COLUMAN ASI!
+        ventana.modeloTabla.addColumn("ID_PELICULA");
+        ventana.modeloTabla.addColumn("TITULO");
+        ventana.modeloTabla.addColumn("AÑO ESTRENO");
+        ventana.modeloTabla.addColumn("DIRECTOR");
+        ventana.modeloTabla.addColumn("ACTOR PRINCIPAL");
+        ventana.modeloTabla.addColumn("ACTOR SECUNDARIO");
+        ventana.modeloTabla.addColumn("DURACION");
+        ventana.modeloTabla.addColumn("TRAILER");
+        ventana.modeloTabla.addColumn("DISPONIBLE");
+    }
+
+    public void ponerEnTabla(List<Sala> salas) {
+
+        ventana.modeloTabla.setRowCount(0);//vaciar las filas que pudiera haber
+        Object datosSala[] = new Object[10]; //posiciones = atributos de la clase "getClass().getDeclaredFields().length" no va :(
+
+        for (Sala sala : salas) {
+            datosSala[0] = sala.getID_SALA();
+            datosSala[1] = sala.getCAPACIDAD();
+            datosSala[2] = sala.getFEC_APERTURA();
+            datosSala[3] = sala.getPANTALLA();
+            datosSala[4] = sala.getDISPONIBLE();
+            //insertar la fila
+            ventana.modeloTabla.addRow(datosSala);
+        }
 
     }
 
