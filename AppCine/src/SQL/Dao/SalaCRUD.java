@@ -10,7 +10,6 @@ import static SQL.Conexion.sql.getCon_mysql_jdbc;
 import static SQL.Conexion.sql.getCon_sql;
 import java.io.IOException;
 import java.sql.Connection;
-import static java.sql.DriverManager.getConnection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

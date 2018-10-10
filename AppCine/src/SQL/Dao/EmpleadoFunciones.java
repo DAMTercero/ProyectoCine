@@ -5,20 +5,13 @@
  */
 package SQL.Dao;
 
-import DB4o.Conexion.Conexion;
 import SQL.Ventanas.AMB;
-import static SQL.Ventanas.AMB.*;
-import static SQL.Ventanas.Añadir.*;
 import SQL.Clases.*;
 import SQL.Ventanas.Añadir;
 import java.io.IOException;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -106,21 +99,9 @@ public class EmpleadoFunciones {
         ventana.modeloTabla.addColumn("NACIONALIDAD");
         ventana.modeloTabla.addColumn("CARGO");
         ventana.modeloTabla.addColumn("DISPONIBLE");
-        //t = new DefaultTableModel(null, new String[]{"ID_EMPLEADO", "NOMBRE", "APELLIDO 1", "APELLIDO 2", "FECHA_NAC", "FECHA_FIN", "NACIONALIDAD", "CARGO", "DISPONIBLE"});
-        /* try {
-
-            //empleadoCRUD.insertEmpleado(new Empleado(99, "d ", "d ", "d ", "d ", "d ", "d ", "d ", "d ", true), "sqlite");
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(EmpleadoFunciones.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(EmpleadoFunciones.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(EmpleadoFunciones.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
     }
 
     public void ponerEnTabla(List<Empleado> empleados) {
-
         ventana.modeloTabla.setRowCount(0);//vaciar las filas que pudiera haber
         Object datosEmpleado[] = new Object[10]; //posiciones = atributos de la clase "getClass().getDeclaredFields().length" no va :(
 
@@ -138,7 +119,6 @@ public class EmpleadoFunciones {
             //insertar la fila
             ventana.modeloTabla.addRow(datosEmpleado);
         }
-
     }
 
     public void abrirVentanaAñadir(Añadir ventanaAñadir) {

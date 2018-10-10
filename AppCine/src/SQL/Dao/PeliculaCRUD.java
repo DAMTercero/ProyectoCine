@@ -8,7 +8,6 @@ package SQL.Dao;
 import SQL.Clases.Pelicula;
 import java.io.IOException;
 import java.sql.Connection;
-import static java.sql.DriverManager.getConnection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

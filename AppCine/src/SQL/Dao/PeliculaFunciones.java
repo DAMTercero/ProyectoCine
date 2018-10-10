@@ -25,7 +25,7 @@ public class PeliculaFunciones {
 
     ////--Funciones para controlar la ventana--\\\\
     public void cambiarVentanaPelis() {
-         //campos visibles para filtrar por si hacemos cambios
+        //campos visibles para filtrar por si hacemos cambios
         labelTituloVentana.setText("PELÍCULAS");
         labelID.setText("ID Pélicula:");
         labelTitulo.setText("Título:");
@@ -47,7 +47,7 @@ public class PeliculaFunciones {
         cambiarVentanaPelis();
         this.ventana.setVisible(true);
     }
-    
+
     public void abrirVentanaAñadir(Añadir ventanaAñadir) {
         Añadir.labelID.setText("ID Pelicula");
         Añadir.labelTitulo.setText("Titulo:");
@@ -65,10 +65,10 @@ public class PeliculaFunciones {
         ventana.setEnabled(false);
 
     }
-    
-     public void botonFiltrar() throws IOException, SQLException, ClassNotFoundException {
-        Pelicula  pelicula = new Pelicula();
-        //crear el empleado de filtrado
+
+    public void botonFiltrar() throws IOException, SQLException, ClassNotFoundException {
+        Pelicula pelicula = new Pelicula();
+        //crear la pelicula de filtrado
         int id = -1;
         if (AMB.textoID.getText().isEmpty()) {//evitar error de int null
             id = -1;
@@ -80,11 +80,10 @@ public class PeliculaFunciones {
         pelicula.setANYO_STRENO(AMB.textoAnyo.getText());
         pelicula.setDIRECTOR(AMB.textoDirector.getText());
         //consulta a base de datos con su respuestaen forma de lista
-        iniciarTabla();
-         ArrayList<Pelicula> peliculas = new ArrayList<>(peliculaCRUD.filtrarPeliculas(pelicula, "sqlite"));
+        iniciarTabla();// TODO poner columnas tabla (mejorar lugar)
+        ArrayList<Pelicula> peliculas = new ArrayList<>(peliculaCRUD.filtrarPeliculas(pelicula, "sqlite"));
         if (peliculas.size() > 0) {
             ponerEnTabla(peliculas);
-            //iniciarTabla();
         } else {
             //sacar un mensaje de que no existen coincidendias Ó usando el label de ERROR o poniendo en la tabla que no hay coincidencias
         }
@@ -102,11 +101,10 @@ public class PeliculaFunciones {
         ventana.modeloTabla.addColumn("ACTOR SECUNDARIO");
         ventana.modeloTabla.addColumn("DURACION");
         ventana.modeloTabla.addColumn("TRAILER");
-        ventana.modeloTabla.addColumn("DISPONIBLE");       
+        ventana.modeloTabla.addColumn("DISPONIBLE");
     }
 
     public void ponerEnTabla(List<Pelicula> peliculas) {
-
         ventana.modeloTabla.setRowCount(0);//vaciar las filas que pudiera haber
         Object datosPelicula[] = new Object[10]; //posiciones = atributos de la clase "getClass().getDeclaredFields().length" no va :(
 
@@ -119,7 +117,7 @@ public class PeliculaFunciones {
             datosPelicula[5] = pelicula.getACTOR_SECUN();
             datosPelicula[6] = pelicula.getDURACION();
             datosPelicula[7] = pelicula.getTRAILER();
-            datosPelicula[8] = pelicula.isDISPONIBLE();            
+            datosPelicula[8] = pelicula.isDISPONIBLE();
             //insertar la fila
             ventana.modeloTabla.addRow(datosPelicula);
         }
