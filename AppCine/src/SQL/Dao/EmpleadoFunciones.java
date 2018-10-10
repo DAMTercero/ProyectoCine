@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -47,19 +48,29 @@ public class EmpleadoFunciones {
         this.ventana.setVisible(true);
     }
 
-    public void botonañadir() {
+    public void botonañadir() throws SQLException, ClassNotFoundException, IOException {
         //pille la info de los text de ventana añadir RECUERDA: ID NO SE PONE (solo en selects)
         Empleado empleado = new Empleado();
 
-        /* empleado.setNOMBRE();
-        empleado.setAPELLIDO1();
-        empleado.setAPELLIDO2();
-        empleado.setFECHA_NAC();*/
+        empleado.setNOMBRE(Añadir.textoTitulo.getText());
+        empleado.setAPELLIDO1(Añadir.textoAnyo.getText());
+        empleado.setAPELLIDO2(Añadir.textoDirector.getText());
+        empleado.setFECHA_NAC(Añadir.textoAcPr.getText());
+        empleado.setFECHA_CONTRATO(Añadir.textoAcSe.getText());
+        empleado.setFECHA_FIN(Añadir.textoDuracion.getText());
+        empleado.setNACIONALIDAD(Añadir.textoTrailer.getText());
+        empleado.setCARGO(Añadir.textoUltimo.getText());
+        empleado.setDISPONIBLE(Añadir.disponibleCheckBox.isSelected());
+
         //cree el objeto
         //llame al CRUD añadir
+        boolean action = empleadoCRUD.insertEmpleado(empleado, ventana.getTipoConexion());
         // empleadoCRUD.addEmpleado(empleado, empleadoCRUD.sqlitecon)
         //como devuelve TRUE o FALSE el añadir...
         //jOptionPane ("Se ha insertado bien" o " se ha insertado mal")
+        if (action) {
+            JOptionPane.showMessageDialog(null, "Recurso añadido satisfactoriamente");
+        }
     }
 
     public void botonFiltrar() throws IOException, SQLException, ClassNotFoundException {
@@ -77,7 +88,7 @@ public class EmpleadoFunciones {
         empleado.setAPELLIDO2(AMB.textoDirector.getText());
         //consulta a base de datos con su respuestaen forma de lista
         iniciarTabla();
-        ArrayList<Empleado> empleados = new ArrayList<>(empleadoCRUD.filtrarEmpleados(empleado, "sqlite"));
+        ArrayList<Empleado> empleados = new ArrayList<>(empleadoCRUD.filtrarEmpleados(empleado, ventana.getTipoConexion()));
         if (empleados.size() > 0) {
             ponerEnTabla(empleados);
             //iniciarTabla();
@@ -126,10 +137,11 @@ public class EmpleadoFunciones {
         Añadir.labelTitulo.setText("Nombre:");
         Añadir.labelAnyo.setText("Apellido 1");
         Añadir.labelDirector.setText("Apellido 2");
-        Añadir.labelAP.setText("Fecha nacimiento");
-        Añadir.labelAS.setText("Fecha fin contrato");
-        Añadir.labelDuracion.setText("Nacionalidad");
-        Añadir.labelTrailer.setText("Cargo");
+        Añadir.labelAP.setText("Fecha contratación");
+        Añadir.labelAS.setText("Fecha nacimiento");
+        Añadir.labelDuracion.setText("Fecha fin contrato");
+        Añadir.labelTrailer.setText("Nacionalidad");
+        Añadir.labelUltimo.setText("Cargo");
         Añadir.labelDisponible.setText("Disponible");
 
         ventanaAñadir.empleadoFunciones = this;

@@ -34,18 +34,19 @@ public class PeliculaCRUD extends SQL.Conexion.sql {
             conn = getConnection(conector);
 
             //Query
-            String query = "INSERT INTO PELICULA values(?,?,?,?,?,?,?,?)";
+            String query = "INSERT INTO PELICULA values(?,?,?,?,?,?,?,?,?)";
             PreparedStatement ps = conn.prepareStatement(query);
 
-            //Añadimos los datos            
-            ps.setString(1, obj.getTITULO());
-            ps.setString(2, obj.getANYO_STRENO());
-            ps.setString(3, obj.getDIRECTOR());
-            ps.setString(4, obj.getACTOR_PRINCI());
-            ps.setString(5, obj.getACTOR_SECUN());
-            ps.setString(6, obj.getDURACION());
-            ps.setString(7, obj.getTRAILER());
-            ps.setBoolean(8, obj.isDISPONIBLE());
+            //Añadimos los datos  
+            ps.setInt(1, java.sql.Types.INTEGER);
+            ps.setString(2, obj.getTITULO());
+            ps.setString(3, obj.getANYO_STRENO());
+            ps.setString(4, obj.getDIRECTOR());
+            ps.setString(5, obj.getACTOR_PRINCI());
+            ps.setString(6, obj.getACTOR_SECUN());
+            ps.setString(7, obj.getDURACION());
+            ps.setString(8, obj.getTRAILER());
+            ps.setBoolean(9, obj.isDISPONIBLE());
 
             //Ejecutamos la insert
             int action = ps.executeUpdate();

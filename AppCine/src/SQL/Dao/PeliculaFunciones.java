@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -58,12 +59,39 @@ public class PeliculaFunciones {
         Añadir.labelDuracion.setText("Duración");
         Añadir.labelTrailer.setText("Trailer");
         Añadir.labelDisponible.setText("Disponible");
+        Añadir.labelUltimo.setVisible(false);
+        Añadir.textoUltimo.setVisible(false);
 
         ventanaAñadir.peliculaFunciones = this;
         ventanaAñadir.ventanaAnterior = ventana;
         ventanaAñadir.setVisible(true);
         ventana.setEnabled(false);
 
+    }
+
+    public void botonañadir() throws SQLException, ClassNotFoundException, IOException {
+        //pille la info de los text de ventana añadir RECUERDA: ID NO SE PONE (solo en selects)
+        Pelicula pelicula = new Pelicula();
+
+        pelicula.setTITULO(Añadir.textoTitulo.getText());
+        pelicula.setANYO_STRENO(Añadir.textoAnyo.getText());
+        pelicula.setDIRECTOR(Añadir.textoDirector.getText());
+        pelicula.setACTOR_PRINCI(Añadir.textoAcPr.getText());
+        pelicula.setACTOR_SECUN(Añadir.textoAcSe.getText());
+        pelicula.setDURACION(Añadir.textoDuracion.getText());
+        pelicula.setTRAILER(Añadir.textoTrailer.getText());
+        // pelicula.setCARGO(Añadir.textoTrailer.getText());
+        pelicula.setDISPONIBLE(Añadir.disponibleCheckBox.isSelected());
+
+        //cree el objeto
+        //llame al CRUD añadir
+        boolean action = peliculaCRUD.insertPelicula(pelicula, ventana.getTipoConexion());
+        // empleadoCRUD.addEmpleado(empleado, empleadoCRUD.sqlitecon)
+        //como devuelve TRUE o FALSE el añadir...
+        //jOptionPane ("Se ha insertado bien" o " se ha insertado mal")
+        if (action) {
+            JOptionPane.showMessageDialog(null, "Recurso añadido satisfactoriamente");
+        }
     }
 
     public void botonFiltrar() throws IOException, SQLException, ClassNotFoundException {
@@ -81,7 +109,7 @@ public class PeliculaFunciones {
         pelicula.setDIRECTOR(AMB.textoDirector.getText());
         //consulta a base de datos con su respuestaen forma de lista
         iniciarTabla();// TODO poner columnas tabla (mejorar lugar)
-        ArrayList<Pelicula> peliculas = new ArrayList<>(peliculaCRUD.filtrarPeliculas(pelicula, "sqlite"));
+        ArrayList<Pelicula> peliculas = new ArrayList<>(peliculaCRUD.filtrarPeliculas(pelicula, ventana.getTipoConexion()));
         if (peliculas.size() > 0) {
             ponerEnTabla(peliculas);
         } else {

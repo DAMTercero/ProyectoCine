@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -62,10 +63,12 @@ public class SalaFunciones {
         Añadir.labelAS.setVisible(false);
         Añadir.labelDuracion.setVisible(false);
         Añadir.labelTrailer.setVisible(false);
+        Añadir.labelUltimo.setVisible(false);
         Añadir.textoAcPr.setVisible(false);
         Añadir.textoAcSe.setVisible(false);
         Añadir.textoDuracion.setVisible(false);
         Añadir.textoTrailer.setVisible(false);
+        Añadir.textoUltimo.setVisible(false);
         Añadir.labelDisponible.setText("Disponible");
 
         ventanaAñadir.salaFunciones = this;
@@ -73,6 +76,26 @@ public class SalaFunciones {
         ventanaAñadir.setVisible(true);
         ventana.setEnabled(false);
 
+    }
+
+    public void botonañadir() throws SQLException, ClassNotFoundException, IOException {
+        //pille la info de los text de ventana añadir RECUERDA: ID NO SE PONE (solo en selects)
+        Sala sala = new Sala();
+
+        sala.setCAPACIDAD(Integer.parseInt(Añadir.textoTitulo.getText()));
+        sala.setPANTALLA(Añadir.textoDirector.getText());
+        sala.setFEC_APERTURA(Añadir.textoAnyo.getText());
+        sala.setDISPONIBLE(Añadir.disponibleCheckBox.isSelected());
+
+        //cree el objeto
+        //llame al CRUD añadir
+        boolean action = salaCRUD.insertSala(sala, ventana.getTipoConexion());
+        // empleadoCRUD.addEmpleado(empleado, empleadoCRUD.sqlitecon)
+        //como devuelve TRUE o FALSE el añadir...
+        //jOptionPane ("Se ha insertado bien" o " se ha insertado mal")
+        if (action) {
+            JOptionPane.showMessageDialog(null, "Recurso añadido satisfactoriamente");
+        }
     }
 
     public void botonFiltrar() throws IOException, SQLException, ClassNotFoundException {
@@ -88,7 +111,7 @@ public class SalaFunciones {
 
         //consulta a base de datos con su respuesta en forma de lista
         iniciarTabla();// TODO poner columnas tabla (mejorar lugar)
-        ArrayList<Sala> salas = new ArrayList<>(salaCRUD.filtrarSalas(sala, "sqlite"));
+        ArrayList<Sala> salas = new ArrayList<>(salaCRUD.filtrarSalas(sala, ventana.getTipoConexion()));//objeto y tipo conexion
         if (salas.size() > 0) {
             ponerEnTabla(salas);
         } else {

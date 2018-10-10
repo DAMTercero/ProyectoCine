@@ -38,7 +38,7 @@ public class EmpleadoCRUD extends SQL.Conexion.sql {
             PreparedStatement ps = conn.prepareStatement(query);
 
             //Añadimos los datos
-            ps.setInt(1, obj.getID_EMPLEADO());
+            ps.setInt(1, java.sql.Types.INTEGER);//pasar un nulo
             ps.setString(2, obj.getNOMBRE());
             ps.setString(3, obj.getAPELLIDO1());
             ps.setString(4, obj.getAPELLIDO2());
