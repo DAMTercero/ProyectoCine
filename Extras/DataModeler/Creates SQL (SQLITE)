@@ -46,11 +46,11 @@ CREATE TABLE Sala
     ( 
      ID_SALA INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL  , 
 --  Numero de asientos totales disponibles
-     CAPACIDAD INTEGER  NOT NULL , 
---  Se pone automaticamente el dia y la hora al crearse la sala (trigger)
-     FEC_APERTURA VARCHAR2 (500)  NOT NULL , 
+     CAPACIDAD INTEGER  NOT NULL ,
 --  ALTURA X ANCHURA
      PANTALLA VARCHAR2 (500)  NOT NULL , 
+--  Se PODRIA poner automaticamente el dia y la hora al crearse la sala (trigger)
+     FEC_APERTURA VARCHAR2 (500)  NOT NULL , 
 --  PARA SABER SI SIGUE FUNCIONANDO LA SALA.
      DISPONIBLE CHAR (1)  NOT NULL	 
     ) 
