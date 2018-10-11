@@ -10,6 +10,8 @@ import java.io.IOException;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.*;
 
 /**
@@ -31,14 +33,16 @@ public class AMB extends javax.swing.JFrame {
     //Si soy ventana MySql o SQlite
     private boolean soyMySql = false;
 
+    //variable list para el tema de modificar
+    List<Object> tablaFiltradoObjetos = new ArrayList<Object>();
+
     //tabla
-    public DefaultTableModel modeloTabla;// http://www.elprogramador.com.mx/llenar-un-jtable-con-datos-de-una-base-de-datos-mysql/  una ayuda
+    public DefaultTableModel modeloTabla = new DefaultTableModel();// http://www.elprogramador.com.mx/llenar-un-jtable-con-datos-de-una-base-de-datos-mysql/  una ayuda
 
     /**
      * Creates new form Porseaka
      */
-    public AMB() {
-        modeloTabla = new DefaultTableModel();
+    public AMB() {      
         initComponents();
     }
 
@@ -252,8 +256,21 @@ public class AMB extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Tabla"));
 
-        tablaResultado.setModel(modeloTabla);
+        tablaResultado.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        tablaResultado.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         tablaResultado.setRequestFocusEnabled(false);
+        tablaResultado.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaResultadoMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tablaResultado);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -286,9 +303,11 @@ public class AMB extends javax.swing.JFrame {
 
         botonModificar.setText("Modificar");
         botonModificar.setToolTipText("Solo se activara al seleccionar un registro de la tabla");
+        botonModificar.setEnabled(false);
 
-        botonBorrar.setText("Borrar");
+        botonBorrar.setText("Baja");
         botonBorrar.setToolTipText("Solo está disponible cuando se seleccione un registro de la tabla");
+        botonBorrar.setEnabled(false);
         botonBorrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonBorrarActionPerformed(evt);
@@ -347,11 +366,14 @@ public class AMB extends javax.swing.JFrame {
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         try {
             if (salaFunciones != null) {
-                salaFunciones.botonFiltrar();
+                limpiar("ERROR");
+                tablaFiltradoObjetos = salaFunciones.botonFiltrar();
             } else if (empleadoFunciones != null) {
-                empleadoFunciones.botonFiltrar();
+                limpiar("ERROR");
+                tablaFiltradoObjetos = empleadoFunciones.botonFiltrar();
             } else if (peliculaFunciones != null) {
-                peliculaFunciones.botonFiltrar();
+                limpiar("ERROR");
+                tablaFiltradoObjetos = peliculaFunciones.botonFiltrar();
             }
         } catch (IOException ex) {
             Logger.getLogger(AMB.class.getName()).log(Level.SEVERE, null, ex);
@@ -365,15 +387,7 @@ public class AMB extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void botonClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonClearActionPerformed
-        textoID.setText("");
-        textoTitulo.setText("");
-        textoAnyo.setText("");
-        textoDirector.setText("");
-        textoAcPr.setText("");
-        textoAcSe.setText("");
-        textoDuracion.setText("");
-        textoTrailer.setText("");
-        textoErrores.setText("");
+        limpiar("FILTRO");
     }//GEN-LAST:event_botonClearActionPerformed
 
     private void botonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBorrarActionPerformed
@@ -393,6 +407,14 @@ public class AMB extends javax.swing.JFrame {
         ventanaEleccion.amb = null;
         this.dispose();
     }//GEN-LAST:event_formWindowClosed
+
+    private void tablaResultadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaResultadoMouseClicked
+        // TODO add your handling code here:
+        //WIP: click en row y modificar se pone disponible
+        botonModificar.setEnabled(true);
+        System.out.println(tablaResultado.getSelectedRow());//sacar fila
+        // modeloTabla.s
+    }//GEN-LAST:event_tablaResultadoMouseClicked
 
     /**
      * @param args the command line arguments
@@ -432,19 +454,61 @@ public class AMB extends javax.swing.JFrame {
         });
     }
 
-    public static void rellenarErrores(String frase) {
+    ///---FUNCIONES UTILES---\\\
+    /**
+     *
+     * @param frase rellenar el campo de texto de errores con un texto
+     */
+    public void rellenarErrores(String frase) {
         textoErrores.setText(frase);
 
     }
 
-    public boolean isSoyMySql() {
-        return soyMySql;
+    /**
+     *
+     * @param elQue si se quiere limpiar el texto error o todos los campos de
+     * texto del filtro
+     */
+    public void limpiar(String elQue) {
+        switch (elQue) {
+            case "FILTRO":
+                textoID.setText("");
+                textoTitulo.setText("");
+                textoAnyo.setText("");
+                textoDirector.setText("");
+                textoAcPr.setText("");
+                textoAcSe.setText("");
+                textoDuracion.setText("");
+                textoTrailer.setText("");
+                textoErrores.setText("");
+                break;
+            case "ERROR":
+                textoErrores.setText("");
+                break;
+            default:
+                break;
+        }
     }
 
-    public void setSoyMySql(boolean soyMySql) {
-        this.soyMySql = soyMySql;
+    /**
+     *
+     * @param columnas se le pasa un array de strings con nombres de columna y
+     * se añade a la tabla de filtrado
+     */
+    public void ponerColumnasTabla(String columnas[]) {
+        for (String c : columnas) {
+            modeloTabla.addColumn(c);
+        }
+        tablaResultado.setModel(modeloTabla);
+        tablaResultado.setSelectionMode(0);//para que solo se pueda clickar de una fila en una
+        //tablaResultado.setEditingColumn(1);
     }
 
+    /**
+     *
+     * @return Devuelve un String "mysql" o "sqlite" en funcion de una variable
+     * interna @soyMySql
+     */
     public String getTipoConexion() {
         if (soyMySql) {
             return "mysql";
@@ -453,6 +517,24 @@ public class AMB extends javax.swing.JFrame {
         }
 
     }
+
+    ///---GETTERS Y SETTERS---\\\
+    /**
+     *
+     * @return devuelve true o false en funcion de sql o mysql
+     */
+    public boolean isSoyMySql() {
+        return soyMySql;
+    }
+
+    /**
+     *
+     * @param soyMySql meter true o false en funcion de sql o mysql
+     */
+    public void setSoyMySql(boolean soyMySql) {
+        this.soyMySql = soyMySql;
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JButton botonAtras;

@@ -23,6 +23,8 @@ public class SalaFunciones {
 
     private AMB ventana;
     private SalaCRUD salaCRUD = new SalaCRUD();
+    //columnas de la tabla
+    private final String columnas[] = new String[]{"ID_SALA", "CAPACIDAD", "PANTALLA", "FECH_APERTURA", "DISPONIBLE"};
 
     ////--Funciones para controlar la ventana--\\\\
     public void cambiarVentanaSalas() {
@@ -51,6 +53,7 @@ public class SalaFunciones {
     public void abrirVentanaSalas(AMB ventana) {
         this.ventana = ventana;
         cambiarVentanaSalas();
+        this.ventana.ponerColumnasTabla(columnas);
         this.ventana.setVisible(true);
     }
 
@@ -98,7 +101,7 @@ public class SalaFunciones {
         }
     }
 
-    public void botonFiltrar() throws IOException, SQLException, ClassNotFoundException {
+    public List<Object> botonFiltrar() throws IOException, SQLException, ClassNotFoundException {
         Sala sala = new Sala();
         //crear sala de filtrado
         int id = -1;
@@ -110,24 +113,16 @@ public class SalaFunciones {
         }
 
         //consulta a base de datos con su respuesta en forma de lista
-        iniciarTabla();// TODO poner columnas tabla (mejorar lugar)
         ArrayList<Sala> salas = new ArrayList<>(salaCRUD.filtrarSalas(sala, ventana.getTipoConexion()));//objeto y tipo conexion
         if (salas.size() > 0) {
             ponerEnTabla(salas);
         } else {
             //sacar un mensaje de que no existen coincidendias Ó usando el label de ERROR o poniendo en la tabla que no hay coincidencias
-        }
-    }
+            ventana.rellenarErrores("No parece haber coincidencias");
+            ventana.modeloTabla.setRowCount(0);//vaciar las filas que pudiera haber
 
-    //poner COLUMNAS
-    public void iniciarTabla() {
-        ventana.modeloTabla.setColumnCount(0);
-        // String columna[] = new String[]{"ID_EMPLEADO", "NOMBRE", "APELLIDO 1", "APELLIDO 2", "FECHA_NAC", "FECHA_FIN", "NACIONALIDAD", "CARGO", "DISPONIBLE"}; PORQUE NO ME DEJA PONER UNA COLUMAN ASI!
-        ventana.modeloTabla.addColumn("ID_SALA");
-        ventana.modeloTabla.addColumn("CAPACIDAD");
-        ventana.modeloTabla.addColumn("FECHA APERTURA");
-        ventana.modeloTabla.addColumn("PANTALLA");
-        ventana.modeloTabla.addColumn("DISPONIBLE");
+        }
+        return (List<Object>) (Object) salas;
     }
 
     public void ponerEnTabla(List<Sala> salas) {
@@ -137,13 +132,12 @@ public class SalaFunciones {
         for (Sala sala : salas) {
             datosSala[0] = sala.getID_SALA();
             datosSala[1] = sala.getCAPACIDAD();
+            datosSala[3] = sala.getPANTALLA();//asi sale bien y nose porque
             datosSala[2] = sala.getFEC_APERTURA();
-            datosSala[3] = sala.getPANTALLA();
             datosSala[4] = sala.getDISPONIBLE();
             //insertar la fila
             ventana.modeloTabla.addRow(datosSala);
         }
-
     }
 
     public SalaFunciones() {

@@ -22,6 +22,8 @@ public class EmpleadoFunciones {
 
     private AMB ventana;
     private EmpleadoCRUD empleadoCRUD = new EmpleadoCRUD();
+    //columnas de la tabla
+    private final String columnas[] = new String[]{"ID_EMPLEADO", "NOMBRE", "APELLIDO 1", "APELLIDO 2", "FECHA NACIMIENTO", "FECHA CONTRATO", "FECHA FIN CONTRATO", "NACIONALIDAD", "CARGO", "DISPONIBLE"};
 
     ////--Funciones para controlar la ventana--\\\\
     public void cambiarVentanaEmpleados() {
@@ -45,6 +47,7 @@ public class EmpleadoFunciones {
     public void abrirVentanaEmpleados(AMB ventana) {
         this.ventana = ventana;
         cambiarVentanaEmpleados();
+        this.ventana.ponerColumnasTabla(columnas);
         this.ventana.setVisible(true);
     }
 
@@ -73,7 +76,7 @@ public class EmpleadoFunciones {
         }
     }
 
-    public void botonFiltrar() throws IOException, SQLException, ClassNotFoundException {
+    public List<Object> botonFiltrar() throws IOException, SQLException, ClassNotFoundException {
         Empleado empleado = new Empleado();
         //crear el empleado de filtrado
         int id = -1;
@@ -87,29 +90,15 @@ public class EmpleadoFunciones {
         empleado.setAPELLIDO1(AMB.textoAnyo.getText());
         empleado.setAPELLIDO2(AMB.textoDirector.getText());
         //consulta a base de datos con su respuestaen forma de lista
-        iniciarTabla();
         ArrayList<Empleado> empleados = new ArrayList<>(empleadoCRUD.filtrarEmpleados(empleado, ventana.getTipoConexion()));
         if (empleados.size() > 0) {
             ponerEnTabla(empleados);
-            //iniciarTabla();
         } else {
             //sacar un mensaje de que no existen coincidendias Ó usando el label de ERROR o poniendo en la tabla que no hay coincidencias
+            ventana.rellenarErrores("No parece haber coincidencias");
+            ventana.modeloTabla.setRowCount(0);//vaciar las filas que pudiera haber            
         }
-    }
-
-    //poner COLUMNAS
-    public void iniciarTabla() {
-        ventana.modeloTabla.setColumnCount(0);
-        // String columna[] = new String[]{"ID_EMPLEADO", "NOMBRE", "APELLIDO 1", "APELLIDO 2", "FECHA_NAC", "FECHA_FIN", "NACIONALIDAD", "CARGO", "DISPONIBLE"}; PORQUE NO ME DEJA PONER UNA COLUMAN ASI!
-        ventana.modeloTabla.addColumn("ID_EMPLEADO");
-        ventana.modeloTabla.addColumn("NOMBRE");
-        ventana.modeloTabla.addColumn("APELLIDO 1");
-        ventana.modeloTabla.addColumn("APELLIDO 2");
-        ventana.modeloTabla.addColumn("FECHA_NAC");
-        ventana.modeloTabla.addColumn("FECHA_FIN");
-        ventana.modeloTabla.addColumn("NACIONALIDAD");
-        ventana.modeloTabla.addColumn("CARGO");
-        ventana.modeloTabla.addColumn("DISPONIBLE");
+        return (List<Object>) (Object) empleados;
     }
 
     public void ponerEnTabla(List<Empleado> empleados) {
@@ -127,8 +116,8 @@ public class EmpleadoFunciones {
             datosEmpleado[7] = empleado.getNACIONALIDAD();
             datosEmpleado[8] = empleado.getCARGO();
             datosEmpleado[9] = empleado.isDISPONIBLE();
-            //insertar la fila
             ventana.modeloTabla.addRow(datosEmpleado);
+
         }
     }
 

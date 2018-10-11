@@ -16,8 +16,10 @@ import SQL.Dao.SalaFunciones;
  */
 public class Eleccion extends javax.swing.JFrame {
 
+    //ventanas
     public Main ventanaMain;
     public AMB amb;
+    //archivos funciones
     public PeliculaFunciones peliculaFunciones = new PeliculaFunciones();
     public SalaFunciones salaFunciones = new SalaFunciones();
     public EmpleadoFunciones empleadoFunciones = new EmpleadoFunciones();
@@ -169,7 +171,7 @@ public class Eleccion extends javax.swing.JFrame {
         empleadoFunciones.abrirVentanaEmpleados(amb);//pasarlo a la clase de las funciones de esa sala
         amb.setVisible(true);//ver ventana
         amb.setSoyMySql(soyMySql);//pasarle tipo de base de datos
-        this.setEnabled(false);//deshabilitar esta para no abrir de mas
+        this.setEnabled(false);//deshabilitar esta para no abrir de mas        
 
         System.out.println(amb.isSoyMySql());
 
@@ -221,10 +223,18 @@ public class Eleccion extends javax.swing.JFrame {
         });
     }
 
+    /**
+     *
+     * @return devuelve true o false en funcion de sql o mysql
+     */
     public boolean isSoyMySql() {
         return soyMySql;
     }
 
+    /**
+     *
+     * @param soyMySql meter true o false en funcion de sql o mysql
+     */
     public void setSoyMySql(boolean soyMySql) {
         this.soyMySql = soyMySql;
     }

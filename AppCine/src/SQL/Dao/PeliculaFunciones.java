@@ -23,6 +23,8 @@ public class PeliculaFunciones {
 
     private AMB ventana;
     private PeliculaCRUD peliculaCRUD = new PeliculaCRUD();
+    //columnas de la tabla
+    private final String columnas[] = new String[]{"ID_PELICULA", "TITULO", "AÑO ESTRENO", "DIRECTOR", "ACTOR PRINCIPAL", "ACTOR SECUNDARIO", "DURACIÓN", "TRAILER", "DISPONIBLE"};
 
     ////--Funciones para controlar la ventana--\\\\
     public void cambiarVentanaPelis() {
@@ -46,6 +48,7 @@ public class PeliculaFunciones {
     public void abrirVentanaPelis(AMB ventana) {
         this.ventana = ventana;
         cambiarVentanaPelis();
+        this.ventana.ponerColumnasTabla(columnas);
         this.ventana.setVisible(true);
     }
 
@@ -94,7 +97,7 @@ public class PeliculaFunciones {
         }
     }
 
-    public void botonFiltrar() throws IOException, SQLException, ClassNotFoundException {
+    public List<Object> botonFiltrar() throws IOException, SQLException, ClassNotFoundException {
         Pelicula pelicula = new Pelicula();
         //crear la pelicula de filtrado
         int id = -1;
@@ -107,29 +110,17 @@ public class PeliculaFunciones {
         pelicula.setTITULO(AMB.textoTitulo.getText());
         pelicula.setANYO_STRENO(AMB.textoAnyo.getText());
         pelicula.setDIRECTOR(AMB.textoDirector.getText());
-        //consulta a base de datos con su respuestaen forma de lista
-        iniciarTabla();// TODO poner columnas tabla (mejorar lugar)
+
+        //consulta a base de datos con su respuesta en forma de lista       
         ArrayList<Pelicula> peliculas = new ArrayList<>(peliculaCRUD.filtrarPeliculas(pelicula, ventana.getTipoConexion()));
         if (peliculas.size() > 0) {
             ponerEnTabla(peliculas);
         } else {
-            //sacar un mensaje de que no existen coincidendias Ó usando el label de ERROR o poniendo en la tabla que no hay coincidencias
+            ventana.rellenarErrores("No parece haber coincidencias");
+            ventana.modeloTabla.setRowCount(0);//vaciar las filas que pudiera haber
         }
-    }
+        return (List<Object>) (Object) peliculas;
 
-    //poner COLUMNAS
-    public void iniciarTabla() {
-        ventana.modeloTabla.setColumnCount(0);
-        // String columna[] = new String[]{"ID_EMPLEADO", "NOMBRE", "APELLIDO 1", "APELLIDO 2", "FECHA_NAC", "FECHA_FIN", "NACIONALIDAD", "CARGO", "DISPONIBLE"}; PORQUE NO ME DEJA PONER UNA COLUMAN ASI!
-        ventana.modeloTabla.addColumn("ID_PELICULA");
-        ventana.modeloTabla.addColumn("TITULO");
-        ventana.modeloTabla.addColumn("AÑO ESTRENO");
-        ventana.modeloTabla.addColumn("DIRECTOR");
-        ventana.modeloTabla.addColumn("ACTOR PRINCIPAL");
-        ventana.modeloTabla.addColumn("ACTOR SECUNDARIO");
-        ventana.modeloTabla.addColumn("DURACION");
-        ventana.modeloTabla.addColumn("TRAILER");
-        ventana.modeloTabla.addColumn("DISPONIBLE");
     }
 
     public void ponerEnTabla(List<Pelicula> peliculas) {
