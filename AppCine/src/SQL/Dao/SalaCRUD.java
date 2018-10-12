@@ -42,7 +42,7 @@ public class SalaCRUD extends SQL.Conexion.sql {
             //Añadimos los datos   
             ps.setInt(1, java.sql.Types.INTEGER);
             ps.setInt(2, obj.getCAPACIDAD());
-            ps.setString(3, obj.getFEC_APERTURA());
+            ps.setString(3, obj.getFECHA_APERTURA());
             ps.setString(4, obj.getPANTALLA());
             ps.setBoolean(5, obj.getDISPONIBLE());
 
@@ -79,13 +79,13 @@ public class SalaCRUD extends SQL.Conexion.sql {
             conn = getConnection(conector);
 
             //Query
-            String query = "UPDATE SALA SET ID_SALA = ?, CAPACIDAD = ?, PANTALLA = ?, APERTURA = ?, DISPONIBLE = ?";
+            String query = "UPDATE SALA SET ID_SALA = ?, CAPACIDAD = ?, PANTALLA = ?, FECHA_APERTURA = ?, DISPONIBLE = ?";
             PreparedStatement ps = conn.prepareStatement(query);
 
             //Indicamos los datos
             ps.setInt(1, obj.getID_SALA());
             ps.setInt(2, obj.getCAPACIDAD());
-            ps.setString(3, obj.getFEC_APERTURA());
+            ps.setString(3, obj.getFECHA_APERTURA());
             ps.setString(4, obj.getPANTALLA());
             ps.setBoolean(5, obj.getDISPONIBLE());
 

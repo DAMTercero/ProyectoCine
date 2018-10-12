@@ -51,29 +51,101 @@ public class EmpleadoFunciones {
         this.ventana.setVisible(true);
     }
 
-    public void botonañadir() throws SQLException, ClassNotFoundException, IOException {
-        //pille la info de los text de ventana añadir RECUERDA: ID NO SE PONE (solo en selects)
+    public void abrirVentanaAñadir(Añadir ventanaAñadir) {
+        //labels de Añadir
+        Añadir.labelID.setText("ID Empleado");
+        Añadir.labelTitulo.setText("Nombre:");
+        Añadir.labelAnyo.setText("Apellido 1");
+        Añadir.labelDirector.setText("Apellido 2");
+        Añadir.labelAP.setText("Fecha contratación");
+        Añadir.labelAS.setText("Fecha nacimiento");
+        Añadir.labelDuracion.setText("Fecha fin contrato");
+        Añadir.labelTrailer.setText("Nacionalidad");
+        Añadir.labelUltimo.setText("Cargo");
+        Añadir.labelDisponible.setText("Disponible");
+
+        ventanaAñadir.empleadoFunciones = this;
+        ventanaAñadir.ventanaAnterior = ventana;
+        ventanaAñadir.isAnyadir = 1;//descirle que es añadir
+        ventanaAñadir.boton_add_modify.setText("Añadir");
+        ventanaAñadir.setVisible(true);
+        ventana.setEnabled(false);
+
+    }
+
+    public void abrirVentanaModificar(Añadir ventanaModificar, Empleado empleado) {
+        Añadir.labelID.setText("ID Empleado");
+        Añadir.textoID.setText(String.valueOf(empleado.getID_EMPLEADO()));
+        Añadir.labelTitulo.setText("Nombre:");
+        Añadir.textoTitulo.setText(empleado.getNOMBRE());
+        Añadir.labelAnyo.setText("Apellido 1");
+        Añadir.textoAnyo.setText(empleado.getAPELLIDO1());
+        Añadir.labelDirector.setText("Apellido 2");
+        Añadir.textoDirector.setText(empleado.getAPELLIDO2());
+        Añadir.labelAP.setText("Fecha nacimiento");
+        Añadir.textoAcPr.setText(empleado.getFECHA_NACIMIENTO());
+        Añadir.labelAS.setText("Fecha contratación");
+        Añadir.textoAcSe.setText(empleado.getFECHA_CONTRATO());
+        Añadir.labelDuracion.setText("Fecha fin contrato");
+        Añadir.textoDuracion.setText(empleado.getFECHA_FIN());
+        Añadir.labelTrailer.setText("Nacionalidad");
+        Añadir.textoTrailer.setText(empleado.getNACIONALIDAD());
+        Añadir.labelUltimo.setText("Cargo");
+        Añadir.textoUltimo.setText(empleado.getCARGO());
+        Añadir.labelDisponible.setText("Disponible");
+        Añadir.disponibleCheckBox.setSelected(empleado.isDISPONIBLE());
+
+        ventanaModificar.empleadoFunciones = this;
+        ventanaModificar.ventanaAnterior = ventana;
+        ventanaModificar.isAnyadir = 0;//descirle que es modificar
+        ventanaModificar.boton_add_modify.setText("Modificar");
+        ventanaModificar.setVisible(true);
+        ventana.setEnabled(false);
+
+    }
+
+    public void botonAnyadir_Modificar(int isAnyadir) throws SQLException, ClassNotFoundException, IOException {
         Empleado empleado = new Empleado();
+        switch (isAnyadir) {
+            case 0://es modificar
+                empleado.setID_EMPLEADO(Integer.parseInt(Añadir.textoID.getText()));
+                empleado.setNOMBRE(Añadir.textoTitulo.getText());
+                empleado.setAPELLIDO1(Añadir.textoAnyo.getText());
+                empleado.setAPELLIDO2(Añadir.textoDirector.getText());
+                empleado.setFECHA_NACIMIENTO(Añadir.textoAcPr.getText());
+                empleado.setFECHA_CONTRATO(Añadir.textoAcSe.getText());
+                empleado.setFECHA_FIN(Añadir.textoDuracion.getText());
+                empleado.setNACIONALIDAD(Añadir.textoTrailer.getText());
+                empleado.setCARGO(Añadir.textoUltimo.getText());
+                empleado.setDISPONIBLE(Añadir.disponibleCheckBox.isSelected());
 
-        empleado.setNOMBRE(Añadir.textoTitulo.getText());
-        empleado.setAPELLIDO1(Añadir.textoAnyo.getText());
-        empleado.setAPELLIDO2(Añadir.textoDirector.getText());
-        empleado.setFECHA_NAC(Añadir.textoAcPr.getText());
-        empleado.setFECHA_CONTRATO(Añadir.textoAcSe.getText());
-        empleado.setFECHA_FIN(Añadir.textoDuracion.getText());
-        empleado.setNACIONALIDAD(Añadir.textoTrailer.getText());
-        empleado.setCARGO(Añadir.textoUltimo.getText());
-        empleado.setDISPONIBLE(Añadir.disponibleCheckBox.isSelected());
+                boolean action1 = empleadoCRUD.updateEmpleado(empleado, ventana.getTipoConexion());
 
-        //cree el objeto
-        //llame al CRUD añadir
-        boolean action = empleadoCRUD.insertEmpleado(empleado, ventana.getTipoConexion());
-        // empleadoCRUD.addEmpleado(empleado, empleadoCRUD.sqlitecon)
-        //como devuelve TRUE o FALSE el añadir...
-        //jOptionPane ("Se ha insertado bien" o " se ha insertado mal")
-        if (action) {
-            JOptionPane.showMessageDialog(null, "Recurso añadido satisfactoriamente");
+                if (action1) {
+                    JOptionPane.showMessageDialog(null, "Recurso Actualizado satisfactoriamente");
+                }
+                break;
+            case 1: //añadir
+                empleado.setNOMBRE(Añadir.textoTitulo.getText());
+                empleado.setAPELLIDO1(Añadir.textoAnyo.getText());
+                empleado.setAPELLIDO2(Añadir.textoDirector.getText());
+                empleado.setFECHA_NACIMIENTO(Añadir.textoAcPr.getText());
+                empleado.setFECHA_CONTRATO(Añadir.textoAcSe.getText());
+                empleado.setFECHA_FIN(Añadir.textoDuracion.getText());
+                empleado.setNACIONALIDAD(Añadir.textoTrailer.getText());
+                empleado.setCARGO(Añadir.textoUltimo.getText());
+                empleado.setDISPONIBLE(Añadir.disponibleCheckBox.isSelected());
+
+                boolean action2 = empleadoCRUD.insertEmpleado(empleado, ventana.getTipoConexion());
+
+                if (action2) {
+                    JOptionPane.showMessageDialog(null, "Recurso añadido satisfactoriamente");
+                }
+                break;
+            default:
+                break;
         }
+
     }
 
     public List<Object> botonFiltrar() throws IOException, SQLException, ClassNotFoundException {
@@ -110,7 +182,7 @@ public class EmpleadoFunciones {
             datosEmpleado[1] = empleado.getNOMBRE();
             datosEmpleado[2] = empleado.getAPELLIDO1();
             datosEmpleado[3] = empleado.getAPELLIDO2();
-            datosEmpleado[4] = empleado.getFECHA_NAC();
+            datosEmpleado[4] = empleado.getFECHA_NACIMIENTO();
             datosEmpleado[5] = empleado.getFECHA_CONTRATO();
             datosEmpleado[6] = empleado.getFECHA_FIN();
             datosEmpleado[7] = empleado.getNACIONALIDAD();
@@ -119,25 +191,6 @@ public class EmpleadoFunciones {
             ventana.modeloTabla.addRow(datosEmpleado);
 
         }
-    }
-
-    public void abrirVentanaAñadir(Añadir ventanaAñadir) {
-        Añadir.labelID.setText("ID Empleado");
-        Añadir.labelTitulo.setText("Nombre:");
-        Añadir.labelAnyo.setText("Apellido 1");
-        Añadir.labelDirector.setText("Apellido 2");
-        Añadir.labelAP.setText("Fecha contratación");
-        Añadir.labelAS.setText("Fecha nacimiento");
-        Añadir.labelDuracion.setText("Fecha fin contrato");
-        Añadir.labelTrailer.setText("Nacionalidad");
-        Añadir.labelUltimo.setText("Cargo");
-        Añadir.labelDisponible.setText("Disponible");
-
-        ventanaAñadir.empleadoFunciones = this;
-        ventanaAñadir.ventanaAnterior = ventana;
-        ventanaAñadir.setVisible(true);
-        ventana.setEnabled(false);
-
     }
 
     public EmpleadoFunciones() {

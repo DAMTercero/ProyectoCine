@@ -17,7 +17,7 @@ public class Sala {
 
     private int ID_SALA;
     private int CAPACIDAD;
-    private String FEC_APERTURA;
+    private String FECHA_APERTURA;
     private String PANTALLA;
     private boolean DISPONIBLE;
 
@@ -27,7 +27,7 @@ public class Sala {
     public Sala(int ID_SALA, int CAPACIDAD, String FEC_APERTURA, String PANTALLA, boolean DISPONIBLE) {
         this.ID_SALA = ID_SALA;
         this.CAPACIDAD = CAPACIDAD;
-        this.FEC_APERTURA = FEC_APERTURA;
+        this.FECHA_APERTURA = FEC_APERTURA;
         this.PANTALLA = PANTALLA;
         this.DISPONIBLE = DISPONIBLE;
     }
@@ -64,12 +64,12 @@ public class Sala {
         this.PANTALLA = PANTALLA;
     }
 
-    public String getFEC_APERTURA() {
-        return FEC_APERTURA;
+    public String getFECHA_APERTURA() {
+        return FECHA_APERTURA;
     }
 
-    public void setFEC_APERTURA(String FEC_APERTURA) {
-        this.FEC_APERTURA = FEC_APERTURA;
+    public void setFECHA_APERTURA(String FECHA_APERTURA) {
+        this.FECHA_APERTURA = FECHA_APERTURA;
     }
 
     public boolean getDISPONIBLE() {

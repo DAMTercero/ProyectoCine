@@ -58,6 +58,7 @@ public class SalaFunciones {
     }
 
     public void abrirVentanaAñadir(Añadir ventanaAñadir) {
+        //labels de Añadir
         Añadir.labelID.setText("ID Sala");
         Añadir.labelTitulo.setText("Capacidad:");
         Añadir.labelAnyo.setText("Pantalla");
@@ -76,29 +77,75 @@ public class SalaFunciones {
 
         ventanaAñadir.salaFunciones = this;
         ventanaAñadir.ventanaAnterior = ventana;
+        ventanaAñadir.isAnyadir = 1;//descirle que es añadir
         ventanaAñadir.setVisible(true);
         ventana.setEnabled(false);
 
     }
 
-    public void botonañadir() throws SQLException, ClassNotFoundException, IOException {
-        //pille la info de los text de ventana añadir RECUERDA: ID NO SE PONE (solo en selects)
+    public void abrirVentanaModificar(Añadir ventanaModificar, Sala sala) {
+        Añadir.labelID.setText("ID Sala");
+        Añadir.textoID.setText(String.valueOf(sala.getID_SALA()));
+        Añadir.labelTitulo.setText("Capacidad:");
+        Añadir.textoTitulo.setText(String.valueOf(sala.getCAPACIDAD()));
+        Añadir.labelAnyo.setText("Pantalla");
+        Añadir.textoAnyo.setText(sala.getFECHA_APERTURA());
+        Añadir.labelDirector.setText("Fecha apertura");
+        Añadir.textoDirector.setText(sala.getPANTALLA());
+        Añadir.labelDisponible.setText("Disponible");
+        Añadir.disponibleCheckBox.setSelected(sala.getDISPONIBLE());
+
+        Añadir.labelAP.setVisible(false);
+        Añadir.textoAcPr.setVisible(false);
+        Añadir.labelAS.setVisible(false);
+        Añadir.textoAcSe.setVisible(false);
+        Añadir.labelDuracion.setVisible(false);
+        Añadir.textoDuracion.setVisible(false);
+        Añadir.labelTrailer.setVisible(false);
+        Añadir.textoTrailer.setVisible(false);
+        Añadir.labelUltimo.setVisible(false);
+        Añadir.textoUltimo.setVisible(false);
+
+        ventanaModificar.salaFunciones = this;
+        ventanaModificar.ventanaAnterior = ventana;
+        ventanaModificar.isAnyadir = 0;//descirle que es modificar
+        ventanaModificar.setVisible(true);
+        ventana.setEnabled(false);
+
+    }
+
+    public void botonAnyadir_Modificar(int isAnyadir) throws SQLException, ClassNotFoundException, IOException {
         Sala sala = new Sala();
+        switch (isAnyadir) {
+            case 0://es modificar
+                sala.setID_SALA(Integer.parseInt(Añadir.textoID.getText()));
+                sala.setCAPACIDAD(Integer.parseInt(Añadir.textoTitulo.getText()));
+                sala.setPANTALLA(Añadir.textoDirector.getText());
+                sala.setFECHA_APERTURA(Añadir.textoAnyo.getText());
+                sala.setDISPONIBLE(Añadir.disponibleCheckBox.isSelected());
 
-        sala.setCAPACIDAD(Integer.parseInt(Añadir.textoTitulo.getText()));
-        sala.setPANTALLA(Añadir.textoDirector.getText());
-        sala.setFEC_APERTURA(Añadir.textoAnyo.getText());
-        sala.setDISPONIBLE(Añadir.disponibleCheckBox.isSelected());
+                boolean action1 = salaCRUD.updateSala(sala, ventana.getTipoConexion());
 
-        //cree el objeto
-        //llame al CRUD añadir
-        boolean action = salaCRUD.insertSala(sala, ventana.getTipoConexion());
-        // empleadoCRUD.addEmpleado(empleado, empleadoCRUD.sqlitecon)
-        //como devuelve TRUE o FALSE el añadir...
-        //jOptionPane ("Se ha insertado bien" o " se ha insertado mal")
-        if (action) {
-            JOptionPane.showMessageDialog(null, "Recurso añadido satisfactoriamente");
+                if (action1) {
+                    JOptionPane.showMessageDialog(null, "Recurso Actualizado satisfactoriamente");
+                }
+                break;
+            case 1: //añadir
+                sala.setCAPACIDAD(Integer.parseInt(Añadir.textoTitulo.getText()));
+                sala.setPANTALLA(Añadir.textoDirector.getText());
+                sala.setFECHA_APERTURA(Añadir.textoAnyo.getText());
+                sala.setDISPONIBLE(Añadir.disponibleCheckBox.isSelected());
+
+                boolean action2 = salaCRUD.insertSala(sala, ventana.getTipoConexion());
+
+                if (action2) {
+                    JOptionPane.showMessageDialog(null, "Recurso añadido satisfactoriamente");
+                }
+                break;
+            default:
+                break;
         }
+
     }
 
     public List<Object> botonFiltrar() throws IOException, SQLException, ClassNotFoundException {
@@ -133,7 +180,7 @@ public class SalaFunciones {
             datosSala[0] = sala.getID_SALA();
             datosSala[1] = sala.getCAPACIDAD();
             datosSala[3] = sala.getPANTALLA();//asi sale bien y nose porque
-            datosSala[2] = sala.getFEC_APERTURA();
+            datosSala[2] = sala.getFECHA_APERTURA();
             datosSala[4] = sala.getDISPONIBLE();
             //insertar la fila
             ventana.modeloTabla.addRow(datosSala);

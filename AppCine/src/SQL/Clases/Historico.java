@@ -14,7 +14,7 @@ public class Historico {
     private int ID_SALA;
     private int ID_PELICULA;
     private int ID_EMPLEADO;
-    private String FECHAEMISION;//p.e: "01/01/2018"
+    private String FECHA_EMISION;//p.e: "01/01/2018"
     private String SESION; //p.e.: "12:00 - 16:00"
 
     public Historico() {
@@ -24,7 +24,7 @@ public class Historico {
         this.ID_SALA = ID_SALA;
         this.ID_PELICULA = ID_PELICULA;
         this.ID_EMPLEADO = ID_EMPLEADO;
-        this.FECHAEMISION = FECHAEMISION;
+        this.FECHA_EMISION = FECHAEMISION;
         this.SESION = SESION;
     }
 
@@ -52,12 +52,12 @@ public class Historico {
         this.ID_EMPLEADO = ID_EMPLEADO;
     }
 
-    public String getFECHAEMISION() {
-        return FECHAEMISION;
+    public String getFECHA_EMISION() {
+        return FECHA_EMISION;
     }
 
-    public void setFECHAEMISION(String FECHAEMISION) {
-        this.FECHAEMISION = FECHAEMISION;
+    public void setFECHA_EMISION(String FECHA_EMISION) {
+        this.FECHA_EMISION = FECHA_EMISION;
     }
 
     public String getSESION() {

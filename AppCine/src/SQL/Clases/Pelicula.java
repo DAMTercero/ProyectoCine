@@ -17,7 +17,7 @@ public class Pelicula {
 
     private int ID_PELICULA;
     private String TITULO;
-    private String ANYO_STRENO;
+    private String ANYO_ESTRENO;
     private String DIRECTOR;
     private String ACTOR_PRINCI;
     private String ACTOR_SECUN;
@@ -39,7 +39,7 @@ public class Pelicula {
     public Pelicula(int ID_PELICULA, String TITULO, String ANYO_STRENO, String DIRECTOR, String ACTOR_PRINCI, String ACTOR_SECUN, String DURACION, String TRAILER, boolean DISPONIBLE) {
         this.ID_PELICULA = ID_PELICULA;
         this.TITULO = TITULO;
-        this.ANYO_STRENO = ANYO_STRENO;
+        this.ANYO_ESTRENO = ANYO_STRENO;
         this.DIRECTOR = DIRECTOR;
         this.ACTOR_PRINCI = ACTOR_PRINCI;
         this.ACTOR_SECUN = ACTOR_SECUN;
@@ -64,12 +64,12 @@ public class Pelicula {
         this.TITULO = TITULO;
     }
 
-    public String getANYO_STRENO() {
-        return ANYO_STRENO;
+    public String getANYO_ESTRENO() {
+        return ANYO_ESTRENO;
     }
 
-    public void setANYO_STRENO(String ANYO_STRENO) {
-        this.ANYO_STRENO = ANYO_STRENO;
+    public void setANYO_ESTRENO(String ANYO_ESTRENO) {
+        this.ANYO_ESTRENO = ANYO_ESTRENO;
     }
 
     public String getDIRECTOR() {

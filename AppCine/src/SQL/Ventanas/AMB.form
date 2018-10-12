@@ -467,7 +467,7 @@
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="botonModificar" alignment="0" max="32767" attributes="0"/>
                       <Component id="botonAñadir" alignment="0" max="32767" attributes="0"/>
-                      <Component id="botonBorrar" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
+                      <Component id="botonBaja" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
               </Group>
@@ -481,7 +481,7 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="botonModificar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="botonBorrar" min="-2" max="-2" attributes="0"/>
+                  <Component id="botonBaja" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="95" max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -505,18 +505,21 @@
             <Property name="toolTipText" type="java.lang.String" value="Solo se activara al seleccionar un registro de la tabla"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonModificarActionPerformed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JButton" name="botonBorrar">
+        <Component class="javax.swing.JButton" name="botonBaja">
           <Properties>
             <Property name="text" type="java.lang.String" value="Baja"/>
             <Property name="toolTipText" type="java.lang.String" value="Solo est&#xe1; disponible cuando se seleccione un registro de la tabla"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonBorrarActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonBajaActionPerformed"/>
           </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>

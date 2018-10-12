@@ -5,6 +5,9 @@
  */
 package SQL.Ventanas;
 
+import SQL.Clases.Empleado;
+import SQL.Clases.Pelicula;
+import SQL.Clases.Sala;
 import SQL.Dao.*;
 import java.io.IOException;
 import javax.swing.JPanel;
@@ -42,7 +45,7 @@ public class AMB extends javax.swing.JFrame {
     /**
      * Creates new form Porseaka
      */
-    public AMB() {      
+    public AMB() {
         initComponents();
     }
 
@@ -82,7 +85,7 @@ public class AMB extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         botonAñadir = new javax.swing.JButton();
         botonModificar = new javax.swing.JButton();
-        botonBorrar = new javax.swing.JButton();
+        botonBaja = new javax.swing.JButton();
         botonAtras = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -304,13 +307,18 @@ public class AMB extends javax.swing.JFrame {
         botonModificar.setText("Modificar");
         botonModificar.setToolTipText("Solo se activara al seleccionar un registro de la tabla");
         botonModificar.setEnabled(false);
-
-        botonBorrar.setText("Baja");
-        botonBorrar.setToolTipText("Solo está disponible cuando se seleccione un registro de la tabla");
-        botonBorrar.setEnabled(false);
-        botonBorrar.addActionListener(new java.awt.event.ActionListener() {
+        botonModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonBorrarActionPerformed(evt);
+                botonModificarActionPerformed(evt);
+            }
+        });
+
+        botonBaja.setText("Baja");
+        botonBaja.setToolTipText("Solo está disponible cuando se seleccione un registro de la tabla");
+        botonBaja.setEnabled(false);
+        botonBaja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonBajaActionPerformed(evt);
             }
         });
 
@@ -323,7 +331,7 @@ public class AMB extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(botonModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(botonAñadir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botonBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(botonBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(40, 40, 40))
         );
         jPanel3Layout.setVerticalGroup(
@@ -334,7 +342,7 @@ public class AMB extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(botonModificar)
                 .addGap(18, 18, 18)
-                .addComponent(botonBorrar)
+                .addComponent(botonBaja)
                 .addContainerGap(95, Short.MAX_VALUE))
         );
 
@@ -390,9 +398,9 @@ public class AMB extends javax.swing.JFrame {
         limpiar("FILTRO");
     }//GEN-LAST:event_botonClearActionPerformed
 
-    private void botonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBorrarActionPerformed
+    private void botonBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBajaActionPerformed
 
-    }//GEN-LAST:event_botonBorrarActionPerformed
+    }//GEN-LAST:event_botonBajaActionPerformed
 
     private void botonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAtrasActionPerformed
         ventanaEleccion.setEnabled(true);
@@ -415,6 +423,18 @@ public class AMB extends javax.swing.JFrame {
         System.out.println(tablaResultado.getSelectedRow());//sacar fila
         // modeloTabla.s
     }//GEN-LAST:event_tablaResultadoMouseClicked
+
+    private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
+        // TODO add your handling code here:
+        Añadir ventanaModificar = new Añadir();//usando template de añadir
+        if (salaFunciones != null) {
+            salaFunciones.abrirVentanaModificar(ventanaModificar, (Sala) tablaFiltradoObjetos.get(tablaResultado.getSelectedRow()));
+        } else if (empleadoFunciones != null) {
+            empleadoFunciones.abrirVentanaModificar(ventanaModificar, (Empleado) tablaFiltradoObjetos.get(tablaResultado.getSelectedRow()));
+        } else if (peliculaFunciones != null) {
+            peliculaFunciones.abrirVentanaModificar(ventanaModificar, (Pelicula) tablaFiltradoObjetos.get(tablaResultado.getSelectedRow()));
+        }
+    }//GEN-LAST:event_botonModificarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -539,7 +559,7 @@ public class AMB extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JButton botonAtras;
     public static javax.swing.JButton botonAñadir;
-    public static javax.swing.JButton botonBorrar;
+    public static javax.swing.JButton botonBaja;
     public static javax.swing.JButton botonClear;
     public static javax.swing.JButton botonModificar;
     public static javax.swing.JButton btnBuscar;

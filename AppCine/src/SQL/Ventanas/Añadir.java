@@ -24,6 +24,8 @@ public class Añadir extends javax.swing.JFrame {
     public SalaFunciones salaFunciones;
     public EmpleadoFunciones empleadoFunciones;
     public PeliculaFunciones peliculaFunciones;
+    //boolean de si es añadir o modificar
+    public int isAnyadir; // 0 no, 1 si
 
     /**
      * Creates new form añadir
@@ -43,7 +45,7 @@ public class Añadir extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        botonAñadir = new javax.swing.JButton();
+        boton_add_modify = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         labelID = new javax.swing.JLabel();
         textoID = new javax.swing.JTextField();
@@ -67,16 +69,17 @@ public class Añadir extends javax.swing.JFrame {
         textoUltimo = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
             }
         });
 
-        botonAñadir.setText("Añadir");
-        botonAñadir.addActionListener(new java.awt.event.ActionListener() {
+        boton_add_modify.setText("Añadir");
+        boton_add_modify.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonAñadirActionPerformed(evt);
+                boton_add_modifyActionPerformed(evt);
             }
         });
 
@@ -232,7 +235,7 @@ public class Añadir extends javax.swing.JFrame {
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(64, 64, 64)
-                        .addComponent(botonAñadir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(boton_add_modify, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -241,22 +244,38 @@ public class Añadir extends javax.swing.JFrame {
                 .addGap(19, 19, 19)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
-                .addComponent(botonAñadir)
+                .addComponent(boton_add_modify)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void botonAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAñadirActionPerformed
+    private void boton_add_modifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_add_modifyActionPerformed
         try {
-            if (salaFunciones != null) {
-                salaFunciones.botonañadir();
-            } else if (empleadoFunciones != null) {
-                empleadoFunciones.botonañadir();
-            } else if (peliculaFunciones != null) {
-                peliculaFunciones.botonañadir();
+            switch (isAnyadir) {
+                case 0:// modificar                   
+                    if (salaFunciones != null) {
+                        salaFunciones.botonAnyadir_Modificar(isAnyadir);
+                    } else if (empleadoFunciones != null) {
+                        empleadoFunciones.botonAnyadir_Modificar(isAnyadir);
+                    } else if (peliculaFunciones != null) {
+                        peliculaFunciones.botonAnyadir_Modificar(isAnyadir);
+                    }
+                    break;
+                case 1: //  añadir                   
+                    if (salaFunciones != null) {
+                        salaFunciones.botonAnyadir_Modificar(isAnyadir);
+                    } else if (empleadoFunciones != null) {
+                        empleadoFunciones.botonAnyadir_Modificar(isAnyadir);
+                    } else if (peliculaFunciones != null) {
+                        peliculaFunciones.botonAnyadir_Modificar(isAnyadir);
+                    }
+                    break;
+                default:
+                    break;
             }
+
         } catch (SQLException ex) {
             Logger.getLogger(Añadir.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
@@ -264,7 +283,7 @@ public class Añadir extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(Añadir.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_botonAñadirActionPerformed
+    }//GEN-LAST:event_boton_add_modifyActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         ventanaAnterior.setEnabled(true);
@@ -312,7 +331,7 @@ public class Añadir extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botonAñadir;
+    public static javax.swing.JButton boton_add_modify;
     public static javax.swing.JCheckBox disponibleCheckBox;
     private javax.swing.JPanel jPanel1;
     public static javax.swing.JLabel labelAP;
