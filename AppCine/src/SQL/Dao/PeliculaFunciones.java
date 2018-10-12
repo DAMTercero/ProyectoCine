@@ -148,6 +148,9 @@ public class PeliculaFunciones {
     }
 
     public List<Object> botonFiltrar() throws IOException, SQLException, ClassNotFoundException {
+        //desactivar botones modificar y baja
+        ventana.botonModificar.setEnabled(false);
+        ventana.botonBaja.setEnabled(false);
         Pelicula pelicula = new Pelicula();
         //crear la pelicula de filtrado
         int id = -1;
@@ -171,6 +174,14 @@ public class PeliculaFunciones {
         }
         return (List<Object>) (Object) peliculas;
 
+    }
+
+    public void botonBaja(Pelicula pelicula) throws SQLException, ClassNotFoundException, IOException {
+        pelicula.setDISPONIBLE(false);
+        boolean action = peliculaCRUD.updatePelicula(pelicula, ventana.getTipoConexion());
+        if (action) {
+            JOptionPane.showMessageDialog(null, "Recurso Actualizado satisfactoriamente");
+        }
     }
 
     public void ponerEnTabla(List<Pelicula> peliculas) {

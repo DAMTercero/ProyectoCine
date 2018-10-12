@@ -149,6 +149,9 @@ public class EmpleadoFunciones {
     }
 
     public List<Object> botonFiltrar() throws IOException, SQLException, ClassNotFoundException {
+        //desactivar botones modificar y baja
+        ventana.botonModificar.setEnabled(false);
+        ventana.botonBaja.setEnabled(false);
         Empleado empleado = new Empleado();
         //crear el empleado de filtrado
         int id = -1;
@@ -171,6 +174,14 @@ public class EmpleadoFunciones {
             ventana.modeloTabla.setRowCount(0);//vaciar las filas que pudiera haber            
         }
         return (List<Object>) (Object) empleados;
+    }
+
+    public void botonBaja(Empleado empleado) throws SQLException, ClassNotFoundException, IOException {
+        empleado.setDISPONIBLE(false);
+        boolean action = empleadoCRUD.updateEmpleado(empleado, ventana.getTipoConexion());
+        if (action) {
+            JOptionPane.showMessageDialog(null, "Recurso Actualizado satisfactoriamente");
+        }
     }
 
     public void ponerEnTabla(List<Empleado> empleados) {

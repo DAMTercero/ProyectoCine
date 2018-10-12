@@ -34,19 +34,18 @@ public class PeliculaCRUD extends SQL.Conexion.sql {
             conn = getConnection(conector);
 
             //Query
-            String query = "INSERT INTO PELICULA values(?,?,?,?,?,?,?,?,?)";
+            String query = "INSERT INTO PELICULA (TITULO, ANYO_ESTRENO, DIRECTOR, ACTOR_PRINCIPAL, ACTOR_SECUNDARIO, DURACION, TRAILER, DISPONIBLE) values(?,?,?,?,?,?,?,?)";
             PreparedStatement ps = conn.prepareStatement(query);
 
-            //Añadimos los datos  
-            ps.setInt(1, java.sql.Types.INTEGER);
-            ps.setString(2, obj.getTITULO());
-            ps.setString(3, obj.getANYO_ESTRENO());
-            ps.setString(4, obj.getDIRECTOR());
-            ps.setString(5, obj.getACTOR_PRINCI());
-            ps.setString(6, obj.getACTOR_SECUN());
-            ps.setString(7, obj.getDURACION());
-            ps.setString(8, obj.getTRAILER());
-            ps.setBoolean(9, obj.isDISPONIBLE());
+            //Añadimos los datos 
+            ps.setString(1, obj.getTITULO());
+            ps.setString(2, obj.getANYO_ESTRENO());
+            ps.setString(3, obj.getDIRECTOR());
+            ps.setString(4, obj.getACTOR_PRINCI());
+            ps.setString(5, obj.getACTOR_SECUN());
+            ps.setString(6, obj.getDURACION());
+            ps.setString(7, obj.getTRAILER());
+            ps.setBoolean(8, obj.isDISPONIBLE());
 
             //Ejecutamos la insert
             int action = ps.executeUpdate();
@@ -81,19 +80,19 @@ public class PeliculaCRUD extends SQL.Conexion.sql {
             conn = getConnection(conector);
 
             //Query
-            String query = "UPDATE PELICULA SET ID_PELICULA = ?, TITULO = ?, ANYO_ESTRENO = ?, DIRECTOR = ?, ACTOR_PRINCI = ?, ACTOR_SECUN = ?, DURACION = ?, TRAILER = ?, DISPONIBLE = ?";
+            String query = "UPDATE PELICULA SET TITULO = ?, ANYO_ESTRENO = ?, DIRECTOR = ?, ACTOR_PRINCIPAL = ?, ACTOR_SECUNDARIO = ?, DURACION = ?, TRAILER = ?, DISPONIBLE = ? WHERE ID_PELICULA = ?";
             PreparedStatement ps = conn.prepareStatement(query);
 
-            //Indicamos los datos
-            ps.setInt(1, obj.getID_PELICULA());
-            ps.setString(2, obj.getTITULO());
-            ps.setString(3, obj.getANYO_ESTRENO());
-            ps.setString(4, obj.getDIRECTOR());
-            ps.setString(5, obj.getACTOR_PRINCI());
-            ps.setString(6, obj.getACTOR_SECUN());
-            ps.setString(7, obj.getDURACION());
-            ps.setString(8, obj.getTRAILER());
-            ps.setBoolean(9, obj.isDISPONIBLE());
+            //Indicamos los datos            
+            ps.setString(1, obj.getTITULO());
+            ps.setString(2, obj.getANYO_ESTRENO());
+            ps.setString(3, obj.getDIRECTOR());
+            ps.setString(4, obj.getACTOR_PRINCI());
+            ps.setString(5, obj.getACTOR_SECUN());
+            ps.setString(6, obj.getDURACION());
+            ps.setString(7, obj.getTRAILER());
+            ps.setBoolean(8, obj.isDISPONIBLE());
+            ps.setInt(9, obj.getID_PELICULA());
 
             //Ejecutamos la update
             int action = ps.executeUpdate();
@@ -142,6 +141,7 @@ public class PeliculaCRUD extends SQL.Conexion.sql {
             if (!pelicula.getDIRECTOR().equalsIgnoreCase("")) {
                 select.append(" AND PELICULA.DIRECTOR LIKE ?");
             }
+            select.append(" ORDER BY PELICULA.DISPONIBLE DESC");
 
             //query
             int vControl = 1;

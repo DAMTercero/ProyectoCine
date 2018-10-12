@@ -34,20 +34,19 @@ public class EmpleadoCRUD extends SQL.Conexion.sql {
             conn = getConnection(conector);
 
             //Query
-            String query = "INSERT INTO EMPLEADO values(?,?,?,?,?,?,?,?,?,?)";
+            String query = "INSERT INTO EMPLEADO(NOMBRE, APELLIDO1, APELLIDO2, FECHA_NACIMIENTO, FECHA_CONTRATO, FECHA_FIN, NACIONALIDAD, CARGO, DISPONIBLE) values(?,?,?,?,?,?,?,?,?)";
             PreparedStatement ps = conn.prepareStatement(query);
 
             //Añadimos los datos
-            ps.setInt(1, java.sql.Types.INTEGER);//pasar un nulo
-            ps.setString(2, obj.getNOMBRE());
-            ps.setString(3, obj.getAPELLIDO1());
-            ps.setString(4, obj.getAPELLIDO2());
-            ps.setString(5, obj.getFECHA_NACIMIENTO());
-            ps.setString(6, obj.getFECHA_CONTRATO());
-            ps.setString(7, obj.getFECHA_FIN());
-            ps.setString(8, obj.getNACIONALIDAD());
-            ps.setString(9, obj.getCARGO());
-            ps.setBoolean(10, obj.isDISPONIBLE());
+            ps.setString(1, obj.getNOMBRE());
+            ps.setString(2, obj.getAPELLIDO1());
+            ps.setString(3, obj.getAPELLIDO2());
+            ps.setString(4, obj.getFECHA_NACIMIENTO());
+            ps.setString(5, obj.getFECHA_CONTRATO());
+            ps.setString(6, obj.getFECHA_FIN());
+            ps.setString(7, obj.getNACIONALIDAD());
+            ps.setString(8, obj.getCARGO());
+            ps.setBoolean(9, obj.isDISPONIBLE());
 
             //Ejecutamos la insert
             int action = ps.executeUpdate();
@@ -82,20 +81,20 @@ public class EmpleadoCRUD extends SQL.Conexion.sql {
             conn = getConnection(conector);
 
             //Query
-            String query = "UPDATE EMPLEADO SET ID_EMPLEADO = ?, NOMBRE = ?, APELLIDO1 = ?, APELLIDO2 = ?, FECHA_NACIMIENTO = ?, FECHA_CONTRATO = ?, FECHA_FIN = ?, NACIONALIDAD = ?, CARGO = ?, DISPONIBLE = ?";
+            String query = "UPDATE EMPLEADO SET NOMBRE = ?, APELLIDO1 = ?, APELLIDO2 = ?, FECHA_NACIMIENTO = ?, FECHA_CONTRATO = ?, FECHA_FIN = ?, NACIONALIDAD = ?, CARGO = ?, DISPONIBLE = ? WHERE ID_EMPLEADO = ?";
             PreparedStatement ps = conn.prepareStatement(query);
 
-            //Indicamos los datos
-            ps.setInt(1, obj.getID_EMPLEADO());
-            ps.setString(2, obj.getNOMBRE());
-            ps.setString(3, obj.getAPELLIDO1());
-            ps.setString(4, obj.getAPELLIDO2());
-            ps.setString(5, obj.getFECHA_NACIMIENTO());
-            ps.setString(6, obj.getFECHA_CONTRATO());
-            ps.setString(7, obj.getFECHA_FIN());
-            ps.setString(8, obj.getNACIONALIDAD());
-            ps.setString(9, obj.getCARGO());
-            ps.setBoolean(10, obj.isDISPONIBLE());
+            //Indicamos los datos            
+            ps.setString(1, obj.getNOMBRE());
+            ps.setString(2, obj.getAPELLIDO1());
+            ps.setString(3, obj.getAPELLIDO2());
+            ps.setString(4, obj.getFECHA_NACIMIENTO());
+            ps.setString(5, obj.getFECHA_CONTRATO());
+            ps.setString(6, obj.getFECHA_FIN());
+            ps.setString(7, obj.getNACIONALIDAD());
+            ps.setString(8, obj.getCARGO());
+            ps.setBoolean(9, obj.isDISPONIBLE());
+            ps.setInt(10, obj.getID_EMPLEADO());
 
             //Ejecutamos la update
             int action = ps.executeUpdate();
@@ -144,6 +143,7 @@ public class EmpleadoCRUD extends SQL.Conexion.sql {
             if (!empleado.getAPELLIDO2().equalsIgnoreCase("")) {
                 select.append(" AND EMPLEADO.APELLIDO2 LIKE ?");
             }
+            select.append(" ORDER BY EMPLEADO.DISPONIBLE DESC");
 
             //query
             int vControl = 1;
