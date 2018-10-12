@@ -109,6 +109,7 @@ public class SalaFunciones {
         ventanaModificar.salaFunciones = this;
         ventanaModificar.ventanaAnterior = ventana;
         ventanaModificar.isAnyadir = 0;//descirle que es modificar
+        ventanaModificar.boton_add_modify.setText("Modificar");
         ventanaModificar.setVisible(true);
         ventana.setEnabled(false);
 
@@ -149,6 +150,9 @@ public class SalaFunciones {
     }
 
     public List<Object> botonFiltrar() throws IOException, SQLException, ClassNotFoundException {
+        //desactivar botones modificar y baja
+        ventana.botonModificar.setEnabled(false);
+        ventana.botonBaja.setEnabled(false);
         Sala sala = new Sala();
         //crear sala de filtrado
         int id = -1;
@@ -170,6 +174,14 @@ public class SalaFunciones {
 
         }
         return (List<Object>) (Object) salas;
+    }
+
+    public void botonBaja(Sala sala) throws SQLException, ClassNotFoundException, IOException {
+        sala.setDISPONIBLE(false);
+        boolean action = salaCRUD.updateSala(sala, ventana.getTipoConexion());
+        if (action) {
+            JOptionPane.showMessageDialog(null, "Recurso Actualizado satisfactoriamente");
+        }
     }
 
     public void ponerEnTabla(List<Sala> salas) {

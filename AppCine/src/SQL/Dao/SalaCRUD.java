@@ -36,15 +36,14 @@ public class SalaCRUD extends SQL.Conexion.sql {
             conn = getConnection(conector);
 
             //Query
-            String query = "INSERT INTO SALA values(?,?,?,?,?)";
+            String query = "INSERT INTO SALA(CAPACIDAD, PANTALLA, FECHA_APERTURA, DISPONIBLE) values(?,?,?,?)";
             PreparedStatement ps = conn.prepareStatement(query);
 
             //Añadimos los datos   
-            ps.setInt(1, java.sql.Types.INTEGER);
-            ps.setInt(2, obj.getCAPACIDAD());
-            ps.setString(3, obj.getFECHA_APERTURA());
-            ps.setString(4, obj.getPANTALLA());
-            ps.setBoolean(5, obj.getDISPONIBLE());
+            ps.setInt(1, obj.getCAPACIDAD());
+            ps.setString(2, obj.getFECHA_APERTURA());
+            ps.setString(3, obj.getPANTALLA());
+            ps.setBoolean(4, obj.getDISPONIBLE());
 
             //Ejecutamos la insert
             int action = ps.executeUpdate();
@@ -79,15 +78,15 @@ public class SalaCRUD extends SQL.Conexion.sql {
             conn = getConnection(conector);
 
             //Query
-            String query = "UPDATE SALA SET ID_SALA = ?, CAPACIDAD = ?, PANTALLA = ?, FECHA_APERTURA = ?, DISPONIBLE = ?";
+            String query = "UPDATE SALA SET  CAPACIDAD = ?, PANTALLA = ?, FECHA_APERTURA = ?, DISPONIBLE = ? WHERE ID_SALA = ?";
             PreparedStatement ps = conn.prepareStatement(query);
 
-            //Indicamos los datos
-            ps.setInt(1, obj.getID_SALA());
-            ps.setInt(2, obj.getCAPACIDAD());
-            ps.setString(3, obj.getFECHA_APERTURA());
-            ps.setString(4, obj.getPANTALLA());
-            ps.setBoolean(5, obj.getDISPONIBLE());
+            //Indicamos los datos            
+            ps.setInt(1, obj.getCAPACIDAD());
+            ps.setString(2, obj.getFECHA_APERTURA());
+            ps.setString(3, obj.getPANTALLA());
+            ps.setBoolean(4, obj.getDISPONIBLE());
+            ps.setInt(5, obj.getID_SALA());
 
             //Ejecutamos la update
             int action = ps.executeUpdate();
@@ -127,6 +126,8 @@ public class SalaCRUD extends SQL.Conexion.sql {
             if (sala.getID_SALA() != -1) {//le paso -1 si estaba empty en el filtro
                 select.append(" AND SALA.ID_SALA LIKE ?");
             }
+            select.append(" ORDER BY SALA.DISPONIBLE DESC");
+
             //query
             int vControl = 1;
             PreparedStatement ps = conn.prepareStatement(select.toString());

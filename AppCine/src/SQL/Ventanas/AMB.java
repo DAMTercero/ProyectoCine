@@ -399,7 +399,22 @@ public class AMB extends javax.swing.JFrame {
     }//GEN-LAST:event_botonClearActionPerformed
 
     private void botonBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBajaActionPerformed
-
+        try {
+            //con la fila de la tabla seleccionada
+            if (salaFunciones != null) {
+                salaFunciones.botonBaja((Sala) tablaFiltradoObjetos.get(tablaResultado.getSelectedRow()));
+            } else if (empleadoFunciones != null) {
+                empleadoFunciones.botonBaja((Empleado) tablaFiltradoObjetos.get(tablaResultado.getSelectedRow()));
+            } else if (peliculaFunciones != null) {
+                peliculaFunciones.botonBaja((Pelicula) tablaFiltradoObjetos.get(tablaResultado.getSelectedRow()));
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(AMB.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(AMB.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(AMB.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_botonBajaActionPerformed
 
     private void botonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAtrasActionPerformed
@@ -417,11 +432,8 @@ public class AMB extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosed
 
     private void tablaResultadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaResultadoMouseClicked
-        // TODO add your handling code here:
-        //WIP: click en row y modificar se pone disponible
         botonModificar.setEnabled(true);
-        System.out.println(tablaResultado.getSelectedRow());//sacar fila
-        // modeloTabla.s
+        botonBaja.setEnabled(true);
     }//GEN-LAST:event_tablaResultadoMouseClicked
 
     private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
