@@ -38,11 +38,11 @@ public class EmpleadoCRUD extends SQL.Conexion.sql {
             PreparedStatement ps = conn.prepareStatement(query);
 
             //Añadimos los datos
-            ps.setInt(1, obj.getID_EMPLEADO());
+            ps.setInt(1, java.sql.Types.INTEGER);//pasar un nulo
             ps.setString(2, obj.getNOMBRE());
             ps.setString(3, obj.getAPELLIDO1());
             ps.setString(4, obj.getAPELLIDO2());
-            ps.setString(5, obj.getFECHA_NAC());
+            ps.setString(5, obj.getFECHA_NACIMIENTO());
             ps.setString(6, obj.getFECHA_CONTRATO());
             ps.setString(7, obj.getFECHA_FIN());
             ps.setString(8, obj.getNACIONALIDAD());
@@ -82,7 +82,7 @@ public class EmpleadoCRUD extends SQL.Conexion.sql {
             conn = getConnection(conector);
 
             //Query
-            String query = "UPDATE EMPLEADO SET ID_EMPLEADO = ?, NOMBRE = ?, APELLIDO1 = ?, APELLIDO2 = ?, FECHA_NAC = ?, FECHA_CONTRATO = ?, FECHA_FIN = ?, NACIONALIDAD = ?, CARGO = ?, DISPONIBLE = ?";
+            String query = "UPDATE EMPLEADO SET ID_EMPLEADO = ?, NOMBRE = ?, APELLIDO1 = ?, APELLIDO2 = ?, FECHA_NACIMIENTO = ?, FECHA_CONTRATO = ?, FECHA_FIN = ?, NACIONALIDAD = ?, CARGO = ?, DISPONIBLE = ?";
             PreparedStatement ps = conn.prepareStatement(query);
 
             //Indicamos los datos
@@ -90,7 +90,7 @@ public class EmpleadoCRUD extends SQL.Conexion.sql {
             ps.setString(2, obj.getNOMBRE());
             ps.setString(3, obj.getAPELLIDO1());
             ps.setString(4, obj.getAPELLIDO2());
-            ps.setString(5, obj.getFECHA_NAC());
+            ps.setString(5, obj.getFECHA_NACIMIENTO());
             ps.setString(6, obj.getFECHA_CONTRATO());
             ps.setString(7, obj.getFECHA_FIN());
             ps.setString(8, obj.getNACIONALIDAD());

@@ -34,18 +34,19 @@ public class PeliculaCRUD extends SQL.Conexion.sql {
             conn = getConnection(conector);
 
             //Query
-            String query = "INSERT INTO PELICULA values(?,?,?,?,?,?,?,?)";
+            String query = "INSERT INTO PELICULA values(?,?,?,?,?,?,?,?,?)";
             PreparedStatement ps = conn.prepareStatement(query);
 
-            //Añadimos los datos            
-            ps.setString(1, obj.getTITULO());
-            ps.setString(2, obj.getANYO_STRENO());
-            ps.setString(3, obj.getDIRECTOR());
-            ps.setString(4, obj.getACTOR_PRINCI());
-            ps.setString(5, obj.getACTOR_SECUN());
-            ps.setString(6, obj.getDURACION());
-            ps.setString(7, obj.getTRAILER());
-            ps.setBoolean(8, obj.isDISPONIBLE());
+            //Añadimos los datos  
+            ps.setInt(1, java.sql.Types.INTEGER);
+            ps.setString(2, obj.getTITULO());
+            ps.setString(3, obj.getANYO_ESTRENO());
+            ps.setString(4, obj.getDIRECTOR());
+            ps.setString(5, obj.getACTOR_PRINCI());
+            ps.setString(6, obj.getACTOR_SECUN());
+            ps.setString(7, obj.getDURACION());
+            ps.setString(8, obj.getTRAILER());
+            ps.setBoolean(9, obj.isDISPONIBLE());
 
             //Ejecutamos la insert
             int action = ps.executeUpdate();
@@ -80,13 +81,13 @@ public class PeliculaCRUD extends SQL.Conexion.sql {
             conn = getConnection(conector);
 
             //Query
-            String query = "UPDATE PELICULA SET ID_PELICULA = ?, TITULO = ?, ANYO_STRENO = ?, DIRECTOR = ?, ACTOR_PRINCI = ?, ACTOR_SECUN = ?, DURACION = ?, TRAILER = ?, DISPONIBLE = ?";
+            String query = "UPDATE PELICULA SET ID_PELICULA = ?, TITULO = ?, ANYO_ESTRENO = ?, DIRECTOR = ?, ACTOR_PRINCI = ?, ACTOR_SECUN = ?, DURACION = ?, TRAILER = ?, DISPONIBLE = ?";
             PreparedStatement ps = conn.prepareStatement(query);
 
             //Indicamos los datos
             ps.setInt(1, obj.getID_PELICULA());
             ps.setString(2, obj.getTITULO());
-            ps.setString(3, obj.getANYO_STRENO());
+            ps.setString(3, obj.getANYO_ESTRENO());
             ps.setString(4, obj.getDIRECTOR());
             ps.setString(5, obj.getACTOR_PRINCI());
             ps.setString(6, obj.getACTOR_SECUN());
@@ -135,7 +136,7 @@ public class PeliculaCRUD extends SQL.Conexion.sql {
             if (!pelicula.getTITULO().equalsIgnoreCase("")) {
                 select.append(" AND PELICULA.TITULO LIKE ?");
             }
-            if (!pelicula.getANYO_STRENO().equalsIgnoreCase("")) {
+            if (!pelicula.getANYO_ESTRENO().equalsIgnoreCase("")) {
                 select.append(" AND PELICULA.ANYO_ESTRENO LIKE ?");
             }
             if (!pelicula.getDIRECTOR().equalsIgnoreCase("")) {
@@ -155,8 +156,8 @@ public class PeliculaCRUD extends SQL.Conexion.sql {
                 ps.setString(vControl, "%" + pelicula.getTITULO() + "%");
                 vControl += 1;
             }
-            if (!pelicula.getANYO_STRENO().equalsIgnoreCase("")) {
-                ps.setString(vControl, "%" + pelicula.getANYO_STRENO() + "%");
+            if (!pelicula.getANYO_ESTRENO().equalsIgnoreCase("")) {
+                ps.setString(vControl, "%" + pelicula.getANYO_ESTRENO() + "%");
                 vControl += 1;
             }
             if (!pelicula.getDIRECTOR().equalsIgnoreCase("")) {

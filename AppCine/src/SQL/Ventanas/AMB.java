@@ -5,18 +5,16 @@
  */
 package SQL.Ventanas;
 
-import DB4o.Ventanas.*;
-import DB4o.Clases.Pelicula;
-import DB4o.Conexion.Conexion;
+import SQL.Clases.Empleado;
+import SQL.Clases.Pelicula;
+import SQL.Clases.Sala;
 import SQL.Dao.*;
 import java.io.IOException;
-import java.util.List;
-import javax.swing.JOptionPane;
-
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.*;
 
 /**
@@ -26,23 +24,28 @@ import java.util.logging.*;
 public class AMB extends javax.swing.JFrame {
 
     private JPanel contentPane;
-    private static String salaPeliEmpleado;
     //variables de ventana
-    public Eleccion eleccionVentana;
+    public Eleccion ventanaEleccion;
+    public Añadir ventanaAñadir;
 
     //variables de control de funciones
     public SalaFunciones salaFunciones;
     public EmpleadoFunciones empleadoFunciones;
     public PeliculaFunciones peliculaFunciones;
 
+    //Si soy ventana MySql o SQlite
+    private boolean soyMySql = false;
+
+    //variable list para el tema de modificar
+    List<Object> tablaFiltradoObjetos = new ArrayList<Object>();
+
     //tabla
-    public DefaultTableModel modeloTabla;// http://www.elprogramador.com.mx/llenar-un-jtable-con-datos-de-una-base-de-datos-mysql/
+    public DefaultTableModel modeloTabla = new DefaultTableModel();// http://www.elprogramador.com.mx/llenar-un-jtable-con-datos-de-una-base-de-datos-mysql/  una ayuda
 
     /**
      * Creates new form Porseaka
      */
-    public AMB(String queMeLLega) {
-        modeloTabla = new DefaultTableModel();
+    public AMB() {
         initComponents();
     }
 
@@ -80,14 +83,19 @@ public class AMB extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaResultado = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
-        botonGuardar = new javax.swing.JButton();
+        botonAñadir = new javax.swing.JButton();
         botonModificar = new javax.swing.JButton();
-        botonBorrar = new javax.swing.JButton();
+        botonBaja = new javax.swing.JButton();
         botonAtras = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(204, 255, 204));
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         textoErrores.setEditable(false);
@@ -251,8 +259,21 @@ public class AMB extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Tabla"));
 
-        tablaResultado.setModel(modeloTabla);
+        tablaResultado.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        tablaResultado.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         tablaResultado.setRequestFocusEnabled(false);
+        tablaResultado.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaResultadoMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tablaResultado);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -276,21 +297,28 @@ public class AMB extends javax.swing.JFrame {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Crear/Editar"));
 
-        botonGuardar.setText("Añadir");
-        botonGuardar.addActionListener(new java.awt.event.ActionListener() {
+        botonAñadir.setText("Añadir");
+        botonAñadir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonGuardarActionPerformed(evt);
+                botonAñadirActionPerformed(evt);
             }
         });
 
         botonModificar.setText("Modificar");
         botonModificar.setToolTipText("Solo se activara al seleccionar un registro de la tabla");
-
-        botonBorrar.setText("Borrar");
-        botonBorrar.setToolTipText("Solo está disponible cuando se seleccione un registro de la tabla");
-        botonBorrar.addActionListener(new java.awt.event.ActionListener() {
+        botonModificar.setEnabled(false);
+        botonModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonBorrarActionPerformed(evt);
+                botonModificarActionPerformed(evt);
+            }
+        });
+
+        botonBaja.setText("Baja");
+        botonBaja.setToolTipText("Solo está disponible cuando se seleccione un registro de la tabla");
+        botonBaja.setEnabled(false);
+        botonBaja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonBajaActionPerformed(evt);
             }
         });
 
@@ -302,19 +330,19 @@ public class AMB extends javax.swing.JFrame {
                 .addContainerGap(38, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(botonModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botonGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botonBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(botonAñadir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botonBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(40, 40, 40))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(77, 77, 77)
-                .addComponent(botonGuardar)
+                .addComponent(botonAñadir)
                 .addGap(18, 18, 18)
                 .addComponent(botonModificar)
                 .addGap(18, 18, 18)
-                .addComponent(botonBorrar)
+                .addComponent(botonBaja)
                 .addContainerGap(95, Short.MAX_VALUE))
         );
 
@@ -332,7 +360,7 @@ public class AMB extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
+    private void botonAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAñadirActionPerformed
         Añadir ventanaAñadir = new Añadir();
         if (salaFunciones != null) {
             salaFunciones.abrirVentanaAñadir(ventanaAñadir);
@@ -340,20 +368,20 @@ public class AMB extends javax.swing.JFrame {
             empleadoFunciones.abrirVentanaAñadir(ventanaAñadir);
         } else if (peliculaFunciones != null) {
             peliculaFunciones.abrirVentanaAñadir(ventanaAñadir);
-
         }
-
-
-    }//GEN-LAST:event_botonGuardarActionPerformed
+    }//GEN-LAST:event_botonAñadirActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         try {
             if (salaFunciones != null) {
-                salaFunciones.botonFiltrar();
+                limpiar("ERROR");
+                tablaFiltradoObjetos = salaFunciones.botonFiltrar();
             } else if (empleadoFunciones != null) {
-                empleadoFunciones.botonFiltrar();
+                limpiar("ERROR");
+                tablaFiltradoObjetos = empleadoFunciones.botonFiltrar();
             } else if (peliculaFunciones != null) {
-                peliculaFunciones.botonFiltrar();
+                limpiar("ERROR");
+                tablaFiltradoObjetos = peliculaFunciones.botonFiltrar();
             }
         } catch (IOException ex) {
             Logger.getLogger(AMB.class.getName()).log(Level.SEVERE, null, ex);
@@ -367,67 +395,46 @@ public class AMB extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void botonClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonClearActionPerformed
-
-        textoID.setText("");
-        textoTitulo.setText("");
-        textoAnyo.setText("");
-        textoDirector.setText("");
-        textoAcPr.setText("");
-        textoAcSe.setText("");
-        textoDuracion.setText("");
-        textoTrailer.setText("");
-        textoErrores.setText("");
+        limpiar("FILTRO");
     }//GEN-LAST:event_botonClearActionPerformed
 
-    private void botonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBorrarActionPerformed
+    private void botonBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBajaActionPerformed
 
-        int idPelicula = 0;
-        if (textoID.getText().isEmpty()) {
-            idPelicula = 0;
-        } else {
-            idPelicula = Integer.parseInt(textoID.getText());
-        }
-
-        String titulo = textoTitulo.getText();
-        if (titulo.isEmpty()) {
-            titulo = null;
-        }
-        String anyoEstreno = textoAnyo.getText();
-        if (anyoEstreno.isEmpty()) {
-            anyoEstreno = null;
-        }
-        String director = textoDirector.getText();
-        if (director == "") {
-            director = null;
-        }
-        String actorPrinci = textoAcPr.getText();
-        if (actorPrinci.isEmpty()) {
-            actorPrinci = null;
-        }
-        String actorSecun = textoAcSe.getText();
-        if (actorSecun.isEmpty()) {
-            actorSecun = null;
-        }
-        String duracion = textoDuracion.getText();
-        if (duracion.isEmpty()) {
-            duracion = null;
-        }
-        String trailer = textoTrailer.getText();
-        if (trailer.isEmpty()) {
-            trailer = null;
-        }
-
-        Pelicula p1 = new Pelicula(idPelicula, titulo, anyoEstreno, director, actorPrinci, actorSecun, duracion, trailer);
-        Conexion conexion = new Conexion();
-        conexion.borrarPelicula(p1);
-    }//GEN-LAST:event_botonBorrarActionPerformed
+    }//GEN-LAST:event_botonBajaActionPerformed
 
     private void botonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAtrasActionPerformed
+        ventanaEleccion.setEnabled(true);
+        ventanaEleccion.toFront();
+        ventanaEleccion.amb = null;
         this.dispose();
-        //Eleccion el = new Eleccion();
-        //eleccionVentana.set
-        //el.show();
     }//GEN-LAST:event_botonAtrasActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        ventanaEleccion.setEnabled(true);
+        ventanaEleccion.toFront();
+        ventanaEleccion.amb = null;
+        this.dispose();
+    }//GEN-LAST:event_formWindowClosed
+
+    private void tablaResultadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaResultadoMouseClicked
+        // TODO add your handling code here:
+        //WIP: click en row y modificar se pone disponible
+        botonModificar.setEnabled(true);
+        System.out.println(tablaResultado.getSelectedRow());//sacar fila
+        // modeloTabla.s
+    }//GEN-LAST:event_tablaResultadoMouseClicked
+
+    private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
+        // TODO add your handling code here:
+        Añadir ventanaModificar = new Añadir();//usando template de añadir
+        if (salaFunciones != null) {
+            salaFunciones.abrirVentanaModificar(ventanaModificar, (Sala) tablaFiltradoObjetos.get(tablaResultado.getSelectedRow()));
+        } else if (empleadoFunciones != null) {
+            empleadoFunciones.abrirVentanaModificar(ventanaModificar, (Empleado) tablaFiltradoObjetos.get(tablaResultado.getSelectedRow()));
+        } else if (peliculaFunciones != null) {
+            peliculaFunciones.abrirVentanaModificar(ventanaModificar, (Pelicula) tablaFiltradoObjetos.get(tablaResultado.getSelectedRow()));
+        }
+    }//GEN-LAST:event_botonModificarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -462,93 +469,98 @@ public class AMB extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AMB(salaPeliEmpleado).setVisible(true);
+                new AMB().setVisible(true);
             }
         });
     }
 
-    public static void rellenarPelicula(List<Pelicula> pelis) {
-        /* for (int i = 0; i < pelis.size(); i++) {
-
-            tablaResultado.setValueAt(String.valueOf(pelis.get(i).getIdPelicula()), i, 0);
-            tablaResultado.setValueAt(pelis.get(i).getTitulo(), i, 1);
-            tablaResultado.setValueAt(pelis.get(i).getAnyoEstreno(), i, 2);
-            tablaResultado.setValueAt(pelis.get(i).getDirector(), i, 3);
-            tablaResultado.setValueAt(pelis.get(i).getActorPrinci(), i, 4);
-            tablaResultado.setValueAt(pelis.get(i).getActorSecun(), i, 5);
-            tablaResultado.setValueAt(pelis.get(i).getDuracion(), i, 6);
-            tablaResultado.setValueAt(pelis.get(i).getTrailer(), i, 7);
-
-        }*/
-        // BORRADO                         modeloTabla.setRowCount(0);
-        Object datosPelicula[] = new Object[8];
-        int i = 0;
-        for (Pelicula peli : pelis) {
-            datosPelicula[0] = peli.getIdPelicula();
-            datosPelicula[1] = peli.getTitulo();
-            datosPelicula[2] = peli.getAnyoEstreno();
-            datosPelicula[3] = peli.getActorPrinci();
-            datosPelicula[4] = peli.getActorSecun();
-            datosPelicula[5] = peli.getDirector();
-            datosPelicula[6] = peli.getDuracion();
-            datosPelicula[7] = peli.getTrailer();
-            setFilas(datosPelicula);
-            // modeloTabla.addRow(datosPelicula[i]);
-            i++;
-        }
-
-    }
-
-    public static void rellenarErrores(String frase) {
+    ///---FUNCIONES UTILES---\\\
+    /**
+     *
+     * @param frase rellenar el campo de texto de errores con un texto
+     */
+    public void rellenarErrores(String frase) {
         textoErrores.setText(frase);
 
     }
 
-    public static void cambiarVentanaPelis() {
-        labelTituloVentana.setText("PELÍCULAS");
-        labelID.setText("ID Pélicula:");
-        labelTitulo.setText("Título:");
-        labelAnyo.setText("Año: ");
-        labelDirector.setText("Director:");
-        labelAP.setText("Actor/a principal:");
-        labelAS.setText("Actor/a secundario/a:");
-        labelDuracion.setText("Duración:");
-        lableTrailer.setText("Trailer");
+    /**
+     *
+     * @param elQue si se quiere limpiar el texto error o todos los campos de
+     * texto del filtro
+     */
+    public void limpiar(String elQue) {
+        switch (elQue) {
+            case "FILTRO":
+                textoID.setText("");
+                textoTitulo.setText("");
+                textoAnyo.setText("");
+                textoDirector.setText("");
+                textoAcPr.setText("");
+                textoAcSe.setText("");
+                textoDuracion.setText("");
+                textoTrailer.setText("");
+                textoErrores.setText("");
+                break;
+            case "ERROR":
+                textoErrores.setText("");
+                break;
+            default:
+                break;
+        }
     }
 
-    public static void cambiarVentanaSalas() {
-        labelTituloVentana.setText("SALAS");
-        labelID.setText("ID Sala:");
-        labelTitulo.setText("Capacidad:");
-        labelAnyo.setText("Pantalla: ");
-        labelDirector.setText("Apertura:");
-        labelAP.setText("Horario:");
-        labelAS.setText(" ");
-        labelDuracion.setText(" ");
-        lableTrailer.setText(" ");
-        textoAcSe.hide();
-        textoDuracion.hide();
-        textoTrailer.hide();
+    /**
+     *
+     * @param columnas se le pasa un array de strings con nombres de columna y
+     * se añade a la tabla de filtrado
+     */
+    public void ponerColumnasTabla(String columnas[]) {
+        for (String c : columnas) {
+            modeloTabla.addColumn(c);
+        }
+        tablaResultado.setModel(modeloTabla);
+        tablaResultado.setSelectionMode(0);//para que solo se pueda clickar de una fila en una
+        //tablaResultado.setEditingColumn(1);
     }
 
-    public static void cambiarVentanaEmpleadoss() {
-        labelTituloVentana.setText("EMPLEADOS");
-        labelID.setText("ID Empleado:");
-        labelTitulo.setText("Nombre:");
-        labelAnyo.setText("Primer apellido: ");
-        labelDirector.setText("Segundo apellido:");
-        labelAP.setText("Fecha de Nacimiento:");
-        labelAS.setText("Fecha de contratación:");
-        labelDuracion.setText("Fecha Fin de Contrato:");
-        lableTrailer.setText("Nacionalidad: ");
+    /**
+     *
+     * @return Devuelve un String "mysql" o "sqlite" en funcion de una variable
+     * interna @soyMySql
+     */
+    public String getTipoConexion() {
+        if (soyMySql) {
+            return "mysql";
+        } else {
+            return "sqlite";
+        }
 
     }
+
+    ///---GETTERS Y SETTERS---\\\
+    /**
+     *
+     * @return devuelve true o false en funcion de sql o mysql
+     */
+    public boolean isSoyMySql() {
+        return soyMySql;
+    }
+
+    /**
+     *
+     * @param soyMySql meter true o false en funcion de sql o mysql
+     */
+    public void setSoyMySql(boolean soyMySql) {
+        this.soyMySql = soyMySql;
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JButton botonAtras;
-    public static javax.swing.JButton botonBorrar;
+    public static javax.swing.JButton botonAñadir;
+    public static javax.swing.JButton botonBaja;
     public static javax.swing.JButton botonClear;
-    public static javax.swing.JButton botonGuardar;
     public static javax.swing.JButton botonModificar;
     public static javax.swing.JButton btnBuscar;
     private javax.swing.JPanel jPanel1;
@@ -575,14 +587,4 @@ public class AMB extends javax.swing.JFrame {
     public static javax.swing.JTextField textoTitulo;
     public static javax.swing.JTextField textoTrailer;
     // End of variables declaration//GEN-END:variables
-
-    private String[] getColumnas() {
-        String columna[] = new String[]{"ID_PELI", "Hola2", "Hola3", "", "", "", "", ""};
-        return columna;
-    }
-
-    private static void setFilas(Object datos[]) {
-
-        //modeloTabla.addRow(datos);
-    }
 }

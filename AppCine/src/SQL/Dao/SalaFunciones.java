@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,6 +23,8 @@ public class SalaFunciones {
 
     private AMB ventana;
     private SalaCRUD salaCRUD = new SalaCRUD();
+    //columnas de la tabla
+    private final String columnas[] = new String[]{"ID_SALA", "CAPACIDAD", "PANTALLA", "FECH_APERTURA", "DISPONIBLE"};
 
     ////--Funciones para controlar la ventana--\\\\
     public void cambiarVentanaSalas() {
@@ -50,10 +53,12 @@ public class SalaFunciones {
     public void abrirVentanaSalas(AMB ventana) {
         this.ventana = ventana;
         cambiarVentanaSalas();
+        this.ventana.ponerColumnasTabla(columnas);
         this.ventana.setVisible(true);
     }
 
     public void abrirVentanaAñadir(Añadir ventanaAñadir) {
+        //labels de Añadir
         Añadir.labelID.setText("ID Sala");
         Añadir.labelTitulo.setText("Capacidad:");
         Añadir.labelAnyo.setText("Pantalla");
@@ -62,20 +67,88 @@ public class SalaFunciones {
         Añadir.labelAS.setVisible(false);
         Añadir.labelDuracion.setVisible(false);
         Añadir.labelTrailer.setVisible(false);
+        Añadir.labelUltimo.setVisible(false);
         Añadir.textoAcPr.setVisible(false);
         Añadir.textoAcSe.setVisible(false);
         Añadir.textoDuracion.setVisible(false);
         Añadir.textoTrailer.setVisible(false);
+        Añadir.textoUltimo.setVisible(false);
         Añadir.labelDisponible.setText("Disponible");
 
         ventanaAñadir.salaFunciones = this;
         ventanaAñadir.ventanaAnterior = ventana;
+        ventanaAñadir.isAnyadir = 1;//descirle que es añadir
         ventanaAñadir.setVisible(true);
         ventana.setEnabled(false);
 
     }
 
-    public void botonFiltrar() throws IOException, SQLException, ClassNotFoundException {
+    public void abrirVentanaModificar(Añadir ventanaModificar, Sala sala) {
+        Añadir.labelID.setText("ID Sala");
+        Añadir.textoID.setText(String.valueOf(sala.getID_SALA()));
+        Añadir.labelTitulo.setText("Capacidad:");
+        Añadir.textoTitulo.setText(String.valueOf(sala.getCAPACIDAD()));
+        Añadir.labelAnyo.setText("Pantalla");
+        Añadir.textoAnyo.setText(sala.getFECHA_APERTURA());
+        Añadir.labelDirector.setText("Fecha apertura");
+        Añadir.textoDirector.setText(sala.getPANTALLA());
+        Añadir.labelDisponible.setText("Disponible");
+        Añadir.disponibleCheckBox.setSelected(sala.getDISPONIBLE());
+
+        Añadir.labelAP.setVisible(false);
+        Añadir.textoAcPr.setVisible(false);
+        Añadir.labelAS.setVisible(false);
+        Añadir.textoAcSe.setVisible(false);
+        Añadir.labelDuracion.setVisible(false);
+        Añadir.textoDuracion.setVisible(false);
+        Añadir.labelTrailer.setVisible(false);
+        Añadir.textoTrailer.setVisible(false);
+        Añadir.labelUltimo.setVisible(false);
+        Añadir.textoUltimo.setVisible(false);
+
+        ventanaModificar.salaFunciones = this;
+        ventanaModificar.ventanaAnterior = ventana;
+        ventanaModificar.isAnyadir = 0;//descirle que es modificar
+        ventanaModificar.setVisible(true);
+        ventana.setEnabled(false);
+
+    }
+
+    public void botonAnyadir_Modificar(int isAnyadir) throws SQLException, ClassNotFoundException, IOException {
+        Sala sala = new Sala();
+        switch (isAnyadir) {
+            case 0://es modificar
+                sala.setID_SALA(Integer.parseInt(Añadir.textoID.getText()));
+                sala.setCAPACIDAD(Integer.parseInt(Añadir.textoTitulo.getText()));
+                sala.setPANTALLA(Añadir.textoDirector.getText());
+                sala.setFECHA_APERTURA(Añadir.textoAnyo.getText());
+                sala.setDISPONIBLE(Añadir.disponibleCheckBox.isSelected());
+
+                boolean action1 = salaCRUD.updateSala(sala, ventana.getTipoConexion());
+
+                if (action1) {
+                    JOptionPane.showMessageDialog(null, "Recurso Actualizado satisfactoriamente");
+                }
+                break;
+            case 1: //añadir
+                sala.setCAPACIDAD(Integer.parseInt(Añadir.textoTitulo.getText()));
+                sala.setPANTALLA(Añadir.textoDirector.getText());
+                sala.setFECHA_APERTURA(Añadir.textoAnyo.getText());
+                sala.setDISPONIBLE(Añadir.disponibleCheckBox.isSelected());
+
+                boolean action2 = salaCRUD.insertSala(sala, ventana.getTipoConexion());
+
+                if (action2) {
+                    JOptionPane.showMessageDialog(null, "Recurso añadido satisfactoriamente");
+                }
+                break;
+            default:
+                break;
+        }
+
+    }
+
+    public List<Object> botonFiltrar() throws IOException, SQLException, ClassNotFoundException {
         Sala sala = new Sala();
         //crear sala de filtrado
         int id = -1;
@@ -87,24 +160,16 @@ public class SalaFunciones {
         }
 
         //consulta a base de datos con su respuesta en forma de lista
-        iniciarTabla();// TODO poner columnas tabla (mejorar lugar)
-        ArrayList<Sala> salas = new ArrayList<>(salaCRUD.filtrarSalas(sala, "sqlite"));
+        ArrayList<Sala> salas = new ArrayList<>(salaCRUD.filtrarSalas(sala, ventana.getTipoConexion()));//objeto y tipo conexion
         if (salas.size() > 0) {
             ponerEnTabla(salas);
         } else {
             //sacar un mensaje de que no existen coincidendias Ó usando el label de ERROR o poniendo en la tabla que no hay coincidencias
-        }
-    }
+            ventana.rellenarErrores("No parece haber coincidencias");
+            ventana.modeloTabla.setRowCount(0);//vaciar las filas que pudiera haber
 
-    //poner COLUMNAS
-    public void iniciarTabla() {
-        ventana.modeloTabla.setColumnCount(0);
-        // String columna[] = new String[]{"ID_EMPLEADO", "NOMBRE", "APELLIDO 1", "APELLIDO 2", "FECHA_NAC", "FECHA_FIN", "NACIONALIDAD", "CARGO", "DISPONIBLE"}; PORQUE NO ME DEJA PONER UNA COLUMAN ASI!
-        ventana.modeloTabla.addColumn("ID_SALA");
-        ventana.modeloTabla.addColumn("CAPACIDAD");
-        ventana.modeloTabla.addColumn("FECHA APERTURA");
-        ventana.modeloTabla.addColumn("PANTALLA");
-        ventana.modeloTabla.addColumn("DISPONIBLE");
+        }
+        return (List<Object>) (Object) salas;
     }
 
     public void ponerEnTabla(List<Sala> salas) {
@@ -114,13 +179,12 @@ public class SalaFunciones {
         for (Sala sala : salas) {
             datosSala[0] = sala.getID_SALA();
             datosSala[1] = sala.getCAPACIDAD();
-            datosSala[2] = sala.getFEC_APERTURA();
-            datosSala[3] = sala.getPANTALLA();
+            datosSala[3] = sala.getPANTALLA();//asi sale bien y nose porque
+            datosSala[2] = sala.getFECHA_APERTURA();
             datosSala[4] = sala.getDISPONIBLE();
             //insertar la fila
             ventana.modeloTabla.addRow(datosSala);
         }
-
     }
 
     public SalaFunciones() {

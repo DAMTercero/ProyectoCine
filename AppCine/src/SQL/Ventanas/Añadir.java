@@ -5,21 +5,13 @@
  */
 package SQL.Ventanas;
 
-import DB4o.Ventanas.*;
-import DB4o.Clases.Pelicula;
-import DB4o.Conexion.Conexion;
-import static DB4o.Ventanas.AMB.labelAP;
-import static DB4o.Ventanas.AMB.labelAS;
-import static DB4o.Ventanas.AMB.labelAnyo;
-import static DB4o.Ventanas.AMB.labelDirector;
-import static DB4o.Ventanas.AMB.labelDuracion;
-import static DB4o.Ventanas.AMB.labelID;
-import static DB4o.Ventanas.AMB.labelTitulo;
-import static DB4o.Ventanas.AMB.labelTituloVentana;
-import static DB4o.Ventanas.AMB.lableTrailer;
 import SQL.Dao.EmpleadoFunciones;
 import SQL.Dao.PeliculaFunciones;
 import SQL.Dao.SalaFunciones;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -28,56 +20,19 @@ import SQL.Dao.SalaFunciones;
 public class Añadir extends javax.swing.JFrame {
 
     public AMB ventanaAnterior;
-   //variables de control de funciones
+    //variables de control de funciones
     public SalaFunciones salaFunciones;
     public EmpleadoFunciones empleadoFunciones;
     public PeliculaFunciones peliculaFunciones;
+    //boolean de si es añadir o modificar
+    public int isAnyadir; // 0 no, 1 si
+
     /**
      * Creates new form añadir
      */
     public Añadir() {
         initComponents();
         this.setLocationRelativeTo(null);
-
-    }
-
-    public static void cambiarVentanaPelis() {
-        labelTituloVentana.setText("PELÍCULAS");
-        labelID.setText("ID Pélicula:");
-        labelTitulo.setText("Título:");
-        labelAnyo.setText("Año: ");
-        labelDirector.setText("Director:");
-        labelAP.setText("Actor/a principal:");
-        labelAS.setText("Actor/a secundario/a:");
-        labelDuracion.setText("Duración:");
-        labelTrailer.setText("Trailer");
-    }
-
-    public static void cambiarVentanaSalas() {
-        labelTituloVentana.setText("SALAS");
-        labelID.setText("ID Sala:");
-        labelTitulo.setText("Capacidad:");
-        labelAnyo.setText("Pantalla: ");
-        labelDirector.setText("Apertura:");
-        labelAP.setText("Horario:");
-        labelAS.setText(" ");
-        labelDuracion.setText(" ");
-        labelTrailer.setText(" ");
-        textoAcSe.hide();
-        textoDuracion.hide();
-        textoTrailer.hide();
-    }
-
-    public static void cambiarVentanaEmpleadoss() {
-        labelTituloVentana.setText("EMPLEADOS");
-        labelID.setText("ID Empleado:");
-        labelTitulo.setText("Nombre:");
-        labelAnyo.setText("Primer apellido: ");
-        labelDirector.setText("Segundo apellido:");
-        labelAP.setText("Fecha de Nacimiento:");
-        labelAS.setText("Fecha de contratación:");
-        labelDuracion.setText("Fecha Fin de Contrato:");
-        labelTrailer.setText("Nacionalidad: ");
 
     }
 
@@ -90,7 +45,7 @@ public class Añadir extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        botonAñadir = new javax.swing.JButton();
+        boton_add_modify = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         labelID = new javax.swing.JLabel();
         textoID = new javax.swing.JTextField();
@@ -110,18 +65,21 @@ public class Añadir extends javax.swing.JFrame {
         textoTrailer = new javax.swing.JTextField();
         labelDisponible = new javax.swing.JLabel();
         disponibleCheckBox = new javax.swing.JCheckBox();
+        labelUltimo = new javax.swing.JLabel();
+        textoUltimo = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
             }
         });
 
-        botonAñadir.setText("Añadir");
-        botonAñadir.addActionListener(new java.awt.event.ActionListener() {
+        boton_add_modify.setText("Añadir");
+        boton_add_modify.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonAñadirActionPerformed(evt);
+                boton_add_modifyActionPerformed(evt);
             }
         });
 
@@ -165,6 +123,12 @@ public class Añadir extends javax.swing.JFrame {
         labelDisponible.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelDisponible.setText("Trailer:");
 
+        disponibleCheckBox.setSelected(true);
+
+        labelUltimo.setForeground(new java.awt.Color(255, 0, 0));
+        labelUltimo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelUltimo.setText("Trailer:");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -207,7 +171,11 @@ public class Añadir extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(labelDisponible, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(disponibleCheckBox)))
+                        .addComponent(disponibleCheckBox))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(labelUltimo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(textoUltimo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(128, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -245,7 +213,11 @@ public class Añadir extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelTrailer)
                     .addComponent(textoTrailer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelUltimo)
+                    .addComponent(textoUltimo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelDisponible)
                     .addComponent(disponibleCheckBox))
@@ -263,7 +235,7 @@ public class Añadir extends javax.swing.JFrame {
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(64, 64, 64)
-                        .addComponent(botonAñadir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(boton_add_modify, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -271,34 +243,53 @@ public class Añadir extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                .addComponent(botonAñadir)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                .addComponent(boton_add_modify)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void botonAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAñadirActionPerformed
+    private void boton_add_modifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_add_modifyActionPerformed
+        try {
+            switch (isAnyadir) {
+                case 0:// modificar                   
+                    if (salaFunciones != null) {
+                        salaFunciones.botonAnyadir_Modificar(isAnyadir);
+                    } else if (empleadoFunciones != null) {
+                        empleadoFunciones.botonAnyadir_Modificar(isAnyadir);
+                    } else if (peliculaFunciones != null) {
+                        peliculaFunciones.botonAnyadir_Modificar(isAnyadir);
+                    }
+                    break;
+                case 1: //  añadir                   
+                    if (salaFunciones != null) {
+                        salaFunciones.botonAnyadir_Modificar(isAnyadir);
+                    } else if (empleadoFunciones != null) {
+                        empleadoFunciones.botonAnyadir_Modificar(isAnyadir);
+                    } else if (peliculaFunciones != null) {
+                        peliculaFunciones.botonAnyadir_Modificar(isAnyadir);
+                    }
+                    break;
+                default:
+                    break;
+            }
 
-        int idPelicula = Integer.parseInt(textoID.getText());
-        String titulo = textoTitulo.getText();
-        String anyoEstreno = textoAnyo.getText();
-        String director = textoDirector.getText();
-        String actorPrinci = textoAcPr.getText();
-        String actorSecun = textoAcSe.getText();
-        String duracion = textoDuracion.getText();
-        String trailer = textoTrailer.getText();
-
-        Pelicula p1 = new Pelicula(idPelicula, titulo, anyoEstreno, director, actorPrinci, actorSecun, duracion, trailer);
-        Conexion conexion = new Conexion();
-        conexion.guardarPelicula(p1);
-        this.hide();
-    }//GEN-LAST:event_botonAñadirActionPerformed
+        } catch (SQLException ex) {
+            Logger.getLogger(Añadir.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Añadir.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Añadir.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_boton_add_modifyActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         ventanaAnterior.setEnabled(true);
         ventanaAnterior.toFront();
+        ventanaAnterior.ventanaAñadir = null;
+        this.dispose();
     }//GEN-LAST:event_formWindowClosed
 
     /**
@@ -340,7 +331,7 @@ public class Añadir extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botonAñadir;
+    public static javax.swing.JButton boton_add_modify;
     public static javax.swing.JCheckBox disponibleCheckBox;
     private javax.swing.JPanel jPanel1;
     public static javax.swing.JLabel labelAP;
@@ -352,6 +343,7 @@ public class Añadir extends javax.swing.JFrame {
     public static javax.swing.JLabel labelID;
     public static javax.swing.JLabel labelTitulo;
     public static javax.swing.JLabel labelTrailer;
+    public static javax.swing.JLabel labelUltimo;
     public static javax.swing.JTextField textoAcPr;
     public static javax.swing.JTextField textoAcSe;
     public static javax.swing.JTextField textoAnyo;
@@ -360,5 +352,6 @@ public class Añadir extends javax.swing.JFrame {
     public static javax.swing.JTextField textoID;
     public static javax.swing.JTextField textoTitulo;
     public static javax.swing.JTextField textoTrailer;
+    public static javax.swing.JTextField textoUltimo;
     // End of variables declaration//GEN-END:variables
 }

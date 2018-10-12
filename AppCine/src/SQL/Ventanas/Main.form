@@ -6,6 +6,7 @@
     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
       <Dimension value="[800, 600]"/>
     </Property>
+    <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -66,11 +67,11 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jButton4" min="-2" pref="180" max="-2" attributes="0"/>
+                  <Component id="DB4o" min="-2" pref="180" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jButton2" min="-2" pref="180" max="-2" attributes="0"/>
+                  <Component id="sqlite" min="-2" pref="180" max="-2" attributes="0"/>
                   <EmptySpace pref="18" max="32767" attributes="0"/>
-                  <Component id="jButton3" min="-2" pref="180" max="-2" attributes="0"/>
+                  <Component id="mySql" min="-2" pref="180" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -80,9 +81,9 @@
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace pref="49" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jButton2" alignment="3" min="-2" pref="162" max="-2" attributes="0"/>
-                      <Component id="jButton3" alignment="3" min="-2" pref="162" max="-2" attributes="0"/>
-                      <Component id="jButton4" alignment="3" min="-2" pref="162" max="-2" attributes="0"/>
+                      <Component id="sqlite" alignment="3" min="-2" pref="162" max="-2" attributes="0"/>
+                      <Component id="mySql" alignment="3" min="-2" pref="162" max="-2" attributes="0"/>
+                      <Component id="DB4o" alignment="3" min="-2" pref="162" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
               </Group>
@@ -90,28 +91,28 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="jButton2">
+        <Component class="javax.swing.JButton" name="sqlite">
           <Properties>
             <Property name="text" type="java.lang.String" value="LOCAL 2 (SQLite)"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sqliteActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton3">
+        <Component class="javax.swing.JButton" name="mySql">
           <Properties>
             <Property name="text" type="java.lang.String" value="LOCAL 3 (MySql)"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mySqlActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton4">
+        <Component class="javax.swing.JButton" name="DB4o">
           <Properties>
             <Property name="text" type="java.lang.String" value="LOCAL 1 (DB4o)"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton4ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DB4oActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

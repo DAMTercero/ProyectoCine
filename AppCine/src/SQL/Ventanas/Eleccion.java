@@ -5,14 +5,10 @@
  */
 package SQL.Ventanas;
 
-import DB4o.Ventanas.*;
 import SQL.Dao.EmpleadoFunciones;
 import SQL.Dao.HistoricoFunciones;
 import SQL.Dao.PeliculaFunciones;
 import SQL.Dao.SalaFunciones;
-import SQL.Ventanas.Main;
-
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,12 +16,18 @@ import javax.swing.JOptionPane;
  */
 public class Eleccion extends javax.swing.JFrame {
 
+    //ventanas
     public Main ventanaMain;
+    public AMB amb;
+    //archivos funciones
     public PeliculaFunciones peliculaFunciones = new PeliculaFunciones();
     public SalaFunciones salaFunciones = new SalaFunciones();
     public EmpleadoFunciones empleadoFunciones = new EmpleadoFunciones();
 
     public HistoricoFunciones historicoFunciones = new HistoricoFunciones();
+
+    //Si soy ventana MySql o SQlite
+    private boolean soyMySql;
 
     /**
      * Creates new form Eleccion
@@ -48,9 +50,10 @@ public class Eleccion extends javax.swing.JFrame {
         botonEmpleado = new javax.swing.JButton();
         botonPelis = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        botonEmpleado1 = new javax.swing.JButton();
+        botonHistorico = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
@@ -86,12 +89,12 @@ public class Eleccion extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("¡Bienvenido!");
 
-        botonEmpleado1.setFont(new java.awt.Font("Magneto", 1, 24)); // NOI18N
-        botonEmpleado1.setText("Registros");
-        botonEmpleado1.setActionCommand("Empleados");
-        botonEmpleado1.addActionListener(new java.awt.event.ActionListener() {
+        botonHistorico.setFont(new java.awt.Font("Magneto", 1, 24)); // NOI18N
+        botonHistorico.setText("Registros");
+        botonHistorico.setActionCommand("Empleados");
+        botonHistorico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonEmpleado1ActionPerformed(evt);
+                botonHistoricoActionPerformed(evt);
             }
         });
 
@@ -105,7 +108,7 @@ public class Eleccion extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(botonEmpleado1, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botonHistorico, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(botonSalas, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
@@ -125,7 +128,7 @@ public class Eleccion extends javax.swing.JFrame {
                     .addComponent(botonEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botonPelis, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(botonEmpleado1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(botonHistorico, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(27, Short.MAX_VALUE))
         );
 
@@ -133,29 +136,51 @@ public class Eleccion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonSalasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalasActionPerformed
-        AMB amb = new AMB("sala");//crear ventana
+        if (amb == null) {
+            amb = new SQL.Ventanas.AMB();
+            amb.ventanaEleccion = this;// Pasarle este ventanaEleccion
+        }
+        amb.salaFunciones = this.salaFunciones;//pasarle funciones
         salaFunciones.abrirVentanaSalas(amb);//pasarlo a la clase de las funciones de esa sala
-        amb.salaFunciones = this.salaFunciones; //WIP
-        //this.setVisible(false);
+        amb.setVisible(true);//ver ventana
+        amb.setSoyMySql(soyMySql);//pasarle tipo de base de datos
+        this.setEnabled(false);//deshabilitar esta para no abrir de mas
+
+        System.out.println(amb.isSoyMySql());
     }//GEN-LAST:event_botonSalasActionPerformed
 
     private void botonPelisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonPelisActionPerformed
-        AMB amb = new AMB("pelicula");//crear ventana
+        if (amb == null) {
+            amb = new SQL.Ventanas.AMB();
+            amb.ventanaEleccion = this;// Pasarle este ventanaEleccion
+        }
+        amb.peliculaFunciones = this.peliculaFunciones;//pasarle funciones
         peliculaFunciones.abrirVentanaPelis(amb);//pasarlo a la clase de las funciones de esa sala
-        amb.peliculaFunciones = this.peliculaFunciones; //WIP
-        //this.setVisible(false);
+        amb.setVisible(true);//ver ventana
+        amb.setSoyMySql(soyMySql);//pasarle tipo de base de datos
+        this.setEnabled(false);//deshabilitar esta para no abrir de mas
+
+        System.out.println(amb.isSoyMySql());
     }//GEN-LAST:event_botonPelisActionPerformed
 
     private void botonEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEmpleadoActionPerformed
-        AMB amb = new AMB("empleado");//crear ventana
+        if (amb == null) {
+            amb = new SQL.Ventanas.AMB();
+            amb.ventanaEleccion = this;// Pasarle este ventanaEleccion
+        }
+        amb.empleadoFunciones = this.empleadoFunciones;//pasarle funciones
         empleadoFunciones.abrirVentanaEmpleados(amb);//pasarlo a la clase de las funciones de esa sala
-        amb.empleadoFunciones = this.empleadoFunciones; //WIP
-        //this.setVisible(false);
+        amb.setVisible(true);//ver ventana
+        amb.setSoyMySql(soyMySql);//pasarle tipo de base de datos
+        this.setEnabled(false);//deshabilitar esta para no abrir de mas        
+
+        System.out.println(amb.isSoyMySql());
+
     }//GEN-LAST:event_botonEmpleadoActionPerformed
 
-    private void botonEmpleado1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEmpleado1ActionPerformed
+    private void botonHistoricoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonHistoricoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_botonEmpleado1ActionPerformed
+    }//GEN-LAST:event_botonHistoricoActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         //volver a atras, dejando la anterior disponible OJO que se usa dispose por si se quiere acceder a otro local (bbdd)
@@ -199,9 +224,26 @@ public class Eleccion extends javax.swing.JFrame {
         });
     }
 
+    /**
+     *
+     * @return devuelve true o false en funcion de sql o mysql
+     */
+    public boolean isSoyMySql() {
+        return soyMySql;
+    }
+
+    /**
+     *
+     * @param soyMySql meter true o false en funcion de sql o mysql
+     */
+    public void setSoyMySql(boolean soyMySql) {
+        this.soyMySql = soyMySql;
+    }
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JButton botonEmpleado;
-    public static javax.swing.JButton botonEmpleado1;
+    public static javax.swing.JButton botonHistorico;
     public static javax.swing.JButton botonPelis;
     public static javax.swing.JButton botonSalas;
     private javax.swing.JLabel jLabel1;

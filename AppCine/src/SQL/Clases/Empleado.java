@@ -19,7 +19,7 @@ public class Empleado {
     private String NOMBRE;
     private String APELLIDO1;
     private String APELLIDO2;
-    private String FECHA_NAC;
+    private String FECHA_NACIMIENTO;
     private String FECHA_CONTRATO;
     private String FECHA_FIN;
     private String NACIONALIDAD;
@@ -42,7 +42,7 @@ public class Empleado {
         this.NOMBRE = NOMBRE;
         this.APELLIDO1 = APELLIDO1;
         this.APELLIDO2 = APELLIDO2;
-        this.FECHA_NAC = FECHA_NAC;
+        this.FECHA_NACIMIENTO = FECHA_NAC;
         this.FECHA_CONTRATO = FECHA_CONTRATO;
         this.FECHA_FIN = FECHA_FIN;
         this.NACIONALIDAD = NACIONALIDAD;
@@ -82,12 +82,12 @@ public class Empleado {
         this.APELLIDO2 = APELLIDO2;
     }
 
-    public String getFECHA_NAC() {
-        return FECHA_NAC;
+    public String getFECHA_NACIMIENTO() {
+        return FECHA_NACIMIENTO;
     }
 
-    public void setFECHA_NAC(String FECHA_NAC) {
-        this.FECHA_NAC = FECHA_NAC;
+    public void setFECHA_NACIMIENTO(String FECHA_NACIMIENTO) {
+        this.FECHA_NACIMIENTO = FECHA_NACIMIENTO;
     }
 
     public String getFECHA_CONTRATO() {
