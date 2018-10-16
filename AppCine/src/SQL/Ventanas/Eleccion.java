@@ -9,6 +9,10 @@ import SQL.Dao.EmpleadoFunciones;
 import SQL.Dao.HistoricoFunciones;
 import SQL.Dao.PeliculaFunciones;
 import SQL.Dao.SalaFunciones;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -18,12 +22,12 @@ public class Eleccion extends javax.swing.JFrame {
 
     //ventanas
     public Main ventanaMain;
-    public AMB amb;
+    public AMB ventanaAMB;
+    public Historico ventanaHistorico;
     //archivos funciones
     public PeliculaFunciones peliculaFunciones = new PeliculaFunciones();
     public SalaFunciones salaFunciones = new SalaFunciones();
     public EmpleadoFunciones empleadoFunciones = new EmpleadoFunciones();
-
     public HistoricoFunciones historicoFunciones = new HistoricoFunciones();
 
     //Si soy ventana MySql o SQlite
@@ -136,50 +140,66 @@ public class Eleccion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonSalasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalasActionPerformed
-        if (amb == null) {
-            amb = new SQL.Ventanas.AMB();
-            amb.ventanaEleccion = this;// Pasarle este ventanaEleccion
+        if (ventanaAMB == null) {
+            ventanaAMB = new SQL.Ventanas.AMB();
+            ventanaAMB.ventanaEleccion = this;// Pasarle este ventanaEleccion
         }
-        amb.salaFunciones = this.salaFunciones;//pasarle funciones
-        salaFunciones.abrirVentanaSalas(amb);//pasarlo a la clase de las funciones de esa sala
-        amb.setVisible(true);//ver ventana
-        amb.setSoyMySql(soyMySql);//pasarle tipo de base de datos
+        ventanaAMB.salaFunciones = this.salaFunciones;//pasarle funciones
+        salaFunciones.abrirVentanaSalas(ventanaAMB);//pasarlo a la clase de las funciones de esa sala
+        ventanaAMB.setVisible(true);//ver ventana
+        ventanaAMB.setSoyMySql(soyMySql);//pasarle tipo de base de datos
         this.setEnabled(false);//deshabilitar esta para no abrir de mas
 
-        System.out.println(amb.isSoyMySql());
+        System.out.println(ventanaAMB.isSoyMySql());
     }//GEN-LAST:event_botonSalasActionPerformed
 
     private void botonPelisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonPelisActionPerformed
-        if (amb == null) {
-            amb = new SQL.Ventanas.AMB();
-            amb.ventanaEleccion = this;// Pasarle este ventanaEleccion
+        if (ventanaAMB == null) {
+            ventanaAMB = new SQL.Ventanas.AMB();
+            ventanaAMB.ventanaEleccion = this;// Pasarle este ventanaEleccion
         }
-        amb.peliculaFunciones = this.peliculaFunciones;//pasarle funciones
-        peliculaFunciones.abrirVentanaPelis(amb);//pasarlo a la clase de las funciones de esa sala
-        amb.setVisible(true);//ver ventana
-        amb.setSoyMySql(soyMySql);//pasarle tipo de base de datos
+        ventanaAMB.peliculaFunciones = this.peliculaFunciones;//pasarle funciones
+        peliculaFunciones.abrirVentanaPelis(ventanaAMB);//pasarlo a la clase de las funciones de esa sala
+        ventanaAMB.setVisible(true);//ver ventana
+        ventanaAMB.setSoyMySql(soyMySql);//pasarle tipo de base de datos
         this.setEnabled(false);//deshabilitar esta para no abrir de mas
 
-        System.out.println(amb.isSoyMySql());
+        System.out.println(ventanaAMB.isSoyMySql());
     }//GEN-LAST:event_botonPelisActionPerformed
 
     private void botonEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEmpleadoActionPerformed
-        if (amb == null) {
-            amb = new SQL.Ventanas.AMB();
-            amb.ventanaEleccion = this;// Pasarle este ventanaEleccion
+        if (ventanaAMB == null) {
+            ventanaAMB = new SQL.Ventanas.AMB();
+            ventanaAMB.ventanaEleccion = this;// Pasarle este ventanaEleccion
         }
-        amb.empleadoFunciones = this.empleadoFunciones;//pasarle funciones
-        empleadoFunciones.abrirVentanaEmpleados(amb);//pasarlo a la clase de las funciones de esa sala
-        amb.setVisible(true);//ver ventana
-        amb.setSoyMySql(soyMySql);//pasarle tipo de base de datos
+        ventanaAMB.empleadoFunciones = this.empleadoFunciones;//pasarle funciones
+        empleadoFunciones.abrirVentanaEmpleados(ventanaAMB);//pasarlo a la clase de las funciones de esa sala
+        ventanaAMB.setVisible(true);//ver ventana
+        ventanaAMB.setSoyMySql(soyMySql);//pasarle tipo de base de datos
         this.setEnabled(false);//deshabilitar esta para no abrir de mas        
 
-        System.out.println(amb.isSoyMySql());
+        System.out.println(ventanaAMB.isSoyMySql());
 
     }//GEN-LAST:event_botonEmpleadoActionPerformed
 
     private void botonHistoricoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonHistoricoActionPerformed
-        // TODO add your handling code here:
+        if (ventanaHistorico == null) {
+            ventanaHistorico = new SQL.Ventanas.Historico();
+            ventanaHistorico.ventanaEleccion = this;// Pasarle este ventanaEleccion
+        }
+        ventanaHistorico.historicoFunciones = this.historicoFunciones;//pasarle funciones
+        try {
+            historicoFunciones.abrirVentanaHistorico(ventanaHistorico);//pasarlo a la clase de las funciones de esa sala
+        } catch (IOException ex) {
+            Logger.getLogger(Eleccion.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Eleccion.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Eleccion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        ventanaHistorico.setVisible(true);//ver ventana
+        ventanaHistorico.setSoyMySql(soyMySql);//pasarle tipo de base de datos
+        this.setEnabled(false);//deshabilitar esta para no abrir de mas        
     }//GEN-LAST:event_botonHistoricoActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
