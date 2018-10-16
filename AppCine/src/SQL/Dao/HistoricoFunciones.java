@@ -8,7 +8,6 @@ package SQL.Dao;
 import SQL.Clases.Empleado;
 import SQL.Clases.Pelicula;
 import SQL.Clases.Sala;
-import SQL.Ventanas.AMB;
 import SQL.Ventanas.Historico;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -68,7 +67,6 @@ public class HistoricoFunciones {
     public List<Object> botonFiltrar() throws IOException, SQLException, ClassNotFoundException {
         //desactivar botones modificar y baja
         ventanaHistorico.botonModificar.setEnabled(false);
-        ventanaHistorico.botonBorrar.setEnabled(false);
         SQL.Clases.Historico historico = new SQL.Clases.Historico();
         //crear el historico de filtrado
 
