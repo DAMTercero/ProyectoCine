@@ -420,14 +420,14 @@ public class AMB extends javax.swing.JFrame {
     private void botonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAtrasActionPerformed
         ventanaEleccion.setEnabled(true);
         ventanaEleccion.toFront();
-        ventanaEleccion.amb = null;
+        ventanaEleccion.ventanaAMB = null;
         this.dispose();
     }//GEN-LAST:event_botonAtrasActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         ventanaEleccion.setEnabled(true);
         ventanaEleccion.toFront();
-        ventanaEleccion.amb = null;
+        ventanaEleccion.ventanaAMB = null;
         this.dispose();
     }//GEN-LAST:event_formWindowClosed
 

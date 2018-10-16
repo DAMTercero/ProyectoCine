@@ -5,17 +5,52 @@
  */
 package SQL.Ventanas;
 
+import SQL.Clases.Empleado;
+import SQL.Clases.Pelicula;
+import SQL.Clases.Sala;
+import SQL.Dao.HistoricoFunciones;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author carloshernandez
  */
 public class Historico extends javax.swing.JFrame {
 
+    //variables de ventana
+    public Eleccion ventanaEleccion;
+    public Añadir_Modificar ventanaAñadir_Modificar;
+
+    public HistoricoFunciones historicoFunciones;
+
+    // listas para ayudar a filtrar
+    public ArrayList<Empleado> empleados = new ArrayList<>();
+    public ArrayList<Sala> salas = new ArrayList<>();
+    public ArrayList<Pelicula> peliculas = new ArrayList<>();
+    public ArrayList<SQL.Clases.Historico> historicosFechas = new ArrayList<>();
+
+    //Si soy ventana MySql o SQlite
+    private boolean soyMySql = false;
+
+    //variable list para el tema de modificar
+    List<Object> tablaFiltradoObjetos = new ArrayList<Object>();
+
+    //tabla
+    public DefaultTableModel modeloTabla = new DefaultTableModel();
+
     /**
      * Creates new form Historico
      */
     public Historico() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -44,11 +79,15 @@ public class Historico extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         botonAnadir = new javax.swing.JButton();
         botonModificar = new javax.swing.JButton();
-        botonBorrar = new javax.swing.JButton();
         labelTitulo = new javax.swing.JLabel();
         textoErrores = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Filtrado"));
 
@@ -65,35 +104,20 @@ public class Historico extends javax.swing.JFrame {
         labelFechaEmision.setForeground(new java.awt.Color(255, 0, 0));
         labelFechaEmision.setText("Fecha de emisión:");
 
-        comboSala.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
-        comboSala.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboSalaActionPerformed(evt);
-            }
-        });
+        comboSala.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---" }));
 
-        comboPeli.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
-        comboPeli.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboPeliActionPerformed(evt);
-            }
-        });
+        comboPeli.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---" }));
 
-        comboFechaEmision.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
-        comboFechaEmision.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboFechaEmisionActionPerformed(evt);
-            }
-        });
+        comboFechaEmision.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---" }));
 
-        comboEmpleado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
-        comboEmpleado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboEmpleadoActionPerformed(evt);
-            }
-        });
+        comboEmpleado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---" }));
 
         botonBuscar.setText("Buscar/Mostrar");
+        botonBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonBuscarActionPerformed(evt);
+            }
+        });
 
         botonLimpiar.setText("Limpiar");
 
@@ -190,25 +214,17 @@ public class Historico extends javax.swing.JFrame {
         botonAnadir.setText("Añadir");
 
         botonModificar.setText("Modificar");
-
-        botonBorrar.setText("Borrar");
+        botonModificar.setEnabled(false);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(botonAnadir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(botonModificar, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(botonBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(botonAnadir, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botonModificar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -218,8 +234,6 @@ public class Historico extends javax.swing.JFrame {
                 .addComponent(botonAnadir, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(botonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(botonBorrar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -230,6 +244,7 @@ public class Historico extends javax.swing.JFrame {
 
         textoErrores.setBackground(new java.awt.Color(204, 204, 204));
         textoErrores.setBorder(null);
+        textoErrores.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -270,21 +285,28 @@ public class Historico extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void comboSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboSalaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comboSalaActionPerformed
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        ventanaEleccion.setEnabled(true);
+        ventanaEleccion.toFront();
+        ventanaEleccion.ventanaHistorico = null;
+        this.dispose();
+    }//GEN-LAST:event_formWindowClosed
 
-    private void comboPeliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboPeliActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comboPeliActionPerformed
+    private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
+        try {
 
-    private void comboFechaEmisionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboFechaEmisionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comboFechaEmisionActionPerformed
+            //limpiar("ERROR");
+            
+            tablaFiltradoObjetos = historicoFunciones.botonFiltrar();
 
-    private void comboEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboEmpleadoActionPerformed
-
-    }//GEN-LAST:event_comboEmpleadoActionPerformed
+        } catch (IOException ex) {
+            Logger.getLogger(AMB.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(AMB.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(AMB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_botonBuscarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -322,26 +344,69 @@ public class Historico extends javax.swing.JFrame {
         });
     }
 
+    /**
+     *
+     * @param columnas se le pasa un array de strings con nombres de columna y
+     * se añade a la tabla de filtrado
+     */
+    public void ponerColumnasTabla(String columnas[]) {
+        for (String c : columnas) {
+            modeloTabla.addColumn(c);
+        }
+        tablaResultados.setModel(modeloTabla);
+        tablaResultados.setSelectionMode(0);//para que solo se pueda clickar de una fila en una
+    }
+
+    /**
+     *
+     * @return Devuelve un String "mysql" o "sqlite" en funcion de una variable
+     * interna @soyMySql
+     */
+    public String getTipoConexion() {
+        if (soyMySql) {
+            return "mysql";
+        } else {
+            return "sqlite";
+        }
+
+    }
+    ///---GETTERS Y SETTERS---\\\
+
+    /**
+     *
+     * @return devuelve true o false en funcion de sql o mysql
+     */
+    public boolean isSoyMySql() {
+        return soyMySql;
+    }
+
+    /**
+     *
+     * @param soyMySql meter true o false en funcion de sql o mysql
+     */
+    public void setSoyMySql(boolean soyMySql) {
+        this.soyMySql = soyMySql;
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botonAnadir;
-    private javax.swing.JButton botonBorrar;
-    private javax.swing.JButton botonBuscar;
-    private javax.swing.JButton botonLimpiar;
-    private javax.swing.JButton botonModificar;
-    private javax.swing.JComboBox<String> comboEmpleado;
-    private javax.swing.JComboBox<String> comboFechaEmision;
-    private javax.swing.JComboBox<String> comboPeli;
-    private javax.swing.JComboBox<String> comboSala;
+    public static javax.swing.JButton botonAnadir;
+    public static javax.swing.JButton botonBuscar;
+    public static javax.swing.JButton botonLimpiar;
+    public static javax.swing.JButton botonModificar;
+    public static javax.swing.JComboBox<String> comboEmpleado;
+    public static javax.swing.JComboBox<String> comboFechaEmision;
+    public static javax.swing.JComboBox<String> comboPeli;
+    public static javax.swing.JComboBox<String> comboSala;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel labelEmpleado;
-    private javax.swing.JLabel labelFechaEmision;
-    private javax.swing.JLabel labelPeli;
-    private javax.swing.JLabel labelSala;
+    public static javax.swing.JLabel labelEmpleado;
+    public static javax.swing.JLabel labelFechaEmision;
+    public static javax.swing.JLabel labelPeli;
+    public static javax.swing.JLabel labelSala;
     private javax.swing.JLabel labelTitulo;
-    private javax.swing.JTable tablaResultados;
+    public static javax.swing.JTable tablaResultados;
     private javax.swing.JTextField textoErrores;
     // End of variables declaration//GEN-END:variables
 

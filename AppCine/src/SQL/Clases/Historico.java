@@ -20,7 +20,7 @@ public class Historico {
     public Historico() {
     }
 
-    public Historico(int ID_SALA, int ID_PELICULA, int ID_EMPLEADO, String FECHAEMISION, String SESION) {
+    public Historico(int ID_SALA, int ID_PELICULA, String FECHAEMISION, String SESION, int ID_EMPLEADO) {
         this.ID_SALA = ID_SALA;
         this.ID_PELICULA = ID_PELICULA;
         this.ID_EMPLEADO = ID_EMPLEADO;
