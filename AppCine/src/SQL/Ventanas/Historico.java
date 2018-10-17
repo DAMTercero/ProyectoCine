@@ -120,6 +120,11 @@ public class Historico extends javax.swing.JFrame {
         });
 
         botonLimpiar.setText("Limpiar");
+        botonLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonLimpiarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -212,9 +217,19 @@ public class Historico extends javax.swing.JFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Crear/Editra"));
 
         botonAnadir.setText("Añadir");
+        botonAnadir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAnadirActionPerformed(evt);
+            }
+        });
 
         botonModificar.setText("Modificar");
         botonModificar.setEnabled(false);
+        botonModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonModificarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -296,7 +311,6 @@ public class Historico extends javax.swing.JFrame {
         try {
 
             //limpiar("ERROR");
-            
             tablaFiltradoObjetos = historicoFunciones.botonFiltrar();
 
         } catch (IOException ex) {
@@ -307,6 +321,32 @@ public class Historico extends javax.swing.JFrame {
             Logger.getLogger(AMB.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_botonBuscarActionPerformed
+
+    private void botonAnadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAnadirActionPerformed
+        ventanaAñadir_Modificar = new Añadir_Modificar();
+
+        historicoFunciones.abrirVentanaAñadir(ventanaAñadir_Modificar);
+
+    }//GEN-LAST:event_botonAnadirActionPerformed
+
+    private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
+        ventanaAñadir_Modificar = new Añadir_Modificar();//usando template de añadir
+
+        historicoFunciones.abrirVentanaModificar(ventanaAñadir_Modificar, (SQL.Clases.Historico) tablaFiltradoObjetos.get(tablaResultados.getSelectedRow()));
+
+    }//GEN-LAST:event_botonModificarActionPerformed
+
+    private void botonLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonLimpiarActionPerformed
+        try {
+            historicoFunciones.rellenarComboBoxes();
+        } catch (IOException ex) {
+            Logger.getLogger(Historico.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Historico.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Historico.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_botonLimpiarActionPerformed
 
     /**
      * @param args the command line arguments

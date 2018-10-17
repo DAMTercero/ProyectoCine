@@ -8,11 +8,14 @@ package SQL.Dao;
 import SQL.Clases.Empleado;
 import SQL.Clases.Pelicula;
 import SQL.Clases.Sala;
+import SQL.Ventanas.Añadir;
+import SQL.Ventanas.Añadir_Modificar;
 import SQL.Ventanas.Historico;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -35,7 +38,96 @@ public class HistoricoFunciones {
         this.ventanaHistorico.setVisible(true);
     }
 
-    private void rellenarComboBoxes() throws IOException, SQLException, ClassNotFoundException {
+    public void abrirVentanaAñadir(Añadir_Modificar ventanaAñadir) {
+        //llenar los combos       
+        for (Pelicula pelicula : ventanaHistorico.peliculas) {
+            ventanaAñadir.comboPeli.addItem(pelicula.getTITULO());
+        }
+        for (Sala sala : ventanaHistorico.salas) {
+            ventanaAñadir.comboSala.addItem(String.valueOf(sala.getID_SALA()));
+        }
+        for (Empleado empleado : ventanaHistorico.empleados) {
+            ventanaAñadir.comboEmpleado.addItem(empleado.getNOMBRE());
+        }
+
+        ventanaAñadir.historicoFunciones = this;
+        ventanaAñadir.ventanaAnterior = ventanaHistorico;
+        ventanaAñadir.isAnyadir = 1;//descirle que es añadir
+        ventanaAñadir.boton_add_modify.setText("Añadir");
+        ventanaAñadir.setVisible(true);
+        ventanaHistorico.setEnabled(false);
+
+    }
+
+    public void abrirVentanaModificar(Añadir_Modificar ventanaModificar, SQL.Clases.Historico hitorico) {
+        //llenar los combos con el objeto que vino
+        Sala sala = null;
+        Pelicula pelicula = null;
+        Empleado empleado = null;
+        SQL.Clases.Historico historicoModificado = null;
+
+        //poner en los combos ya la seleccion de los combos. . ....
+        //pa luego
+        ventanaModificar.historicoFunciones = this;
+        ventanaModificar.ventanaAnterior = ventanaHistorico;
+        ventanaModificar.isAnyadir = 0;//descirle que es modificar
+        ventanaModificar.boton_add_modify.setText("Modificar");
+        ventanaModificar.setVisible(true);
+        ventanaHistorico.setEnabled(false);
+
+    }
+
+    public void botonAnyadir_Modificar(int isAnyadir) throws SQLException, ClassNotFoundException, IOException {
+        SQL.Clases.Historico historico = new SQL.Clases.Historico();
+        switch (isAnyadir) {
+            case 0://es modificar
+                /* historico.setID_EMPLEADO(Integer.parseInt(Añadir.textoID.getText()));
+                historico.setNOMBRE(Añadir.textoTitulo.getText());
+                historico.setAPELLIDO1(Añadir.textoAnyo.getText());
+                historico.setAPELLIDO2(Añadir.textoDirector.getText());
+                historico.setFECHA_NACIMIENTO(Añadir.textoAcPr.getText());
+                historico.setFECHA_CONTRATO(Añadir.textoAcSe.getText());
+                historico.setFECHA_FIN(Añadir.textoDuracion.getText());
+                historico.setNACIONALIDAD(Añadir.textoTrailer.getText());
+                historico.setCARGO(Añadir.textoUltimo.getText());
+                historico.setDISPONIBLE(Añadir.disponibleCheckBox.isSelected());
+
+                boolean action1 = historicoCRUD.updateHistorico(historico, ventanaHistorico.getTipoConexion());
+
+                if (action1) {
+                    JOptionPane.showMessageDialog(null, "Recurso Actualizado satisfactoriamente");
+                }*/
+                break;
+            case 1: //añadir
+                //tengo el indice seleccionado, coger el objeto de los arrays en esa misma posicion
+                historico.setID_SALA(ventanaHistorico.salas.get(Añadir_Modificar.comboSala.getSelectedIndex()).getID_SALA());
+                historico.setID_PELICULA(ventanaHistorico.peliculas.get(Añadir_Modificar.comboPeli.getSelectedIndex()).getID_PELICULA());
+                historico.setID_EMPLEADO(ventanaHistorico.empleados.get(Añadir_Modificar.comboEmpleado.getSelectedIndex()).getID_EMPLEADO());
+                historico.setFECHA_EMISION(Añadir_Modificar.textFechaEmision.getText());
+                historico.setSESION(Añadir_Modificar.textSesion.getText());
+
+                boolean action2 = historicoCRUD.insertHistorico(historico, ventanaHistorico.getTipoConexion());
+
+                if (action2) {
+                    JOptionPane.showMessageDialog(null, "Recurso añadido satisfactoriamente");
+                }
+                break;
+            default:
+                break;
+        }
+
+    }
+
+    public void rellenarComboBoxes() throws IOException, SQLException, ClassNotFoundException {
+        Historico.comboPeli.removeAllItems();
+        Historico.comboSala.removeAllItems();
+        Historico.comboEmpleado.removeAllItems();
+        Historico.comboFechaEmision.removeAllItems();
+
+        Historico.comboPeli.addItem("---");
+        Historico.comboSala.addItem("---");
+        Historico.comboEmpleado.addItem("---");
+        Historico.comboFechaEmision.addItem("---");
 
         //obtener todo para las consultas
         ArrayList<Empleado> empleados = new ArrayList<>(historicoCRUD.selectEmpleados(ventanaHistorico.getTipoConexion()));
@@ -100,7 +192,7 @@ public class HistoricoFunciones {
             //no se ha selecciona un empleado
         } else {
             //se ha seleccionado
-            historicoFechas = ventanaHistorico.historicosFechas.get(ventanaHistorico.comboFechaEmision.getSelectedIndex() -1);
+            historicoFechas = ventanaHistorico.historicosFechas.get(ventanaHistorico.comboFechaEmision.getSelectedIndex() - 1);
         }
         historico = new SQL.Clases.Historico(-1, -1, "", "", -1);//por defecto para el filtro
         //crear el objeto para las busquedas
