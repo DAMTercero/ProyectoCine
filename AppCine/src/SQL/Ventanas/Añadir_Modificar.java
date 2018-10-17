@@ -5,17 +5,31 @@
  */
 package SQL.Ventanas;
 
+import SQL.Dao.HistoricoFunciones;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author carloshernandez
  */
 public class Añadir_Modificar extends javax.swing.JFrame {
 
+    public Historico ventanaAnterior;
+    //variables de control de funciones
+    public HistoricoFunciones historicoFunciones;
+
+    //boolean de si es añadir o modificar
+    public int isAnyadir; // 0 no, 1 si
+
     /**
      * Creates new form Añadir_Modificar
      */
     public Añadir_Modificar() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -36,10 +50,16 @@ public class Añadir_Modificar extends javax.swing.JFrame {
         comboEmpleado = new javax.swing.JComboBox<>();
         comboSala = new javax.swing.JComboBox<>();
         comboPeli = new javax.swing.JComboBox<>();
-        formatedFechaEmision = new javax.swing.JFormattedTextField();
+        textFechaEmision = new javax.swing.JFormattedTextField();
         textSesion = new javax.swing.JTextField();
+        boton_add_modify = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Añadir/Modificar", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
 
@@ -58,11 +78,13 @@ public class Añadir_Modificar extends javax.swing.JFrame {
         labelSesion.setForeground(new java.awt.Color(255, 0, 0));
         labelSesion.setText("Sesión:");
 
-        comboEmpleado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        comboSala.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        comboPeli.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        boton_add_modify.setText("addModificar");
+        boton_add_modify.setToolTipText("");
+        boton_add_modify.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton_add_modifyActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -70,15 +92,7 @@ public class Añadir_Modificar extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(labelSesion)
-                        .addGap(18, 18, 18)
-                        .addComponent(textSesion))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(labelFechaEmision)
-                        .addGap(18, 18, 18)
-                        .addComponent(formatedFechaEmision, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(labelEmpleado)
@@ -88,7 +102,16 @@ public class Añadir_Modificar extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(comboEmpleado, 0, 154, Short.MAX_VALUE)
                             .addComponent(comboSala, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(comboPeli, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(comboPeli, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelFechaEmision)
+                            .addComponent(labelSesion))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(textFechaEmision, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
+                            .addComponent(textSesion)))
+                    .addComponent(boton_add_modify, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(144, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -109,12 +132,14 @@ public class Añadir_Modificar extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelFechaEmision)
-                    .addComponent(formatedFechaEmision, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                    .addComponent(textFechaEmision, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelSesion)
                     .addComponent(textSesion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addComponent(boton_add_modify)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -136,6 +161,43 @@ public class Añadir_Modificar extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        try {
+            historicoFunciones.rellenarComboBoxes();//actualizar combos
+            ventanaAnterior.setEnabled(true);
+            ventanaAnterior.toFront();
+            ventanaAnterior.ventanaAñadir_Modificar = null;
+            this.dispose();
+        } catch (IOException ex) {
+            Logger.getLogger(Añadir_Modificar.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Añadir_Modificar.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Añadir_Modificar.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_formWindowClosed
+
+    private void boton_add_modifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_add_modifyActionPerformed
+        try {
+            switch (isAnyadir) {
+                case 0:// modificar 
+                    historicoFunciones.botonAnyadir_Modificar(isAnyadir);
+                    break;
+                case 1: //  añadir
+                    historicoFunciones.botonAnyadir_Modificar(isAnyadir);
+                    break;
+                default:
+                    break;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Añadir.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Añadir.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Añadir.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_boton_add_modifyActionPerformed
 
     /**
      * @param args the command line arguments
@@ -173,16 +235,17 @@ public class Añadir_Modificar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> comboEmpleado;
-    private javax.swing.JComboBox<String> comboPeli;
-    private javax.swing.JComboBox<String> comboSala;
-    private javax.swing.JFormattedTextField formatedFechaEmision;
+    public static javax.swing.JButton boton_add_modify;
+    public static javax.swing.JComboBox<String> comboEmpleado;
+    public static javax.swing.JComboBox<String> comboPeli;
+    public static javax.swing.JComboBox<String> comboSala;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel labelEmpleado;
     private javax.swing.JLabel labelFechaEmision;
     private javax.swing.JLabel labelPeli;
     private javax.swing.JLabel labelSala;
     private javax.swing.JLabel labelSesion;
-    private javax.swing.JTextField textSesion;
+    public static javax.swing.JFormattedTextField textFechaEmision;
+    public static javax.swing.JTextField textSesion;
     // End of variables declaration//GEN-END:variables
 }

@@ -31,6 +31,49 @@ public class HistoricoCRUD extends SQL.Conexion.sql {
     private static final String mysqlConector = "mysql";
     private static final String sqliteConector = "sqlite";
 
+    public static boolean insertHistorico(Historico obj, String conector) throws SQLException, ClassNotFoundException, IOException {
+        Connection conn = null;
+        boolean result = false;
+
+        try {
+            //Establecemos conexion, verificando si es a MYSql o Sqlite            
+            conn = getConnection(conector);
+
+            //Query
+            String query = "INSERT INTO HISTORICO(ID_SALA, ID_PELICULA, FECHA_EMISION, SESION, ID_EMPLEADO) values(?,?,?,?,?)";
+            PreparedStatement ps = conn.prepareStatement(query);
+
+            //Añadimos los datos
+            ps.setInt(1, obj.getID_SALA());
+            ps.setInt(2, obj.getID_PELICULA());
+            ps.setString(3, obj.getFECHA_EMISION());
+            ps.setString(4, obj.getSESION());
+            ps.setInt(5, obj.getID_EMPLEADO());
+
+            //Ejecutamos la insert
+            int action = ps.executeUpdate();
+
+            //Comprobamos si insert ha funcionado
+            if (action > 0) {
+                result = true;
+            }
+
+            //Cerrar conexion
+            conn.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Imposible establecer conexion con las bases de datos.", "Error", JOptionPane.ERROR_MESSAGE);
+            Logger.getLogger(SqlCrude.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (conn != null) {
+                conn.close();
+            }
+        }
+
+        //Devolvemos el resultado
+        return result;
+    }
+
     public ArrayList<Historico> filtrarHistoricos(Historico historico, String conector) throws IOException, SQLException, ClassNotFoundException {
         ArrayList<Historico> historicosList = new ArrayList<>();
         Connection conn = null;
