@@ -1,5 +1,5 @@
-[Thu Oct 18 21:23:27.765655 2018] [mpm_winnt:notice] [pid 16084:tid 840] AH00455: Apache/2.4.6 (Win32) PHP/5.4.17 configured -- resuming normal operations
-[Thu Oct 18 21:23:27.765655 2018] [mpm_winnt:notice] [pid 16084:tid 840] AH00456: Apache Lounge VC10 Server built: Jul 16 2013 11:15:41
-[Thu Oct 18 21:23:27.765655 2018] [core:notice] [pid 16084:tid 840] AH00094: Command line: 'C:\\Users\\josep\\OneDrive\\Escritorio\\USBWebserver v8.6/apache2/bin/httpd_usbwv8.exe -d C:/Users/josep/OneDrive/Escritorio/USBWebserver v8.6/apache2'
-[Thu Oct 18 21:23:27.765655 2018] [mpm_winnt:notice] [pid 16084:tid 840] AH00418: Parent: Created child process 15168
-[Thu Oct 18 21:23:28.125082 2018] [mpm_winnt:notice] [pid 15168:tid 840] AH00354: Child: Starting 64 worker threads.
+[Thu Oct 18 21:52:24.838826 2018] [mpm_winnt:notice] [pid 11928:tid 884] AH00455: Apache/2.4.6 (Win32) PHP/5.4.17 configured -- resuming normal operations
+[Thu Oct 18 21:52:24.838826 2018] [mpm_winnt:notice] [pid 11928:tid 884] AH00456: Apache Lounge VC10 Server built: Jul 16 2013 11:15:41
+[Thu Oct 18 21:52:24.838826 2018] [core:notice] [pid 11928:tid 884] AH00094: Command line: 'C:\\Users\\9fdam07\\Desktop\\Proyectos git\\ProyectoCine\\Extras\\USBWebserver v8.6/apache2/bin/httpd_usbwv8.exe -d C:/Users/9fdam07/Desktop/Proyectos git/ProyectoCine/Extras/USBWebserver v8.6/apache2'
+[Thu Oct 18 21:52:24.854445 2018] [mpm_winnt:notice] [pid 11928:tid 884] AH00418: Parent: Created child process 11620
+[Thu Oct 18 21:52:25.765715 2018] [mpm_winnt:notice] [pid 11620:tid 852] AH00354: Child: Starting 64 worker threads.

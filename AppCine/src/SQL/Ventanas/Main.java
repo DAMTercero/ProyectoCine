@@ -5,7 +5,6 @@
  */
 package SQL.Ventanas;
 
-
 /**
  *
  * @author ikitess
@@ -78,7 +77,7 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(DB4o, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(sqlite, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addComponent(mySql, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -159,6 +158,7 @@ public class Main extends javax.swing.JFrame {
         }
         ventanaEleccionSQLite.setVisible(true);
         ventanaEleccionSQLite.setSoyMySql(false);
+        ventanaEleccionSQLite.ponerDatosExtras("sqlite");
         this.setEnabled(false);
 
     }//GEN-LAST:event_sqliteActionPerformed
@@ -171,6 +171,7 @@ public class Main extends javax.swing.JFrame {
         }
         ventanaEleccionMySQL.setVisible(true);
         ventanaEleccionMySQL.setSoyMySql(true);
+        ventanaEleccionMySQL.ponerDatosExtras("mysql");
         this.setEnabled(false);
 
 

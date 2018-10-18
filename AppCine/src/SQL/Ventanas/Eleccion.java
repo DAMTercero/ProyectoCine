@@ -10,6 +10,7 @@ import SQL.Dao.HistoricoFunciones;
 import SQL.Dao.PeliculaFunciones;
 import SQL.Dao.SalaFunciones;
 import java.io.IOException;
+import java.nio.file.attribute.AttributeView;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,6 +25,7 @@ public class Eleccion extends javax.swing.JFrame {
     public Main ventanaMain;
     public AMB ventanaAMB;
     public Historico ventanaHistorico;
+    public Metadatos ventanaMetadatos;
     //archivos funciones
     public PeliculaFunciones peliculaFunciones = new PeliculaFunciones();
     public SalaFunciones salaFunciones = new SalaFunciones();
@@ -50,11 +52,20 @@ public class Eleccion extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         botonSalas = new javax.swing.JButton();
         botonEmpleado = new javax.swing.JButton();
-        botonPelis = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         botonHistorico = new javax.swing.JButton();
+        botonPelis = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        labelNombre = new javax.swing.JLabel();
+        labelFecha = new javax.swing.JLabel();
+        labelDireccion = new javax.swing.JLabel();
+        botonMetadato = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -63,6 +74,13 @@ public class Eleccion extends javax.swing.JFrame {
                 formWindowClosed(evt);
             }
         });
+
+        jLabel1.setFont(new java.awt.Font("Magneto", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(204, 0, 102));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("¡Bienvenido!");
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         botonSalas.setFont(new java.awt.Font("Magneto", 1, 24)); // NOI18N
         botonSalas.setText("Salas");
@@ -80,19 +98,6 @@ public class Eleccion extends javax.swing.JFrame {
             }
         });
 
-        botonPelis.setFont(new java.awt.Font("Magneto", 1, 24)); // NOI18N
-        botonPelis.setText("Películas");
-        botonPelis.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonPelisActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setFont(new java.awt.Font("Magneto", 1, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(204, 0, 102));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("¡Bienvenido!");
-
         botonHistorico.setFont(new java.awt.Font("Magneto", 1, 24)); // NOI18N
         botonHistorico.setText("Registros");
         botonHistorico.setActionCommand("Empleados");
@@ -102,42 +107,156 @@ public class Eleccion extends javax.swing.JFrame {
             }
         });
 
+        botonPelis.setFont(new java.awt.Font("Magneto", 1, 24)); // NOI18N
+        botonPelis.setText("Películas");
+        botonPelis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonPelisActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(botonSalas, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(botonHistorico, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(botonPelis, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                        .addComponent(botonEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28))))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonSalas, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonPelis, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(72, 72, 72)
+                .addComponent(botonHistorico, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(22, Short.MAX_VALUE))
+        );
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Dato y metadatos"));
+        jPanel2.setToolTipText("");
+
+        jLabel2.setText("Nombre: ");
+
+        jLabel3.setText("Fecha apertura: ");
+
+        jLabel4.setText("Dirección:");
+
+        labelNombre.setText("jLabel5");
+
+        labelFecha.setText("jLabel5");
+
+        labelDireccion.setText("jLabel5");
+
+        botonMetadato.setText("Metadatos");
+        botonMetadato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonMetadatoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4))
+                .addGap(25, 25, 25)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(botonMetadato)
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(labelNombre))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(labelFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(labelDireccion))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                .addComponent(botonMetadato)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addGap(54, 54, 54)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(botonHistorico, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(botonSalas, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(botonEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addComponent(botonPelis, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(26, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(58, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 617, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(89, 89, 89))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonSalas, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonPelis, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(botonHistorico, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    public void ponerDatosExtras(String tipoBBDD) {
+        switch (tipoBBDD) {
+            case "sqlite":
+                labelNombre.setText("Cines Jindaka");
+                labelDireccion.setText("Calle falsa 123");
+                labelFecha.setText("Martes, 21 de Noviembre de 2015");
+                break;
+            case "mysql":
+
+                labelNombre.setText("Cines Cajoinda");
+                labelDireccion.setText("Calle cierta 123");
+                labelFecha.setText("Miércoles, 22 de Noviembre de 2015");
+
+                break;
+            default:
+                break;
+        }
+    }
 
     private void botonSalasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalasActionPerformed
         if (ventanaAMB == null) {
@@ -210,6 +329,20 @@ public class Eleccion extends javax.swing.JFrame {
         ventanaMain.toFront();
     }//GEN-LAST:event_formWindowClosed
 
+    private void botonMetadatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMetadatoActionPerformed
+
+        if (ventanaMetadatos == null) {
+            ventanaMetadatos = new Metadatos();
+            ventanaMetadatos.ventanaEleccion = this;// Pasarle este ventanaEleccion
+        }
+        ventanaMetadatos.soyMySql = this.soyMySql;
+        //ventanaMetadatos.sacarMetadatos();
+        ventanaMetadatos.setVisible(true);
+        this.setEnabled(false);//deshabilitar esta para no abrir de mas        
+
+
+    }//GEN-LAST:event_botonMetadatoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -266,8 +399,17 @@ public class Eleccion extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JButton botonEmpleado;
     public static javax.swing.JButton botonHistorico;
+    private javax.swing.JButton botonMetadato;
     public static javax.swing.JButton botonPelis;
     public static javax.swing.JButton botonSalas;
     private javax.swing.JLabel jLabel1;
+    public static javax.swing.JLabel jLabel2;
+    public static javax.swing.JLabel jLabel3;
+    public static javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    public static javax.swing.JLabel labelDireccion;
+    public static javax.swing.JLabel labelFecha;
+    public static javax.swing.JLabel labelNombre;
     // End of variables declaration//GEN-END:variables
 }
