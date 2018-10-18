@@ -32,7 +32,7 @@
                   <Component id="jLabel1" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="botonEmpleado1" min="-2" pref="203" max="-2" attributes="0"/>
+                          <Component id="botonReg" min="-2" pref="203" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Component id="botonSalas" min="-2" pref="187" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -59,7 +59,7 @@
                   <Component id="botonPelis" alignment="3" min="-2" pref="75" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="botonEmpleado1" min="-2" pref="75" max="-2" attributes="0"/>
+              <Component id="botonReg" min="-2" pref="75" max="-2" attributes="0"/>
               <EmptySpace pref="27" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -117,7 +117,7 @@
         <Property name="text" type="java.lang.String" value="&#xa1;Bienvenido!"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="botonEmpleado1">
+    <Component class="javax.swing.JButton" name="botonReg">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Magneto" size="24" style="1"/>
@@ -126,7 +126,7 @@
         <Property name="actionCommand" type="java.lang.String" value="Empleados"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonEmpleado1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonRegActionPerformed"/>
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>

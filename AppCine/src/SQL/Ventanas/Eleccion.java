@@ -247,11 +247,9 @@ public class Eleccion extends javax.swing.JFrame {
                 labelFecha.setText("Martes, 21 de Noviembre de 2015");
                 break;
             case "mysql":
-
                 labelNombre.setText("Cines Cajoinda");
                 labelDireccion.setText("Calle cierta 123");
                 labelFecha.setText("Miércoles, 22 de Noviembre de 2015");
-
                 break;
             default:
                 break;
@@ -330,15 +328,14 @@ public class Eleccion extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosed
 
     private void botonMetadatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMetadatoActionPerformed
-
         if (ventanaMetadatos == null) {
             ventanaMetadatos = new Metadatos();
             ventanaMetadatos.ventanaEleccion = this;// Pasarle este ventanaEleccion
         }
         ventanaMetadatos.soyMySql = this.soyMySql;
-        //ventanaMetadatos.sacarMetadatos();
         ventanaMetadatos.setVisible(true);
         this.setEnabled(false);//deshabilitar esta para no abrir de mas        
+        ventanaMetadatos.sacarMetadatos();
 
 
     }//GEN-LAST:event_botonMetadatoActionPerformed
