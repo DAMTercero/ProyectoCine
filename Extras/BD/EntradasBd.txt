@@ -1,0 +1,47 @@
+INSERT INTO SALA(CAPACIDAD, PANTALLA, FECHA_APERTURA, DISPONIBLE) 
+values(200,"15x8.5",2010,1);
+INSERT INTO SALA(CAPACIDAD, PANTALLA, FECHA_APERTURA, DISPONIBLE) 
+values(250,"14x9.5",1999,1);
+INSERT INTO SALA(CAPACIDAD, PANTALLA, FECHA_APERTURA, DISPONIBLE) 
+values(100,"9x3.5",1979,1);
+INSERT INTO SALA(CAPACIDAD, PANTALLA, FECHA_APERTURA, DISPONIBLE) 
+values(200,"18x10.5",2012,1);
+INSERT INTO SALA(CAPACIDAD, PANTALLA, FECHA_APERTURA, DISPONIBLE) 
+values(300,"29x21",2014,1);
+
+
+
+INSERT INTO PELICULA (TITULO, ANYO_ESTRENO, DIRECTOR, ACTOR_PRINCIPAL, ACTOR_SECUNDARIO, DURACION, TRAILER, DISPONIBLE) 
+values
+("Jumanji","1995","Joe Johnston","Robin Williams",
+"Kisten Dunst","1h44m","Una historia de Chris Allsburg sobre un juego que libera una estampida de peligros de la selva contra sus jugadores.",1);
+
+INSERT INTO PELICULA (TITULO, ANYO_ESTRENO, DIRECTOR, ACTOR_PRINCIPAL, ACTOR_SECUNDARIO, DURACION, TRAILER, DISPONIBLE) 
+values
+("El señor de los anillos la comunidad del anillo","2001","Peter Jackson","Elijah Wood",
+"Ian McKellen","3h48m","Basada en la primer historia épica de J.R.R. Tolkien, sobre la búsqueda para poseer o destruir todo el poder del Anillo.",1);
+
+INSERT INTO PELICULA (TITULO, ANYO_ESTRENO, DIRECTOR, ACTOR_PRINCIPAL, ACTOR_SECUNDARIO, DURACION, TRAILER, DISPONIBLE) 
+values
+("Spider-Man:Homecoming","2017","Joe Johnston","Robin Williams",
+"Kisten Dunst","1h44m","Una historia de Chris Allsburg sobre un juego que libera una estampida de peligros de la selva contra sus jugadores.",1);
+
+INSERT INTO PELICULA (TITULO, ANYO_ESTRENO, DIRECTOR, ACTOR_PRINCIPAL, ACTOR_SECUNDARIO, DURACION, TRAILER, DISPONIBLE) 
+values
+("Sharknado","2013","Anthony C. Ferrante"," Frankie Muniz",
+" Cassie Scerbo","1h26m","Una enorme tormenta devasta Los Ángeles, dejando las calles inundadas e infestadas con tiburones.",1);
+
+
+
+INSERT INTO EMPLEADO(NOMBRE, APELLIDO1, APELLIDO2, FECHA_NACIMIENTO, FECHA_CONTRATO, FECHA_FIN, NACIONALIDAD, CARGO, DISPONIBLE) 
+values("Mariano","Rajoi","Brey","27/03/1955","27/05/2010","indefinido","Español","Taquilla",1);
+
+INSERT INTO EMPLEADO(NOMBRE, APELLIDO1, APELLIDO2, FECHA_NACIMIENTO, FECHA_CONTRATO, FECHA_FIN, NACIONALIDAD, CARGO, DISPONIBLE) 
+values("Pablo","Iglesias","Turion","17/10/1978","15/07/2010","15/10/215","Español","Limpieza",1);
+
+INSERT INTO EMPLEADO(NOMBRE, APELLIDO1, APELLIDO2, FECHA_NACIMIENTO, FECHA_CONTRATO, FECHA_FIN, NACIONALIDAD, CARGO, DISPONIBLE) 
+values("Diego","Armando","Maradona","30/10/1960","30/03/2012","indefinido","Argentino","Ticadores",1);
+
+INSERT INTO EMPLEADO(NOMBRE, APELLIDO1, APELLIDO2, FECHA_NACIMIENTO, FECHA_CONTRATO, FECHA_FIN, NACIONALIDAD, CARGO, DISPONIBLE) 
+values("Lee","Sang-Hyeok","Faker","7/05/1996","4/12/2017","practicas","Coreano","encargado pelicula",1);
+

@@ -95,6 +95,12 @@ public class Añadir extends javax.swing.JFrame {
         labelTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelTitulo.setText("Título:");
 
+        textoTitulo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textoTituloKeyTyped(evt);
+            }
+        });
+
         labelAnyo.setForeground(new java.awt.Color(255, 0, 0));
         labelAnyo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelAnyo.setText("Año:");
@@ -291,6 +297,15 @@ public class Añadir extends javax.swing.JFrame {
         ventanaAnterior.ventanaAñadir = null;
         this.dispose();
     }//GEN-LAST:event_formWindowClosed
+
+    private void textoTituloKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textoTituloKeyTyped
+        if(Añadir.labelTitulo.getText()=="Capacidad:"){
+            char enter=evt.getKeyChar();
+        if(!(Character.isDigit(enter))){
+            evt.consume();
+        }
+        }
+    }//GEN-LAST:event_textoTituloKeyTyped
 
     /**
      * @param args the command line arguments
