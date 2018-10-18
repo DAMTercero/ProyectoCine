@@ -26,11 +26,11 @@ public abstract class sql {
     private static Properties config;
 
     public static Connection getCon_mysql_jdbc() throws ClassNotFoundException, SQLException, IOException {
-        sql.setConfig(sql.getConfig());
+        //sql.setConfig(sql.getConfig());
 
         Class.forName("com.mysql.jdbc.Driver");
 
-        sql.con_mysql_jdbc = (Connection) DriverManager.getConnection("jdbc:mysql://" + config.getProperty("mysql.server") + "/" + config.getProperty("mysql.bd") + "", config.getProperty("mysql.user"), config.getProperty("mysql.pass"));
+        sql.con_mysql_jdbc = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3312/cinesfinalv1","root","usbw");
         return con_mysql_jdbc;
 
     }

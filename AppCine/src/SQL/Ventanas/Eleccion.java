@@ -186,6 +186,8 @@ public class Eleccion extends javax.swing.JFrame {
         if (ventanaHistorico == null) {
             ventanaHistorico = new SQL.Ventanas.Historico();
             ventanaHistorico.ventanaEleccion = this;// Pasarle este ventanaEleccion
+
+            ventanaHistorico.setSoyMySql(soyMySql);// pasarle si es mysql o no para rellenar los combos
         }
         ventanaHistorico.historicoFunciones = this.historicoFunciones;//pasarle funciones
         try {
