@@ -63,7 +63,7 @@ public class EmpleadoFunciones {
         Añadir.labelTrailer.setText("Nacionalidad");
         Añadir.labelUltimo.setText("Cargo");
         Añadir.labelDisponible.setText("Disponible");
-
+       
         ventanaAñadir.empleadoFunciones = this;
         ventanaAñadir.ventanaAnterior = ventana;
         ventanaAñadir.isAnyadir = 1;//descirle que es añadir

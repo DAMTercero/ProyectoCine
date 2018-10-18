@@ -61,7 +61,7 @@ public class EmpleadoCRUD extends SQL.Conexion.sql {
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Imposible establecer conexion con las bases de datos.", "Error", JOptionPane.ERROR_MESSAGE);
-            Logger.getLogger(SqlCrude.class.getName()).log(Level.SEVERE, null, ex);
+            
         } finally {
             if (conn != null) {
                 conn.close();
@@ -109,7 +109,7 @@ public class EmpleadoCRUD extends SQL.Conexion.sql {
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Imposible establecer conexion con las bases de datos.", "Error", JOptionPane.ERROR_MESSAGE);
-            Logger.getLogger(SqlCrude.class.getName()).log(Level.SEVERE, null, ex);
+     
         } finally {
             if (conn != null) {
                 conn.close();
@@ -178,7 +178,7 @@ public class EmpleadoCRUD extends SQL.Conexion.sql {
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Imposible establecer conexion con las bases de datos.", "Error", JOptionPane.ERROR_MESSAGE);
-            Logger.getLogger(SqlCrude.class.getName()).log(Level.SEVERE, null, ex);
+           
         } finally {
             if (conn != null) {
                 conn.close();

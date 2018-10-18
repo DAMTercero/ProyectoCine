@@ -144,6 +144,12 @@ public class AMB extends javax.swing.JFrame {
         lableTrailer.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lableTrailer.setText("Trailer:");
 
+        textoID.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textoIDKeyTyped(evt);
+            }
+        });
+
         btnBuscar.setText("Buscar / Mostrar");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -447,6 +453,13 @@ public class AMB extends javax.swing.JFrame {
             peliculaFunciones.abrirVentanaModificar(ventanaModificar, (Pelicula) tablaFiltradoObjetos.get(tablaResultado.getSelectedRow()));
         }
     }//GEN-LAST:event_botonModificarActionPerformed
+
+    private void textoIDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textoIDKeyTyped
+        char enter=evt.getKeyChar();
+        if(!(Character.isDigit(enter))){
+            evt.consume();
+        }
+    }//GEN-LAST:event_textoIDKeyTyped
 
     /**
      * @param args the command line arguments
