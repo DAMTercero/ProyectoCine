@@ -39,7 +39,7 @@ public class MetadatosGet extends SQL.Conexion.sql {
                 //Class.forName("com.mysql.jdbc.Driver");
                 conexion = getCon_mysql_jdbc();
 
-            } else if (conector.equalsIgnoreCase("sqlite")) {
+            } else {
 
                 //Class.forName("com.sqlite.jdbc.Driver");
                 conexion = getCon_sql();

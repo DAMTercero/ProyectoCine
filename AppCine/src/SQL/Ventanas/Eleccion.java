@@ -239,9 +239,25 @@ public class Eleccion extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void rellenarMeta() {
+    public void ponerDatosExtras(String tipoBBDD) {
+        switch (tipoBBDD) {
+            case "sqlite":
+                labelNombre.setText("Cines Jindaka");
+                labelDireccion.setText("Calle falsa 123");
+                labelFecha.setText("Martes, 21 de Noviembre de 2015");
+                break;
+            case "mysql":
 
+                labelNombre.setText("Cines Cajoinda");
+                labelDireccion.setText("Calle cierta 123");
+                labelFecha.setText("Miércoles, 22 de Noviembre de 2015");
+
+                break;
+            default:
+                break;
+        }
     }
+
     private void botonSalasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalasActionPerformed
         if (ventanaAMB == null) {
             ventanaAMB = new SQL.Ventanas.AMB();
@@ -396,25 +412,4 @@ public class Eleccion extends javax.swing.JFrame {
     public static javax.swing.JLabel labelFecha;
     public static javax.swing.JLabel labelNombre;
     // End of variables declaration//GEN-END:variables
-
-    public void ponerDatosExtras(String tipoBBDD) {
-        switch (tipoBBDD) {
-            case "sqlite":
-                
-                labelNombre.setText("Cines Jindaka");
-                labelDireccion.setText("Calle falsa 123");
-                labelFecha.setText("Martes, 21 de Noviembre de 2015");
-                break;
-            case "mysql":
-                
-                labelNombre.setText("Cines Cajoinda");
-                labelDireccion.setText("Calle cierta 123");
-                labelFecha.setText("Miércoles, 22 de Noviembre de 2015");
-                
-                break;
-            default:
-                break;
-        }
-
-    }
 }
