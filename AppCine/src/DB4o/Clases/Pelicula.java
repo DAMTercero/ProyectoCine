@@ -20,10 +20,7 @@ public class Pelicula {
 	
 
 
-	public Pelicula(int idPelicula) {
-		
-		this.idPelicula = idPelicula;
-	}
+	
 
 
 

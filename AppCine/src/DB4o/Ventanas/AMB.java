@@ -5,18 +5,11 @@
  */
 package DB4o.Ventanas;
 
-import SQL.Ventanas.*;
-import DB4o.Ventanas.*;
+import DB4o.Clases.Empleado;
 import DB4o.Clases.Pelicula;
+import DB4o.Clases.Sala;
 import DB4o.Conexion.Conexion;
 import java.util.List;
-import javax.swing.JOptionPane;
-
-import javax.swing.JPanel;
-import javax.swing.table.DefaultTableModel;
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.logging.*;
 
 /**
  *
@@ -24,24 +17,15 @@ import java.util.logging.*;
  */
 public class AMB extends javax.swing.JFrame {
 
-    private JPanel contentPane;
     private static String salaPeliEmpleado;
-    //variables de ventana
-    public Eleccion eleccionVentana;
-
-    //tabla
-    static DefaultTableModel modeloTabla;// http://www.elprogramador.com.mx/llenar-un-jtable-con-datos-de-una-base-de-datos-mysql/
-
+    public Eleccion eleccion;
     /**
      * Creates new form Porseaka
      */
     public AMB(String queMeLLega) {
-
-        modeloTabla = new DefaultTableModel(null, getColumnas());
-        //setFilas();
-
         initComponents();
-       // this.salaPeliEmpleado = queMeLLega;
+
+        this.salaPeliEmpleado = queMeLLega;
         System.out.println(salaPeliEmpleado);
 
     }
@@ -55,9 +39,11 @@ public class AMB extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        textoErrores = new javax.swing.JTextField();
-        labelTituloVentana = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
+        botonGuardar = new javax.swing.JButton();
+        btnBuscar = new javax.swing.JButton();
+        botonModificar = new javax.swing.JButton();
+        botonBorrar = new javax.swing.JButton();
+        botonClear = new javax.swing.JButton();
         labelID = new javax.swing.JLabel();
         labelTitulo = new javax.swing.JLabel();
         labelAnyo = new javax.swing.JLabel();
@@ -65,216 +51,32 @@ public class AMB extends javax.swing.JFrame {
         labelAP = new javax.swing.JLabel();
         labelAS = new javax.swing.JLabel();
         labelDuracion = new javax.swing.JLabel();
-        lableTrailer = new javax.swing.JLabel();
         textoID = new javax.swing.JTextField();
         textoTitulo = new javax.swing.JTextField();
         textoAnyo = new javax.swing.JTextField();
+        textoAcPr = new javax.swing.JTextField();
         textoDirector = new javax.swing.JTextField();
         textoDuracion = new javax.swing.JTextField();
         textoAcSe = new javax.swing.JTextField();
+        textoErrores = new javax.swing.JTextField();
         textoTrailer = new javax.swing.JTextField();
-        btnBuscar = new javax.swing.JButton();
-        botonClear = new javax.swing.JButton();
-        textoAcPr = new javax.swing.JTextField();
-        jPanel2 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tablaResultado = new javax.swing.JTable();
-        jPanel3 = new javax.swing.JPanel();
-        botonGuardar = new javax.swing.JButton();
-        botonModificar = new javax.swing.JButton();
-        botonBorrar = new javax.swing.JButton();
+        lableTrailer = new javax.swing.JLabel();
+        labelTituloVentana = new javax.swing.JLabel();
         botonAtras = new javax.swing.JButton();
+        tablaResultados = new javax.swing.JScrollPane();
+        tablaResultado = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        textoCargo = new javax.swing.JTextField();
+        labelCargo = new javax.swing.JLabel();
+        tablaResultadosSalas = new javax.swing.JScrollPane();
+        tablaResultadoSalas = new javax.swing.JTable();
+        tablaResultadosEmpleados = new javax.swing.JScrollPane();
+        tablaResultadoEmpleados = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 255, 204));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        textoErrores.setEditable(false);
-        textoErrores.setBackground(new java.awt.Color(204, 204, 204));
-        textoErrores.setBorder(null);
-        getContentPane().add(textoErrores, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 550, -1));
-
-        labelTituloVentana.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 1, 48)); // NOI18N
-        labelTituloVentana.setForeground(new java.awt.Color(255, 0, 0));
-        labelTituloVentana.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelTituloVentana.setText("PELÍCULAS");
-        labelTituloVentana.setToolTipText("");
-        getContentPane().add(labelTituloVentana, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 22, 550, 80));
-
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Filtrado"));
-
-        labelID.setForeground(new java.awt.Color(255, 0, 0));
-        labelID.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelID.setText("ID Pelicula:");
-
-        labelTitulo.setForeground(new java.awt.Color(255, 0, 0));
-        labelTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelTitulo.setText("Título:");
-
-        labelAnyo.setForeground(new java.awt.Color(255, 0, 0));
-        labelAnyo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelAnyo.setText("Año:");
-
-        labelDirector.setForeground(new java.awt.Color(255, 0, 0));
-        labelDirector.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelDirector.setText("Director:");
-
-        labelAP.setForeground(new java.awt.Color(255, 0, 0));
-        labelAP.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelAP.setText("Actor Principal:");
-
-        labelAS.setForeground(new java.awt.Color(255, 0, 0));
-        labelAS.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelAS.setText("Actor Secundario:");
-
-        labelDuracion.setForeground(new java.awt.Color(255, 0, 0));
-        labelDuracion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelDuracion.setText("Duración en minutos:");
-
-        lableTrailer.setForeground(new java.awt.Color(255, 0, 0));
-        lableTrailer.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lableTrailer.setText("Trailer:");
-
-        btnBuscar.setText("Buscar / Mostrar");
-        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarActionPerformed(evt);
-            }
-        });
-
-        botonClear.setText("Limpiar");
-        botonClear.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonClearActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(textoID, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelID, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lableTrailer, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(textoTrailer, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(textoAcPr, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 153, Short.MAX_VALUE)
-                        .addComponent(btnBuscar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botonClear)
-                        .addGap(25, 25, 25))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(textoTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelDuracion, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(textoAnyo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(labelAP, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(labelAnyo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelAS, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelDirector, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textoDirector, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(textoDuracion, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(textoAcSe, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(labelTitulo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(textoID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textoTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(labelID))
-                .addGap(27, 27, 27)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelAnyo)
-                    .addComponent(labelDirector))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(textoAnyo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textoDirector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelAP)
-                    .addComponent(labelAS))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(textoDuracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textoAcSe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(labelDuracion))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lableTrailer)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(textoTrailer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscar)
-                    .addComponent(botonClear)
-                    .addComponent(textoAcPr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(16, 16, 16))
-        );
-
-        labelAP.getAccessibleContext().setAccessibleName("Actor Principal");
-
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 790, 300));
-
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Tabla"));
-
-        tablaResultado.setModel(modeloTabla);
-        tablaResultado.setRequestFocusEnabled(false);
-        jScrollPane1.setViewportView(tablaResultado);
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 948, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 470, 980, 380));
-
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Crear/Editar"));
 
         botonGuardar.setText("Añadir");
         botonGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -282,43 +84,111 @@ public class AMB extends javax.swing.JFrame {
                 botonGuardarActionPerformed(evt);
             }
         });
+        getContentPane().add(botonGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 270, 280, -1));
+
+        btnBuscar.setText("Buscar / Mostrar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 330, 280, -1));
 
         botonModificar.setText("Modificar");
-        botonModificar.setToolTipText("Solo se activara al seleccionar un registro de la tabla");
+        botonModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonModificarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(botonModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 730, -1, -1));
 
         botonBorrar.setText("Borrar");
-        botonBorrar.setToolTipText("Solo está disponible cuando se seleccione un registro de la tabla");
         botonBorrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonBorrarActionPerformed(evt);
             }
         });
+        getContentPane().add(botonBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 730, -1, -1));
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(38, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(botonModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botonGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botonBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(40, 40, 40))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(77, 77, 77)
-                .addComponent(botonGuardar)
-                .addGap(18, 18, 18)
-                .addComponent(botonModificar)
-                .addGap(18, 18, 18)
-                .addComponent(botonBorrar)
-                .addContainerGap(95, Short.MAX_VALUE))
-        );
+        botonClear.setText("Limpiar Campos");
+        botonClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonClearActionPerformed(evt);
+            }
+        });
+        getContentPane().add(botonClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 390, 280, -1));
 
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 150, 170, 300));
+        labelID.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelID.setForeground(new java.awt.Color(255, 0, 0));
+        labelID.setText("ID Pelicula:");
+        getContentPane().add(labelID, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, -1));
+
+        labelTitulo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelTitulo.setForeground(new java.awt.Color(255, 0, 0));
+        labelTitulo.setText("Título:");
+        getContentPane().add(labelTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, -1, -1));
+
+        labelAnyo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelAnyo.setForeground(new java.awt.Color(255, 0, 0));
+        labelAnyo.setText("Año:");
+        getContentPane().add(labelAnyo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, -1, -1));
+
+        labelDirector.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelDirector.setForeground(new java.awt.Color(255, 0, 0));
+        labelDirector.setText("Director:");
+        getContentPane().add(labelDirector, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, -1, -1));
+
+        labelAP.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelAP.setForeground(new java.awt.Color(255, 0, 0));
+        labelAP.setText("Actor Principal");
+        getContentPane().add(labelAP, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, -1, -1));
+
+        labelAS.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelAS.setForeground(new java.awt.Color(255, 0, 0));
+        labelAS.setText("Actor Secundario");
+        getContentPane().add(labelAS, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, -1, -1));
+
+        labelDuracion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelDuracion.setForeground(new java.awt.Color(255, 0, 0));
+        labelDuracion.setText("Duración en minutos:");
+        getContentPane().add(labelDuracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, -1, -1));
+
+        textoID.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        getContentPane().add(textoID, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 150, 390, -1));
+
+        textoTitulo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        getContentPane().add(textoTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 180, 390, -1));
+
+        textoAnyo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        getContentPane().add(textoAnyo, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 210, 390, -1));
+
+        textoAcPr.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        getContentPane().add(textoAcPr, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 270, 390, -1));
+
+        textoDirector.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        getContentPane().add(textoDirector, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 240, 390, -1));
+
+        textoDuracion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        getContentPane().add(textoDuracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 330, 390, -1));
+
+        textoAcSe.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        getContentPane().add(textoAcSe, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 300, 390, -1));
+        getContentPane().add(textoErrores, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 550, -1));
+
+        textoTrailer.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        getContentPane().add(textoTrailer, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 360, 390, -1));
+
+        lableTrailer.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lableTrailer.setForeground(new java.awt.Color(255, 0, 0));
+        lableTrailer.setText("Trailer:");
+        getContentPane().add(lableTrailer, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, -1, -1));
+
+        labelTituloVentana.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 1, 48)); // NOI18N
+        labelTituloVentana.setForeground(new java.awt.Color(255, 0, 0));
+        labelTituloVentana.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelTituloVentana.setText("PELÍCULAS");
+        labelTituloVentana.setToolTipText("");
+        getContentPane().add(labelTituloVentana, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 890, 80));
 
         botonAtras.setText("Atrás");
         botonAtras.addActionListener(new java.awt.event.ActionListener() {
@@ -326,28 +196,415 @@ public class AMB extends javax.swing.JFrame {
                 botonAtrasActionPerformed(evt);
             }
         });
-        getContentPane().add(botonAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 50, 140, 40));
+        getContentPane().add(botonAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 730, -1, -1));
+
+        tablaResultado.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID Película", "Título", "Año", "Director", "Actor Principal", "Actor Secundario", "Duración", "Trailer"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        tablaResultado.setGridColor(new java.awt.Color(51, 51, 51));
+        tablaResultado.setOpaque(false);
+        tablaResultado.setRequestFocusEnabled(false);
+        tablaResultado.setSelectionBackground(new java.awt.Color(255, 102, 102));
+        tablaResultados.setViewportView(tablaResultado);
+
+        getContentPane().add(tablaResultados, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 440, 870, 280));
+
+        jLabel1.setText("Filtrar Por:");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, -1));
+
+        textoCargo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        getContentPane().add(textoCargo, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 390, 390, -1));
+
+        labelCargo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelCargo.setForeground(new java.awt.Color(255, 0, 0));
+        labelCargo.setText("Cargo:");
+        getContentPane().add(labelCargo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, -1, -1));
+
+        tablaResultadoSalas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "ID Sala", "Capacidad", "Pantalla", "Apertura", "Horario"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        tablaResultadoSalas.setGridColor(new java.awt.Color(51, 51, 51));
+        tablaResultadoSalas.setOpaque(false);
+        tablaResultadoSalas.setRequestFocusEnabled(false);
+        tablaResultadoSalas.setSelectionBackground(new java.awt.Color(255, 102, 102));
+        tablaResultadosSalas.setViewportView(tablaResultadoSalas);
+
+        getContentPane().add(tablaResultadosSalas, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 440, 870, 280));
+
+        tablaResultadoEmpleados.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID Empleado", "Nombre", "Apellido 1", "Apellido 2", "Fecha Nacimiento", "Fecha Contrato", "Fecha fin Contrato", "Nacion", "Cargo"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        tablaResultadoEmpleados.setGridColor(new java.awt.Color(51, 51, 51));
+        tablaResultadoEmpleados.setOpaque(false);
+        tablaResultadoEmpleados.setRequestFocusEnabled(false);
+        tablaResultadoEmpleados.setSelectionBackground(new java.awt.Color(255, 102, 102));
+        tablaResultadosEmpleados.setViewportView(tablaResultadoEmpleados);
+
+        getContentPane().add(tablaResultadosEmpleados, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 440, 870, 280));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+
     private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
-        Añadir a;
+        VentanaAñadir a;
         switch (salaPeliEmpleado) {
             case "empleado":
-                a = new Añadir();
+                a = new VentanaAñadir(salaPeliEmpleado);
                 a.cambiarVentanaEmpleadoss();
+                a.botonAñadir.setText("Añadir");
+                a.amb = this;
                 a.show();
                 break;
             case "sala":
-                a = new Añadir();
+                a = new VentanaAñadir(salaPeliEmpleado);
                 a.cambiarVentanaSalas();
+                a.botonAñadir.setText("Añadir");
+                a.amb = this;
                 a.show();
                 break;
             case "pelicula":
-                a = new Añadir();
+                a = new VentanaAñadir(salaPeliEmpleado);
                 a.cambiarVentanaPelis();
+                a.botonAñadir.setText("Añadir");
+                a.amb = this;
                 a.show();
                 break;
         }
@@ -356,44 +613,128 @@ public class AMB extends javax.swing.JFrame {
     }//GEN-LAST:event_botonGuardarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        int idPelicula = 0;
-        if (textoID.getText().isEmpty()) {
-            idPelicula = 0;
-        } else {
-            idPelicula = Integer.parseInt(textoID.getText());
-        }
-        String titulo = textoTitulo.getText();
-        if (titulo.isEmpty()) {
-            titulo = null;
-        }
-        String anyoEstreno = textoAnyo.getText();
-        if (anyoEstreno.isEmpty()) {
-            anyoEstreno = null;
-        }
-        String director = textoDirector.getText();
-        if (director.isEmpty()) {
-            director = null;
-        }
-        String actorPrinci = textoAcPr.getText();
-        if (actorPrinci.isEmpty()) {
-            actorPrinci = null;
-        }
-        String actorSecun = textoAcSe.getText();
-        if (actorSecun.isEmpty()) {
-            actorSecun = null;
-        }
-        String duracion = textoDuracion.getText();
-        if (duracion.isEmpty()) {
-            duracion = null;
-        }
-        String trailer = textoTrailer.getText();
-        if (trailer.isEmpty()) {
-            trailer = null;
-        }
 
-        Pelicula p1 = new Pelicula(idPelicula, titulo, anyoEstreno, director, actorPrinci, actorSecun, duracion, trailer);
-        Conexion conexion = new Conexion();
-        conexion.buscarPelicula(p1);
+        switch (salaPeliEmpleado) {
+            case "empleado":
+                int idEmpleado = 0;
+                if (textoID.getText().isEmpty()) {
+                    idEmpleado = 0;
+                } else {
+                    idEmpleado = Integer.parseInt(textoID.getText());
+                }
+                String nombre = textoTitulo.getText();
+                if (nombre.isEmpty()) {
+                    nombre = null;
+                }
+                String ape1 = textoAnyo.getText();
+                if (ape1.isEmpty()) {
+                    ape1 = null;
+                }
+                String ape2 = textoDirector.getText();
+                if (ape2.isEmpty()) {
+                    ape2 = null;
+                }
+                String fechaNac = textoAcPr.getText();
+                if (fechaNac.isEmpty()) {
+                    fechaNac = null;
+                }
+                String fechaContr = textoAcSe.getText();
+                if (fechaContr.isEmpty()) {
+                    fechaContr = null;
+                }
+                String fechaFinContr = textoDuracion.getText();
+                if (fechaFinContr.isEmpty()) {
+                    fechaFinContr = null;
+                }
+                String nacion = textoTrailer.getText();
+                if (nacion.isEmpty()) {
+                    nacion = null;
+                }
+                String cargo = textoCargo.getText();
+                if (cargo.isEmpty()) {
+                    cargo = null;
+                }
+
+                Empleado e1 = new Empleado(idEmpleado, nombre, ape1, ape2, fechaNac, fechaContr, fechaFinContr, nacion, cargo);
+                Conexion conexion = new Conexion();
+                conexion.buscarEmpleado(e1);
+                break;
+            case "sala":
+                int idSala = 0;
+                if (textoID.getText().isEmpty()) {
+                    idSala = 0;
+                } else {
+                    idSala = Integer.parseInt(textoID.getText());
+                }
+
+                int capacidad = 0;
+                if (textoTitulo.getText().isEmpty()) {
+                    capacidad = 0;
+                } else {
+                    capacidad = Integer.parseInt(textoTitulo.getText());
+                }
+
+                int pantalla = 0;
+                if (textoAnyo.getText().isEmpty()) {
+                    pantalla = 0;
+                } else {
+                    pantalla = Integer.parseInt(textoAnyo.getText());
+                }
+
+                String apertura = textoDirector.getText();
+                if (apertura.isEmpty()) {
+                    apertura = null;
+                }
+                String horario = textoAcPr.getText();
+                if (horario.isEmpty()) {
+                    horario = null;
+                }
+
+                Sala s1 = new Sala(idSala, capacidad, pantalla, apertura, horario);
+                Conexion conexion3 = new Conexion();
+                conexion3.buscarSala(s1);
+                break;
+            case "pelicula":
+                int idPelicula = 0;
+                if (textoID.getText().isEmpty()) {
+                    idPelicula = 0;
+                } else {
+                    idPelicula = Integer.parseInt(textoID.getText());
+                }
+                String titulo = textoTitulo.getText();
+                if (titulo.isEmpty()) {
+                    titulo = null;
+                }
+                String anyoEstreno = textoAnyo.getText();
+                if (anyoEstreno.isEmpty()) {
+                    anyoEstreno = null;
+                }
+                String director = textoDirector.getText();
+                if (director.isEmpty()) {
+                    director = null;
+                }
+                String actorPrinci = textoAcPr.getText();
+                if (actorPrinci.isEmpty()) {
+                    actorPrinci = null;
+                }
+                String actorSecun = textoAcSe.getText();
+                if (actorSecun.isEmpty()) {
+                    actorSecun = null;
+                }
+                String duracion = textoDuracion.getText();
+                if (duracion.isEmpty()) {
+                    duracion = null;
+                }
+                String trailer = textoTrailer.getText();
+                if (trailer.isEmpty()) {
+                    trailer = null;
+                }
+
+                Pelicula p1 = new Pelicula(idPelicula, titulo, anyoEstreno, director, actorPrinci, actorSecun, duracion, trailer);
+                Conexion conexion2 = new Conexion();
+                conexion2.buscarPelicula(p1);
+                break;
+        }
 
 
     }//GEN-LAST:event_btnBuscarActionPerformed
@@ -413,53 +754,256 @@ public class AMB extends javax.swing.JFrame {
 
     private void botonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBorrarActionPerformed
 
-        int idPelicula = 0;
-        if (textoID.getText().isEmpty()) {
-            idPelicula = 0;
-        } else {
-            idPelicula = Integer.parseInt(textoID.getText());
+        switch (salaPeliEmpleado) {
+            case "empleado":
+                int filaseleccionada;
+                //Guardamos en un entero la fila seleccionada.
+                filaseleccionada = tablaResultadoEmpleados.getSelectedRow();
+                if (filaseleccionada < 0) {
+                    AMB.textoErrores.setText("No ha seleccionado ninguna fila.");
+
+                }
+                int idEmpleado = Integer.parseInt((String) tablaResultadoEmpleados.getValueAt(filaseleccionada, 0));
+
+                String nombre = (String) tablaResultadoEmpleados.getValueAt(filaseleccionada, 1);
+
+                String ape1 = (String) tablaResultadoEmpleados.getValueAt(filaseleccionada, 2);
+
+                String ape2 = (String) tablaResultadoEmpleados.getValueAt(filaseleccionada, 3);
+
+                String fechaNac = (String) tablaResultadoEmpleados.getValueAt(filaseleccionada, 4);
+
+                String fechaCon = (String) tablaResultadoEmpleados.getValueAt(filaseleccionada, 5);
+
+                String fechaFinCon = (String) tablaResultadoEmpleados.getValueAt(filaseleccionada, 6);
+
+                String nacion = (String) tablaResultadoEmpleados.getValueAt(filaseleccionada, 7);
+
+                String cargo = (String) tablaResultadoEmpleados.getValueAt(filaseleccionada, 8);
+
+                Empleado e1 = new Empleado(idEmpleado, nombre, ape1, ape2, fechaNac, fechaCon, fechaFinCon, nacion, cargo);
+                Conexion conexion = new Conexion();
+                conexion.borrarEmpleado(e1);
+                for (int i = 0; i < tablaResultadoEmpleados.getRowCount(); i++) {
+
+                    tablaResultadoEmpleados.setValueAt("", i, 0);
+                    tablaResultadoEmpleados.setValueAt("", i, 1);
+                    tablaResultadoEmpleados.setValueAt("", i, 2);
+                    tablaResultadoEmpleados.setValueAt("", i, 3);
+                    tablaResultadoEmpleados.setValueAt("", i, 4);
+                    tablaResultadoEmpleados.setValueAt("", i, 5);
+                    tablaResultadoEmpleados.setValueAt("", i, 6);
+                    tablaResultadoEmpleados.setValueAt("", i, 7);
+                    tablaResultadoEmpleados.setValueAt("", i, 8);
+
+                }
+                break;
+            case "sala":
+
+                int filaseleccionad3;
+                //Guardamos en un entero la fila seleccionada.
+                filaseleccionad3 = tablaResultadoSalas.getSelectedRow();
+                if (filaseleccionad3 < 0) {
+                    AMB.textoErrores.setText("No ha seleccionado ninguna fila.");
+
+                }
+                int idSala = Integer.parseInt((String) tablaResultadoSalas.getValueAt(filaseleccionad3, 0));
+
+                int capacidad = Integer.parseInt((String) tablaResultadoSalas.getValueAt(filaseleccionad3, 1));
+
+                int pantalla = Integer.parseInt((String) tablaResultadoSalas.getValueAt(filaseleccionad3, 2));
+
+                String apertura = (String) tablaResultadoSalas.getValueAt(filaseleccionad3, 3);
+
+                String horario = (String) tablaResultadoSalas.getValueAt(filaseleccionad3, 4);
+
+                Sala s1 = new Sala(idSala, capacidad, pantalla, apertura, horario);
+                Conexion conexion3 = new Conexion();
+                conexion3.borrarSala(s1);
+                for (int i = 0; i < tablaResultadoSalas.getRowCount(); i++) {
+
+                    tablaResultadoSalas.setValueAt("", i, 0);
+                    tablaResultadoSalas.setValueAt("", i, 1);
+                    tablaResultadoSalas.setValueAt("", i, 2);
+                    tablaResultadoSalas.setValueAt("", i, 3);
+                    tablaResultadoSalas.setValueAt("", i, 4);
+                 
+
+                }
+                break;
+            case "pelicula":
+                int filaseleccionada2;
+                //Guardamos en un entero la fila seleccionada.
+                filaseleccionada2 = tablaResultado.getSelectedRow();
+                if (filaseleccionada2 < 0) {
+                    AMB.textoErrores.setText("No ha seleccionado ninguna fila.");
+
+                }
+                int idPelicula = Integer.parseInt((String) tablaResultado.getValueAt(filaseleccionada2, 0));
+
+                String titulo = (String) tablaResultado.getValueAt(filaseleccionada2, 1);
+
+                String anyoEstreno = (String) tablaResultado.getValueAt(filaseleccionada2, 2);
+
+                String director = (String) tablaResultado.getValueAt(filaseleccionada2, 3);
+
+                String actorPrinci = (String) tablaResultado.getValueAt(filaseleccionada2, 4);
+
+                String actorSecun = (String) tablaResultado.getValueAt(filaseleccionada2, 5);
+
+                String duracion = (String) tablaResultado.getValueAt(filaseleccionada2, 6);
+
+                String trailer = (String) tablaResultado.getValueAt(filaseleccionada2, 7);
+
+                Pelicula p1 = new Pelicula(idPelicula, titulo, anyoEstreno, director, actorPrinci, actorSecun, duracion, trailer);
+                Conexion conexion2 = new Conexion();
+                conexion2.borrarPelicula(p1);
+                for (int i = 0; i < tablaResultado.getRowCount(); i++) {
+
+                    tablaResultado.setValueAt("", i, 0);
+                    tablaResultado.setValueAt("", i, 1);
+                    tablaResultado.setValueAt("", i, 2);
+                    tablaResultado.setValueAt("", i, 3);
+                    tablaResultado.setValueAt("", i, 4);
+                    tablaResultado.setValueAt("", i, 5);
+                    tablaResultado.setValueAt("", i, 6);
+                    tablaResultado.setValueAt("", i, 7);
+
+                }
+                break;
         }
 
-        String titulo = textoTitulo.getText();
-        if (titulo.isEmpty()) {
-            titulo = null;
-        }
-        String anyoEstreno = textoAnyo.getText();
-        if (anyoEstreno.isEmpty()) {
-            anyoEstreno = null;
-        }
-        String director = textoDirector.getText();
-        if (director == "") {
-            director = null;
-        }
-        String actorPrinci = textoAcPr.getText();
-        if (actorPrinci.isEmpty()) {
-            actorPrinci = null;
-        }
-        String actorSecun = textoAcSe.getText();
-        if (actorSecun.isEmpty()) {
-            actorSecun = null;
-        }
-        String duracion = textoDuracion.getText();
-        if (duracion.isEmpty()) {
-            duracion = null;
-        }
-        String trailer = textoTrailer.getText();
-        if (trailer.isEmpty()) {
-            trailer = null;
-        }
 
-        Pelicula p1 = new Pelicula(idPelicula, titulo, anyoEstreno, director, actorPrinci, actorSecun, duracion, trailer);
-        Conexion conexion = new Conexion();
-        conexion.borrarPelicula(p1);
     }//GEN-LAST:event_botonBorrarActionPerformed
 
     private void botonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAtrasActionPerformed
-        this.dispose();        
-        //Eleccion el = new Eleccion();
-       //eleccionVentana.set
-        //el.show();
+        this.hide();
+       eleccion.show();
+        
     }//GEN-LAST:event_botonAtrasActionPerformed
+
+    private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
+
+        switch (salaPeliEmpleado) {
+            case "empleado":
+                int filaseleccionada2;
+
+                //Guardamos en un entero la fila seleccionada.
+                filaseleccionada2 = tablaResultadoEmpleados.getSelectedRow();
+
+             
+
+                int idEmpleado = Integer.parseInt((String) tablaResultadoEmpleados.getValueAt(filaseleccionada2, 0));
+
+                String nombre = (String) tablaResultadoEmpleados.getValueAt(filaseleccionada2, 1);
+
+                String ape1 = (String) tablaResultadoEmpleados.getValueAt(filaseleccionada2, 2);
+
+                String ape2 = (String) tablaResultadoEmpleados.getValueAt(filaseleccionada2, 3);
+
+                String fechaNac = (String) tablaResultadoEmpleados.getValueAt(filaseleccionada2, 4);
+
+                String fechaContr = (String) tablaResultadoEmpleados.getValueAt(filaseleccionada2, 5);
+
+                String fechaFin = (String) tablaResultadoEmpleados.getValueAt(filaseleccionada2, 6);
+
+                String nacion = (String) tablaResultadoEmpleados.getValueAt(filaseleccionada2, 7);
+
+                String cargo = (String) tablaResultadoEmpleados.getValueAt(filaseleccionada2, 8);
+
+                VentanaAñadir a = new VentanaAñadir("empleado");
+                a.cambiarVentanaEmpleadoss();
+                a.textoID.setText(String.valueOf(idEmpleado));
+                a.textoTitulo.setText(nombre);
+                a.textoAnyo.setText(ape1);
+                a.textoDirector.setText(ape2);
+                a.textoAcPr.setText(fechaNac);
+                a.textoAcSe.setText(fechaContr);
+                a.textoDuracion.setText(fechaFin);
+                a.textoTrailer.setText(nacion);
+                a.textoCargo.setText(cargo);
+                a.botonAñadir.setText("Modificar");
+
+                Empleado empleOriginal = new Empleado(idEmpleado, nombre, ape1, ape2, fechaNac, fechaContr, fechaFin, nacion, cargo);
+                a.empleOriginal = empleOriginal;
+                a.show();
+                break;
+            case "sala":
+                int filaseleccionada3;
+
+                //Guardamos en un entero la fila seleccionada.
+                filaseleccionada3 = tablaResultadoSalas.getSelectedRow();
+
+                
+
+                int idSala = Integer.parseInt((String) tablaResultadoSalas.getValueAt(filaseleccionada3, 0));
+
+                int capacidad = Integer.parseInt((String) tablaResultadoSalas.getValueAt(filaseleccionada3, 1));
+
+                int pantalla = Integer.parseInt((String) tablaResultadoSalas.getValueAt(filaseleccionada3, 2));
+
+                String apertura = (String) tablaResultadoSalas.getValueAt(filaseleccionada3, 3);
+
+                String horario = (String) tablaResultadoSalas.getValueAt(filaseleccionada3, 4);
+
+                VentanaAñadir a3 = new VentanaAñadir("sala");
+                a3.cambiarVentanaSalas();
+                a3.textoID.setText(String.valueOf(idSala));
+                a3.textoTitulo.setText(String.valueOf(capacidad));
+                a3.textoAnyo.setText(String.valueOf(pantalla));
+                a3.textoDirector.setText(apertura);
+                a3.textoAcPr.setText(horario);
+
+                a3.botonAñadir.setText("Modificar");
+
+                Sala salaOriginal = new Sala(idSala, capacidad, pantalla, apertura, horario);
+                a3.salaOriginal = salaOriginal;
+                a3.show();
+                break;
+            case "pelicula":
+                int filaseleccionada;
+
+                //Guardamos en un entero la fila seleccionada.
+                filaseleccionada = tablaResultado.getSelectedRow();
+
+                AMB.textoErrores.setText("No ha seleccionado ninguna fila.");
+
+                int idPelicula = Integer.parseInt((String) tablaResultado.getValueAt(filaseleccionada, 0));
+
+                String titulo = (String) tablaResultado.getValueAt(filaseleccionada, 1);
+
+                String anyoEstreno = (String) tablaResultado.getValueAt(filaseleccionada, 2);
+
+                String director = (String) tablaResultado.getValueAt(filaseleccionada, 3);
+
+                String actorPrinci = (String) tablaResultado.getValueAt(filaseleccionada, 4);
+
+                String actorSecun = (String) tablaResultado.getValueAt(filaseleccionada, 5);
+
+                String duracion = (String) tablaResultado.getValueAt(filaseleccionada, 6);
+
+                String trailer = (String) tablaResultado.getValueAt(filaseleccionada, 7);
+
+                VentanaAñadir a2 = new VentanaAñadir("pelicula");
+                a2.cambiarVentanaPelis();
+                a2.textoID.setText(String.valueOf(idPelicula));
+                a2.textoTitulo.setText(titulo);
+                a2.textoAnyo.setText(anyoEstreno);
+                a2.textoDirector.setText(director);
+                a2.textoAcPr.setText(actorPrinci);
+                a2.textoAcSe.setText(actorSecun);
+                a2.textoDuracion.setText(duracion);
+                a2.textoTrailer.setText(trailer);
+                a2.botonAñadir.setText("Modificar");
+
+                Pelicula peliOriginal = new Pelicula(idPelicula, titulo, anyoEstreno, director, actorPrinci, actorSecun, duracion, trailer);
+                a2.peliOriginal = peliOriginal;
+                a2.show();
+                break;
+        }
+
+
+    }//GEN-LAST:event_botonModificarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -488,20 +1032,6 @@ public class AMB extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -512,7 +1042,21 @@ public class AMB extends javax.swing.JFrame {
     }
 
     public static void rellenarPelicula(List<Pelicula> pelis) {
-        /* for (int i = 0; i < pelis.size(); i++) {
+
+        for (int i = 0; i < tablaResultado.getRowCount(); i++) {
+
+            tablaResultado.setValueAt("", i, 0);
+            tablaResultado.setValueAt("", i, 1);
+            tablaResultado.setValueAt("", i, 2);
+            tablaResultado.setValueAt("", i, 3);
+            tablaResultado.setValueAt("", i, 4);
+            tablaResultado.setValueAt("", i, 5);
+            tablaResultado.setValueAt("", i, 6);
+            tablaResultado.setValueAt("", i, 7);
+
+        }
+
+        for (int i = 0; i < pelis.size(); i++) {
 
             tablaResultado.setValueAt(String.valueOf(pelis.get(i).getIdPelicula()), i, 0);
             tablaResultado.setValueAt(pelis.get(i).getTitulo(), i, 1);
@@ -523,24 +1067,62 @@ public class AMB extends javax.swing.JFrame {
             tablaResultado.setValueAt(pelis.get(i).getDuracion(), i, 6);
             tablaResultado.setValueAt(pelis.get(i).getTrailer(), i, 7);
 
-        }*/
-        modeloTabla.setRowCount(0);
-        Object datosPelicula[] = new Object[8];
-        int i = 0;
-        for (Pelicula peli : pelis) {
-            datosPelicula[0] = peli.getIdPelicula();
-            datosPelicula[1] = peli.getTitulo();
-            datosPelicula[2] = peli.getAnyoEstreno();
-            datosPelicula[3] = peli.getActorPrinci();
-            datosPelicula[4] = peli.getActorSecun();
-            datosPelicula[5] = peli.getDirector();
-            datosPelicula[6] = peli.getDuracion();
-            datosPelicula[7] = peli.getTrailer();
-            setFilas(datosPelicula);
-            // modeloTabla.addRow(datosPelicula[i]);
-            i++;
         }
 
+    }
+
+    public static void rellenarEmpleado(List<Empleado> emples) {
+
+        for (int i = 0; i < tablaResultadoEmpleados.getRowCount(); i++) {
+
+            tablaResultadoEmpleados.setValueAt("", i, 0);
+            tablaResultadoEmpleados.setValueAt("", i, 1);
+            tablaResultadoEmpleados.setValueAt("", i, 2);
+            tablaResultadoEmpleados.setValueAt("", i, 3);
+            tablaResultadoEmpleados.setValueAt("", i, 4);
+            tablaResultadoEmpleados.setValueAt("", i, 5);
+            tablaResultadoEmpleados.setValueAt("", i, 6);
+            tablaResultadoEmpleados.setValueAt("", i, 7);
+            tablaResultadoEmpleados.setValueAt("", i, 8);
+
+        }
+
+        for (int i = 0; i < emples.size(); i++) {
+
+            tablaResultadoEmpleados.setValueAt(String.valueOf(emples.get(i).getIdEmpleado()), i, 0);
+            tablaResultadoEmpleados.setValueAt(emples.get(i).getNombre(), i, 1);
+            tablaResultadoEmpleados.setValueAt(emples.get(i).getApellido1(), i, 2);
+            tablaResultadoEmpleados.setValueAt(emples.get(i).getApellido2(), i, 3);
+            tablaResultadoEmpleados.setValueAt(emples.get(i).getFechaNac(), i, 4);
+            tablaResultadoEmpleados.setValueAt(emples.get(i).getFechaContrato(), i, 5);
+            tablaResultadoEmpleados.setValueAt(emples.get(i).getFechaFin(), i, 6);
+            tablaResultadoEmpleados.setValueAt(emples.get(i).getNacionalidad(), i, 7);
+            tablaResultadoEmpleados.setValueAt(emples.get(i).getCargo(), i, 8);
+
+        }
+
+    }
+
+    public static void rellenarSala(List<Sala> salas) {
+
+        for (int i = 0; i < tablaResultadoSalas.getRowCount(); i++) {
+
+            tablaResultadoSalas.setValueAt("", i, 0);
+            tablaResultadoSalas.setValueAt("", i, 1);
+            tablaResultadoSalas.setValueAt("", i, 2);
+            tablaResultadoSalas.setValueAt("", i, 3);
+            tablaResultadoSalas.setValueAt("", i, 4);
+        }
+
+        for (int i = 0; i < salas.size(); i++) {
+
+            tablaResultadoSalas.setValueAt(String.valueOf(salas.get(i).getIdSala()), i, 0);
+            tablaResultadoSalas.setValueAt(String.valueOf(salas.get(i).getCapacidad()), i, 1);
+            tablaResultadoSalas.setValueAt(String.valueOf(salas.get(i).getPantalla()), i, 2);
+            tablaResultadoSalas.setValueAt(salas.get(i).getApertura(), i, 3);
+            tablaResultadoSalas.setValueAt(salas.get(i).getHorario(), i, 4);
+
+        }
     }
 
     public static void rellenarErrores(String frase) {
@@ -549,79 +1131,61 @@ public class AMB extends javax.swing.JFrame {
     }
 
     public static void cambiarVentanaPelis() {
-          //campos visibles para filtrar por si hacemos cambios
         labelTituloVentana.setText("PELÍCULAS");
         labelID.setText("ID Pélicula:");
         labelTitulo.setText("Título:");
         labelAnyo.setText("Año: ");
         labelDirector.setText("Director:");
-        //campos que no estan visible por si hacemos cambios
-        labelAP.setVisible(false);
-        labelAS.setVisible(false);
-        labelDuracion.setVisible(false);
-        lableTrailer.setVisible(false);
-        textoTrailer.setVisible(false);
-        textoAcPr.setVisible(false);
-        textoAcSe.setVisible(false);
-        textoDuracion.setVisible(false);
+        labelAP.setText("Actor/a principal:");
+        labelAS.setText("Actor/a secundario/a:");
+        labelDuracion.setText("Duración:");
+        lableTrailer.setText("Trailer");
+        labelCargo.hide();
+        textoCargo.hide();
     }
 
     public static void cambiarVentanaSalas() {
-      //campos visibles para filtrar
         labelTituloVentana.setText("SALAS");
         labelID.setText("ID Sala:");
-        textoID.setVisible(true);
-        //campos que no estan visible por si hacemos cambios
-        labelTitulo.setText(" ");//asi no se rompe la estructura de labels y textfields
-        labelAnyo.setVisible(false);
-        labelDirector.setVisible(false);
-        labelAP.setVisible(false);
-        labelAS.setVisible(false);
-        labelDuracion.setVisible(false);
-        lableTrailer.setVisible(false);
-        //campos que no estan visible por si hacemos cambios
-        textoTitulo.setVisible(false);
-        textoDirector.setVisible(false);
-        textoAnyo.setVisible(false);
-        textoAcPr.setVisible(false);
-        textoAcSe.setVisible(false);
-        textoDuracion.setVisible(false);
-        textoTrailer.setVisible(false);
+        labelTitulo.setText("Capacidad:");
+        labelAnyo.setText("Pantalla: ");
+        labelDirector.setText("Apertura:");
+        labelAP.setText("Horario:");
+        labelAS.setText(" ");
+        labelDuracion.setText(" ");
+        lableTrailer.setText(" ");
+        textoAcSe.hide();
+        textoDuracion.hide();
+        textoTrailer.hide();
+        labelCargo.hide();
+        textoCargo.hide();
     }
 
     public static void cambiarVentanaEmpleadoss() {
-        //campos visibles para filtrar
         labelTituloVentana.setText("EMPLEADOS");
         labelID.setText("ID Empleado:");
         labelTitulo.setText("Nombre:");
         labelAnyo.setText("Primer apellido: ");
         labelDirector.setText("Segundo apellido:");
-        //campos que no estan visible por si hacemos cambios
-        labelAP.setVisible(false);
-        labelAS.setVisible(false);
-        labelDuracion.setVisible(false);
-        lableTrailer.setVisible(false);
-        textoAcPr.setVisible(false);
-        textoAcSe.setVisible(false);
-        textoDuracion.setVisible(false);
-        textoTrailer.setVisible(false);
+        labelAP.setText("Fecha de Nacimiento:");
+        labelAS.setText("Fecha de contratación:");
+        labelDuracion.setText("Fecha Fin de Contrato:");
+        lableTrailer.setText("Nacionalidad: ");
 
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public static javax.swing.JButton botonAtras;
-    public static javax.swing.JButton botonBorrar;
-    public static javax.swing.JButton botonClear;
-    public static javax.swing.JButton botonGuardar;
-    public static javax.swing.JButton botonModificar;
-    public static javax.swing.JButton btnBuscar;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    public static javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton botonAtras;
+    private javax.swing.JButton botonBorrar;
+    private javax.swing.JButton botonClear;
+    private javax.swing.JButton botonGuardar;
+    private javax.swing.JButton botonModificar;
+    private javax.swing.JButton btnBuscar;
+    private javax.swing.JLabel jLabel1;
     public static javax.swing.JLabel labelAP;
     public static javax.swing.JLabel labelAS;
     public static javax.swing.JLabel labelAnyo;
+    public static javax.swing.JLabel labelCargo;
     public static javax.swing.JLabel labelDirector;
     public static javax.swing.JLabel labelDuracion;
     public static javax.swing.JLabel labelID;
@@ -629,25 +1193,20 @@ public class AMB extends javax.swing.JFrame {
     public static javax.swing.JLabel labelTituloVentana;
     public static javax.swing.JLabel lableTrailer;
     public static javax.swing.JTable tablaResultado;
-    public static javax.swing.JTextField textoAcPr;
-    public static javax.swing.JTextField textoAcSe;
-    public static javax.swing.JTextField textoAnyo;
-    public static javax.swing.JTextField textoDirector;
-    public static javax.swing.JTextField textoDuracion;
+    public static javax.swing.JTable tablaResultadoEmpleados;
+    public static javax.swing.JTable tablaResultadoSalas;
+    public static javax.swing.JScrollPane tablaResultados;
+    public static javax.swing.JScrollPane tablaResultadosEmpleados;
+    public static javax.swing.JScrollPane tablaResultadosSalas;
+    private static javax.swing.JTextField textoAcPr;
+    private static javax.swing.JTextField textoAcSe;
+    private static javax.swing.JTextField textoAnyo;
+    private static javax.swing.JTextField textoCargo;
+    private static javax.swing.JTextField textoDirector;
+    private static javax.swing.JTextField textoDuracion;
     public static javax.swing.JTextField textoErrores;
-    public static javax.swing.JTextField textoID;
-    public static javax.swing.JTextField textoTitulo;
-    public static javax.swing.JTextField textoTrailer;
+    private static javax.swing.JTextField textoID;
+    private static javax.swing.JTextField textoTitulo;
+    private static javax.swing.JTextField textoTrailer;
     // End of variables declaration//GEN-END:variables
-
-    private String[] getColumnas() {
-        String columna[] = new String[]{"ID_PELI", "Hola2", "Hola3", "", "", "", "", ""};
-        return columna;
-    }
-
-    private static void setFilas(Object datos[]) {
-
-        modeloTabla.addRow(datos);
-
-    }
 }
