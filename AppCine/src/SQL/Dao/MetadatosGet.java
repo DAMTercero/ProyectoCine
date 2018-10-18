@@ -13,7 +13,6 @@ import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import sun.security.pkcs11.Secmod;
 
 /**
  *
@@ -35,17 +34,12 @@ public class MetadatosGet extends SQL.Conexion.sql {
         try {
 
             if (conector.equalsIgnoreCase("mysql")) {
-
-                //Class.forName("com.mysql.jdbc.Driver");
                 conexion = getCon_mysql_jdbc();
-
             } else {
-
-                //Class.forName("com.sqlite.jdbc.Driver");
                 conexion = getCon_sql();
             }
             DatabaseMetaData dbmd = conexion.getMetaData();//Creamos objeto DatabaseMetaData
-            ResultSet resul = null;
+
             String nombre = dbmd.getDatabaseProductName();
             String url = dbmd.getURL();
             String driver = dbmd.getDriverName();
@@ -58,6 +52,10 @@ public class MetadatosGet extends SQL.Conexion.sql {
             ventanaMetadatos.areaDeTextoMetadata.append("URL: " + url + "\n");
             ventanaMetadatos.areaDeTextoMetadata.append("Nombre: " + nombre + "\n");
             ventanaMetadatos.areaDeTextoMetadata.append("Usuario: " + usuario + "\n");
+
+            ResultSet resul = null; //para la tabla y su informacion
+            
+            //CARLOS
 
         } catch (Exception e) {
             e.printStackTrace();
