@@ -11,8 +11,6 @@ import DB4o.Clases.Sala;
 import DB4o.Conexion.Conexion;
 import static DB4o.Ventanas.AMB.labelTituloVentana;
 import static DB4o.Ventanas.AMB.tablaResultado;
-import static DB4o.Ventanas.AMB.tablaResultadoEmpleados;
-import static DB4o.Ventanas.AMB.tablaResultadoSalas;
 
 /**
  *
