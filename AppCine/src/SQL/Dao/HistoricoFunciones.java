@@ -80,31 +80,15 @@ public class HistoricoFunciones {
     public void botonAnyadir_Modificar(int isAnyadir) throws SQLException, ClassNotFoundException, IOException {
         SQL.Clases.Historico historico = new SQL.Clases.Historico();
         switch (isAnyadir) {
-            case 0://es modificar
-                /* historico.setID_EMPLEADO(Integer.parseInt(Añadir.textoID.getText()));
-                historico.setNOMBRE(Añadir.textoTitulo.getText());
-                historico.setAPELLIDO1(Añadir.textoAnyo.getText());
-                historico.setAPELLIDO2(Añadir.textoDirector.getText());
-                historico.setFECHA_NACIMIENTO(Añadir.textoAcPr.getText());
-                historico.setFECHA_CONTRATO(Añadir.textoAcSe.getText());
-                historico.setFECHA_FIN(Añadir.textoDuracion.getText());
-                historico.setNACIONALIDAD(Añadir.textoTrailer.getText());
-                historico.setCARGO(Añadir.textoUltimo.getText());
-                historico.setDISPONIBLE(Añadir.disponibleCheckBox.isSelected());
-
-                boolean action1 = historicoCRUD.updateHistorico(historico, ventanaHistorico.getTipoConexion());
-
-                if (action1) {
-                    JOptionPane.showMessageDialog(null, "Recurso Actualizado satisfactoriamente");
-                }*/
+            case 0://es modificar               
                 break;
             case 1: //añadir
                 //tengo el indice seleccionado, coger el objeto de los arrays en esa misma posicion
                 historico.setID_SALA(ventanaHistorico.salas.get(Añadir_Modificar.comboSala.getSelectedIndex()).getID_SALA());
                 historico.setID_PELICULA(ventanaHistorico.peliculas.get(Añadir_Modificar.comboPeli.getSelectedIndex()).getID_PELICULA());
                 historico.setID_EMPLEADO(ventanaHistorico.empleados.get(Añadir_Modificar.comboEmpleado.getSelectedIndex()).getID_EMPLEADO());
-                historico.setFECHA_EMISION(Añadir_Modificar.textFechaEmision.getText());
-                historico.setSESION(Añadir_Modificar.textSesion.getText());
+                 historico.setFECHA_EMISION(Añadir_Modificar.jFormattedTextField1.getText());
+                historico.setSESION(String.valueOf(Añadir_Modificar.jComboBox1.getSelectedItem()));
 
                 boolean action2 = historicoCRUD.insertHistorico(historico, ventanaHistorico.getTipoConexion());
 
@@ -156,9 +140,7 @@ public class HistoricoFunciones {
         }
     }
 
-    public List<Object> botonFiltrar() throws IOException, SQLException, ClassNotFoundException {
-        //desactivar botones modificar y baja
-        ventanaHistorico.botonModificar.setEnabled(false);
+    public List<Object> botonFiltrar() throws IOException, SQLException, ClassNotFoundException {        
         SQL.Clases.Historico historico = new SQL.Clases.Historico();
         //crear el historico de filtrado
 

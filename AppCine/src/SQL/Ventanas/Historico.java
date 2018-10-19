@@ -78,7 +78,6 @@ public class Historico extends javax.swing.JFrame {
         tablaResultados = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         botonAnadir = new javax.swing.JButton();
-        botonModificar = new javax.swing.JButton();
         labelTitulo = new javax.swing.JLabel();
         textoErrores = new javax.swing.JTextField();
 
@@ -223,23 +222,13 @@ public class Historico extends javax.swing.JFrame {
             }
         });
 
-        botonModificar.setText("Modificar");
-        botonModificar.setEnabled(false);
-        botonModificar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonModificarActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(botonAnadir, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botonModificar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE))
+                .addComponent(botonAnadir, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(16, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -247,8 +236,6 @@ public class Historico extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addComponent(botonAnadir, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(botonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -328,13 +315,6 @@ public class Historico extends javax.swing.JFrame {
         historicoFunciones.abrirVentanaAñadir(ventanaAñadir_Modificar);
 
     }//GEN-LAST:event_botonAnadirActionPerformed
-
-    private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
-        ventanaAñadir_Modificar = new Añadir_Modificar();//usando template de añadir
-
-        historicoFunciones.abrirVentanaModificar(ventanaAñadir_Modificar, (SQL.Clases.Historico) tablaFiltradoObjetos.get(tablaResultados.getSelectedRow()));
-
-    }//GEN-LAST:event_botonModificarActionPerformed
 
     private void botonLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonLimpiarActionPerformed
         try {
@@ -432,7 +412,6 @@ public class Historico extends javax.swing.JFrame {
     public static javax.swing.JButton botonAnadir;
     public static javax.swing.JButton botonBuscar;
     public static javax.swing.JButton botonLimpiar;
-    public static javax.swing.JButton botonModificar;
     public static javax.swing.JComboBox<String> comboEmpleado;
     public static javax.swing.JComboBox<String> comboFechaEmision;
     public static javax.swing.JComboBox<String> comboPeli;
