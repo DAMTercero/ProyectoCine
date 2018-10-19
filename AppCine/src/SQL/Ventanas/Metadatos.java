@@ -24,8 +24,7 @@ public class Metadatos extends javax.swing.JFrame {
      */
     public Metadatos() {
         initComponents();
-        this.setLocationRelativeTo(null);
-       
+        this.setLocationRelativeTo(null);       
     }
 
     /**

@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 
 /**
@@ -52,10 +53,37 @@ public class MetadatosGet extends SQL.Conexion.sql {
             ventanaMetadatos.areaDeTextoMetadata.append("URL: " + url + "\n");
             ventanaMetadatos.areaDeTextoMetadata.append("Nombre: " + nombre + "\n");
             ventanaMetadatos.areaDeTextoMetadata.append("Usuario: " + usuario + "\n");
-
+            ventanaMetadatos.areaDeTextoMetadata.append("\nTABLAS: \n");
             ResultSet resul = null; //para la tabla y su informacion
+
+            //CARLOS es el mejor
+            resul = dbmd.getTables(null, "", null, null);
+            ResultSetMetaData resulMeta = resul.getMetaData();
             
-            //CARLOS
+            while (resul.next()) {
+                
+
+                String catalogo = resul.getString(1);
+                String esquema = resul.getString(2);
+                String tabla = resul.getString(3);
+                String tipo = resul.getString(4);
+                
+                resulMeta = resul.getMetaData();
+                
+                int cols = resulMeta.getColumnCount();
+                
+                for (int i = 1; i <= cols; i++) {
+                    
+                    System.out.println("aaa: "+resulMeta.getColumnLabel(i));
+                    
+                }
+                
+                    
+                
+
+                ventanaMetadatos.areaDeTextoMetadata.append(tipo + " - Catálogo: " + catalogo + ", Nombre: " + tabla + ", Esquema: " + esquema+" "  + "\n");
+
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
