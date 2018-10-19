@@ -68,15 +68,9 @@ public class MetadatosGet extends SQL.Conexion.sql {
                 String tabla = resul.getString(3);
                 String tipo = resul.getString(4);
                 
-                resulMeta = resul.getMetaData();
+               // ResulSet rs = StrictMath.executeQuery();
                 
-                int cols = resulMeta.getColumnCount();
                 
-                for (int i = 1; i <= cols; i++) {
-                    
-                    System.out.println("aaa: "+resulMeta.getColumnLabel(i));
-                    
-                }
                 
                     
                 

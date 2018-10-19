@@ -87,8 +87,8 @@ public class HistoricoFunciones {
                 historico.setID_SALA(ventanaHistorico.salas.get(Añadir_Modificar.comboSala.getSelectedIndex()).getID_SALA());
                 historico.setID_PELICULA(ventanaHistorico.peliculas.get(Añadir_Modificar.comboPeli.getSelectedIndex()).getID_PELICULA());
                 historico.setID_EMPLEADO(ventanaHistorico.empleados.get(Añadir_Modificar.comboEmpleado.getSelectedIndex()).getID_EMPLEADO());
-                historico.setFECHA_EMISION(Añadir_Modificar.textFechaEmision.getText());
-                historico.setSESION(Añadir_Modificar.textSesion.getText());
+                 historico.setFECHA_EMISION(Añadir_Modificar.jFormattedTextField1.getText());
+                historico.setSESION(String.valueOf(Añadir_Modificar.jComboBox1.getSelectedItem()));
 
                 boolean action2 = historicoCRUD.insertHistorico(historico, ventanaHistorico.getTipoConexion());
 
