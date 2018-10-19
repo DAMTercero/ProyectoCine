@@ -11,6 +11,7 @@ import SQL.Ventanas.Metadatos;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -59,24 +60,27 @@ public class MetadatosGet extends SQL.Conexion.sql {
             //CARLOS es el mejor
             resul = dbmd.getTables(null, "", null, null);
             ResultSetMetaData resulMeta = resul.getMetaData();
-            
-            while (resul.next()) {
-                
 
+            while (resul.next()) {
+                //METADATOS (nombre, driver, url y usuario,esquema,nombre de la tabla,)
                 String catalogo = resul.getString(1);
                 String esquema = resul.getString(2);
                 String tabla = resul.getString(3);
                 String tipo = resul.getString(4);
-                
-               // ResulSet rs = StrictMath.executeQuery();
-                
-                
-                
-                    
-                
+                //METADATOS (clave primaria y las columnas que tiene la tabla,nombre, el tipo, si es nula) 
+                PreparedStatement ps = conexion.prepareStatement("select * from " + tabla);
+                ResultSet rs = ps.executeQuery();
+                ResultSetMetaData rsmd = rs.getMetaData();
 
-                ventanaMetadatos.areaDeTextoMetadata.append(tipo + " - Catálogo: " + catalogo + ", Nombre: " + tabla + ", Esquema: " + esquema+" "  + "\n");
+                ventanaMetadatos.areaDeTextoMetadata.append(tipo + " - Catálogo: " + catalogo + ", Nombre: " + tabla + ", Esquema: " + esquema + " " + "\n");
 
+                ventanaMetadatos.areaDeTextoMetadata.append("Total columnas : " + rsmd.getColumnCount() + "\n");
+                for (int i = 0; i < rsmd.getColumnCount(); i++) {
+                    ventanaMetadatos.areaDeTextoMetadata.append("Column Name " + rsmd.getColumnName(i + 1) + ", ");
+                    ventanaMetadatos.areaDeTextoMetadata.append("Column Type: " + rsmd.getColumnTypeName(i + 1) + ", ");
+                    ventanaMetadatos.areaDeTextoMetadata.append("Es null (0 no, 1 si): " + rsmd.isNullable(i + 1) + ", ");
+                }
+                ventanaMetadatos.areaDeTextoMetadata.append("\n");
             }
 
         } catch (Exception e) {
