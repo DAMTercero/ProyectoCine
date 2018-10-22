@@ -29,6 +29,50 @@ public class VentanaAñadir2 extends javax.swing.JFrame {
 
     }
 
+    
+     public static void cambiarVentanaPelis() {
+        labelTituloVentana.setText("PELÍCULAS");
+        labelID.setText("ID Pélicula:");
+        labelTitulo.setText("Título:");
+        labelAnyo.setText("Año: ");
+        labelDirector.setText("Director:");
+        labelAP.setText("Actor/a principal:");
+        labelAS.setText("Actor/a secundario/a:");
+        labelDuracion.setText("Duración:");
+        labelTrailer.setText("Trailer");
+        labelCargo.hide();
+        textoCargo.hide();
+    }
+
+    public static void cambiarVentanaSalas() {
+        labelTituloVentana.setText("SALAS");
+        labelID.setText("ID Sala:");
+        labelTitulo.setText("Capacidad:");
+        labelAnyo.setText("Pantalla: ");
+        labelDirector.setText("Apertura:");
+        labelAP.setText("Horario:");
+        labelAS.setText(" ");
+        labelDuracion.setText(" ");
+        labelTrailer.setText(" ");
+        textoAcSe.hide();
+        textoDuracion.hide();
+        textoTrailer.hide();
+        labelCargo.hide();
+        textoCargo.hide();
+    }
+
+    public static void cambiarVentanaEmpleadoss() {
+        labelTituloVentana.setText("EMPLEADOS");
+        labelID.setText("ID Empleado:");
+        labelTitulo.setText("Nombre:");
+        labelAnyo.setText("Primer apellido: ");
+        labelDirector.setText("Segundo apellido:");
+        labelAP.setText("Fecha de Nacimiento:");
+        labelAS.setText("Fecha de contratación:");
+        labelDuracion.setText("Fecha Fin de Contrato:");
+        labelTrailer.setText("Nacionalidad: ");
+
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -57,7 +101,7 @@ public class VentanaAñadir2 extends javax.swing.JFrame {
         textoDuracion = new javax.swing.JTextField();
         labelTrailer = new javax.swing.JLabel();
         textoTrailer = new javax.swing.JTextField();
-        labelUltimo = new javax.swing.JLabel();
+        labelCargo = new javax.swing.JLabel();
         textoCargo = new javax.swing.JTextField();
         botonAtras1 = new javax.swing.JButton();
         botonAñadir1 = new javax.swing.JButton();
@@ -83,8 +127,6 @@ public class VentanaAñadir2 extends javax.swing.JFrame {
         labelID.setForeground(new java.awt.Color(255, 0, 0));
         labelID.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelID.setText("ID Pelicula:");
-
-        textoID.setEditable(false);
 
         labelTitulo.setForeground(new java.awt.Color(255, 0, 0));
         labelTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -120,9 +162,15 @@ public class VentanaAñadir2 extends javax.swing.JFrame {
         labelTrailer.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelTrailer.setText("Trailer:");
 
-        labelUltimo.setForeground(new java.awt.Color(255, 0, 0));
-        labelUltimo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelUltimo.setText("Trailer:");
+        labelCargo.setForeground(new java.awt.Color(255, 0, 0));
+        labelCargo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelCargo.setText("Trailer:");
+
+        textoCargo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textoCargoActionPerformed(evt);
+            }
+        });
 
         botonAtras1.setText("Atrás");
         botonAtras1.addActionListener(new java.awt.event.ActionListener() {
@@ -178,7 +226,7 @@ public class VentanaAñadir2 extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(textoTrailer, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(labelUltimo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(labelCargo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(textoCargo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(184, Short.MAX_VALUE))
@@ -224,7 +272,7 @@ public class VentanaAñadir2 extends javax.swing.JFrame {
                     .addComponent(textoTrailer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelUltimo)
+                    .addComponent(labelCargo)
                     .addComponent(textoCargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addComponent(botonAñadir1)
@@ -511,7 +559,7 @@ public class VentanaAñadir2 extends javax.swing.JFrame {
                 Pelicula p1 = new Pelicula(idPelicula, titulo, anyoEstreno, director, actorPrinci, actorSecun, duracion, trailer);
                 Conexion conexion = new Conexion();
                 conexion.modificarPelicula(peliOriginal, p1);
-                for (int i = 0; i < tablaResultado.getRowCount(); i++) {
+                for (int i = 0; i < amb.tablaResultado.getRowCount(); i++) {
 
                     amb.tablaResultado.setValueAt("", i, 0);
                     amb.tablaResultado.setValueAt("", i, 1);
@@ -529,6 +577,10 @@ public class VentanaAñadir2 extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_botonAñadir1ActionPerformed
+
+    private void textoCargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoCargoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textoCargoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -574,12 +626,12 @@ public class VentanaAñadir2 extends javax.swing.JFrame {
     public static javax.swing.JLabel labelAP;
     public static javax.swing.JLabel labelAS;
     public static javax.swing.JLabel labelAnyo;
+    public static javax.swing.JLabel labelCargo;
     public static javax.swing.JLabel labelDirector;
     public static javax.swing.JLabel labelDuracion;
     public static javax.swing.JLabel labelID;
     public static javax.swing.JLabel labelTitulo;
     public static javax.swing.JLabel labelTrailer;
-    public static javax.swing.JLabel labelUltimo;
     public static javax.swing.JTextField textoAcPr;
     public static javax.swing.JTextField textoAcSe;
     public static javax.swing.JTextField textoAnyo;

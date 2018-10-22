@@ -584,24 +584,24 @@ public class AMB extends javax.swing.JFrame {
 
 
     private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
-        VentanaAñadir a;
+        VentanaAñadir2 a;
         switch (salaPeliEmpleado) {
             case "empleado":
-                a = new VentanaAñadir(salaPeliEmpleado);
+                a = new VentanaAñadir2(salaPeliEmpleado);
                 a.cambiarVentanaEmpleadoss();
                 a.botonAñadir.setText("Añadir");
                 a.amb = this;
                 a.show();
                 break;
             case "sala":
-                a = new VentanaAñadir(salaPeliEmpleado);
+                a = new VentanaAñadir2(salaPeliEmpleado);
                 a.cambiarVentanaSalas();
                 a.botonAñadir.setText("Añadir");
                 a.amb = this;
                 a.show();
                 break;
             case "pelicula":
-                a = new VentanaAñadir(salaPeliEmpleado);
+                a = new VentanaAñadir2(salaPeliEmpleado);
                 a.cambiarVentanaPelis();
                 a.botonAñadir.setText("Añadir");
                 a.amb = this;
@@ -911,7 +911,7 @@ public class AMB extends javax.swing.JFrame {
 
                 String cargo = (String) tablaResultadoEmpleados.getValueAt(filaseleccionada2, 8);
 
-                VentanaAñadir a = new VentanaAñadir("empleado");
+                VentanaAñadir2 a = new VentanaAñadir2("empleado");
                 a.cambiarVentanaEmpleadoss();
                 a.textoID.setText(String.valueOf(idEmpleado));
                 a.textoTitulo.setText(nombre);
@@ -946,7 +946,7 @@ public class AMB extends javax.swing.JFrame {
 
                 String horario = (String) tablaResultadoSalas.getValueAt(filaseleccionada3, 4);
 
-                VentanaAñadir a3 = new VentanaAñadir("sala");
+                VentanaAñadir2 a3 = new VentanaAñadir2("sala");
                 a3.cambiarVentanaSalas();
                 a3.textoID.setText(String.valueOf(idSala));
                 a3.textoTitulo.setText(String.valueOf(capacidad));
@@ -984,7 +984,7 @@ public class AMB extends javax.swing.JFrame {
 
                 String trailer = (String) tablaResultado.getValueAt(filaseleccionada, 7);
 
-                VentanaAñadir a2 = new VentanaAñadir("pelicula");
+                VentanaAñadir2 a2 = new VentanaAñadir2("pelicula");
                 a2.cambiarVentanaPelis();
                 a2.textoID.setText(String.valueOf(idPelicula));
                 a2.textoTitulo.setText(titulo);
