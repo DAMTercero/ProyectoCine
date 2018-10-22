@@ -144,7 +144,7 @@
                       <Component id="comboSala" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="textoFecha" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="81" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="botonBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="botonLimpiar" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -331,11 +331,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Component id="botonAtras" min="-2" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="botonAnadir" alignment="0" max="32767" attributes="0"/>
-                          <Component id="botonModificar" alignment="0" pref="131" max="32767" attributes="0"/>
-                      </Group>
-                      <Component id="botonBorrar" min="-2" pref="111" max="-2" attributes="0"/>
+                      <Component id="botonAnadir" min="-2" pref="131" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="36" max="32767" attributes="0"/>
               </Group>
@@ -346,11 +342,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                   <Component id="botonAnadir" min="-2" pref="54" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="botonModificar" min="-2" pref="49" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                  <Component id="botonBorrar" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="77" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Component id="botonAtras" min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -364,19 +356,6 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonAnadirActionPerformed"/>
           </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="botonModificar">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Modificar"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonModificarActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="botonBorrar">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Borrar"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="botonAtras">
           <Properties>

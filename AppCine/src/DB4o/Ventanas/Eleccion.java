@@ -37,12 +37,12 @@ public class Eleccion extends javax.swing.JFrame {
         Sala s2 = new Sala (2,63,300,"17:00","17:30-19:30 / 20:00-22:00 / 22:30-00:30");
         Sala s3 = new Sala (3,52,185,"17:00","17:30-19:30 / 20:00-22:00 / 22:30-00:30");
         
-        Historico h1= new Historico ("12/12/2018","22:30-00:30",s1,e1,p1);
+        Historico h1= new Historico ("12/12/2018","17:30-19:30",s1,e1,p1);
         Historico h2= new Historico ("11/11/2018","22:30-00:30",s2,e2,p2);
         Historico h3= new Historico ("10/10/2018","22:30-00:30",s3,e3,p3);
-        Historico h4= new Historico ("19/09/2018","22:30-00:30",s1,e2,p3);
+        Historico h4= new Historico ("19/09/2018","20:00-22:00",s1,e2,p3);
         Historico h5= new Historico ("18/11/2018","22:30-00:30",s3,e2,p1);
-        Historico h6= new Historico ("17/12/2018","22:30-00:30",s2,e1,p2);
+        Historico h6= new Historico ("17/12/2018","17:30-19:30",s2,e1,p2);
         
         
         
